@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 interface GestionProductosProps {
   productos: Array<Producto>;
   listarProductos: (numeroPagina: number) => void;
-  agregarNuevoProducto: (productos: Producto) => void;
-  eliminarProducto: (productos: Producto) => void;
+  agregarNuevoProducto: (producto: Producto) => void;
+  eliminarProducto: (producto: Producto) => void;
   cantidadTotalProducto: number;
 }
 

@@ -9,7 +9,7 @@ import { ProductoRepositorio } from 'app/core/api/productos.repositorio';
 
 export function listarProductos(
   productos: Array<Producto>,
-  cantidadTotalProducto: number
+  cantidadTotalProducto: number,
 ): TiposAccionesProducto {
   return {
     type: LISTAR_PRODUCTOS,
@@ -18,7 +18,21 @@ export function listarProductos(
   };
 }
 
-export function agregarNuevoProducto(
+export function agregarNuevoProducto(producto: Producto) {
+    return function (dispacth: any) {
+      ProductoRepositorio.crearProducto(
+        producto
+      ).then((respuesta: any) =>
+        dispacth(
+          console.log(producto),
+          console.log(respuesta),
+          agregarProducto(respuesta.data)
+        )
+      );
+    };
+}
+
+export function agregarProducto(
   producto: Producto
 ): TiposAccionesProducto {
   return {
@@ -37,10 +51,9 @@ export function eliminarProducto(producto: Producto): TiposAccionesProducto {
 export function listarProductosAsync(numeroPagina: number) {
   return function (dispacth: any) {
     ProductoRepositorio.consultarPorPagina(
-      numeroPagina
     ).then((respuesta: any) =>
       dispacth(
-        listarProductos(respuesta.data.articles, respuesta.data.articlesCount)
+        listarProductos(respuesta.data, Array.from(respuesta.data).length)
       )
     );
   };

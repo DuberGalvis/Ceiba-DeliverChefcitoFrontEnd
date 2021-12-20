@@ -1,6 +1,6 @@
 import { EstadoProducto } from 'app/core/redux/modelo/EstadoProducto';
 import { Producto } from 'app/feature/Producto/models/Producto';
-import { agregarNuevoProducto } from 'app/core/redux/acciones/productos/ProductosAcciones';
+import { agregarProducto } from 'app/core/redux/acciones/productos/ProductosAcciones';
 import reductorProductos from './productosReductor';
 
 describe('Reductor productos', () => {
@@ -11,11 +11,9 @@ describe('Reductor productos', () => {
       productos: [],
     };
     const nuevoProducto: Producto = {
-      title: 'nuevo',
-      slug: 'Juan Pablo Botero',
-      body: 'posting the article accessing using constant',
-      createdAt: '2020-03-03T03:20:27.795Z',
-      updatedAt: '2020-03-03T03:20:27.795Z',
+      nombre: 'Bandeja Paisa',
+      precio: 45000,
+      detalle: 'Lorem Ipsum is simply dummy text of the printing and',
     };
     const estadoEsperado: EstadoProducto = {
       ...estadoInicial,
@@ -25,7 +23,7 @@ describe('Reductor productos', () => {
     // Act
     const nuevoEstado = reductorProductos(
       estadoInicial,
-      agregarNuevoProducto(nuevoProducto)
+      agregarProducto(nuevoProducto)
     );
 
     // Assert

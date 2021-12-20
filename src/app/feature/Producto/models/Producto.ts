@@ -1,7 +1,5 @@
 export interface Producto {
-  title: string;
-  slug: string;
-  body: string;
-  createdAt: string;
-  updatedAt: string;
+  nombre: string;
+  precio: number;
+  detalle: string;
 }

@@ -14,7 +14,7 @@ const initialState: EstadoProducto = {
 
 export default function (
   state = initialState,
-  action: TiposAccionesProducto
+  action: TiposAccionesProducto,
 ): EstadoProducto {
   switch (action.type) {
     case LISTAR_PRODUCTOS: {
@@ -38,7 +38,7 @@ export default function (
       return {
         ...state,
         productos: [
-          ...state.productos.filter((p) => p.title !== producto.title),
+          ...state.productos.filter((p) => p.nombre !== producto.nombre),
         ],
       };
     }

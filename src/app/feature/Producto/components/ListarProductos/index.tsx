@@ -18,22 +18,23 @@ export const ListaProductos: React.FC<ListaProductosProps> = ({
       <thead>
         <tr>
           <td>
-            <b>Título</b>
+            <b>Nombre del Producto</b>
           </td>
           <td>
-            <b>Fecha creación</b>
+            <b>Precio</b>
           </td>
           <td>
-            <b>Eliminar</b>
+            <b>Detalles</b>
           </td>
         </tr>
       </thead>
       <tbody>
         {productos.map((producto: Producto) => {
           return (
-            <tr key={producto.slug}>
-              <td>{producto.title}</td>
-              <td>{`${producto.createdAt} `}</td>
+            <tr key={producto.nombre}>
+              <td>{producto.nombre}</td>
+              <td>{`${producto.precio} `}</td>
+              <td>{`${producto.detalle} `}</td>
               <td>
                 <BtnEliminarProducto
                   producto={producto}

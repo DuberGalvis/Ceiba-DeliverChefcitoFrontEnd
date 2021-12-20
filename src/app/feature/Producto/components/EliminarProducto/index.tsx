@@ -24,11 +24,9 @@ export const BtnEliminarProducto: React.FC<BtnEliminarProductoProps> = ({
 
 BtnEliminarProducto.propTypes = {
   producto: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
+    nombre: PropTypes.string.isRequired,
+    precio: PropTypes.number.isRequired,
+    detalle: PropTypes.string.isRequired,
   }).isRequired,
   onEliminar: PropTypes.func.isRequired,
 };

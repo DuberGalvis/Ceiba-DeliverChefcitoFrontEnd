@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosIntance = axios.create({
-  baseURL: process.env.REACT_APP_URL_BASE,
+  baseURL: 'http://localhost:3000/api',
   timeout: 30000,
   headers: { 'X-Custom-Header': 'foobar' },
 });

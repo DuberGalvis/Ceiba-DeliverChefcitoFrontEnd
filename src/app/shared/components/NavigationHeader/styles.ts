@@ -19,4 +19,8 @@ export const HeaderNav = styled.nav`
   box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.2);
 `;
 
+export const TitleH1 = styled.h1`
+  text-align: center;
+`;
+
 export default {};

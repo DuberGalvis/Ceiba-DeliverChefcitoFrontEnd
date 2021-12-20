@@ -31,18 +31,18 @@ describe('FormCrearProducto test', () => {
     });
     const spans = elem.querySelectorAll('span');
     expect(spans.length).toBe(3);
-    expect(spans[0].textContent).toBe('El campo title es requerido.');
-    expect(spans[1].textContent).toBe('El campo slug es requerido.');
-    expect(spans[2].textContent).toBe('El campo body es requerido.');
+    expect(spans[0].textContent).toBe('El campo nombre es requerido.');
+    expect(spans[1].textContent).toBe('El campo precio es requerido.');
+    expect(spans[2].textContent).toBe('El campo detalle es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
     const elem = componentWrapper.container;
-    const title = elem.querySelector('input[name="title"]');
+    const nombre = elem.querySelector('input[name="nombre"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-      title && fireEvent.change(title, setTextEvent('title', 'Lorem'));
+      nombre && fireEvent.change(nombre, setTextEvent('nombre', 'Lorem'));
     });
 
     await wait(() => {
@@ -50,22 +50,22 @@ describe('FormCrearProducto test', () => {
     });
     const spans = elem.querySelectorAll('span');
     expect(spans.length).toBe(2);
-    expect(spans[0].textContent).toBe('El campo slug es requerido.');
-    expect(spans[1].textContent).toBe('El campo body es requerido.');
+    expect(spans[0].textContent).toBe('El campo precio es requerido.');
+    expect(spans[1].textContent).toBe('El campo detalle es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
     const elem = componentWrapper.container;
 
-    const title = elem.querySelector('input[name="title"]');
-    const slug = elem.querySelector('input[name="slug"]');
+    const nombre = elem.querySelector('input[name="nombre"]');
+    const precio = elem.querySelector('input[name="precio"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-      title && fireEvent.change(title, setTextEvent('title', 'Lorem'));
+      nombre && fireEvent.change(nombre, setTextEvent('nombre', 'Lorem'));
     });
     await wait(() => {
-      slug && fireEvent.change(slug, setTextEvent('slug', 'Ipsum'));
+      precio && fireEvent.change(precio, setTextEvent('precio', '45000'));
     });
 
     await wait(() => {
@@ -73,25 +73,25 @@ describe('FormCrearProducto test', () => {
     });
     const spans = elem.querySelectorAll('span');
     expect(spans.length).toBe(1);
-    expect(spans[0].textContent).toBe('El campo body es requerido.');
+    expect(spans[0].textContent).toBe('El campo detalle es requerido.');
   });
 
   it('should submit', async () => {
     const elem = componentWrapper.container;
 
-    const title = elem.querySelector('input[name="title"]');
-    const slug = elem.querySelector('input[name="slug"]');
-    const body = elem.querySelector('input[name="body"]');
+    const nombre = elem.querySelector('input[name="nombre"]');
+    const precio = elem.querySelector('input[name="precio"]');
+    const detalle = elem.querySelector('input[name="detalle"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-      title && fireEvent.change(title, setTextEvent('title', 'Lorem'));
+      nombre && fireEvent.change(nombre, setTextEvent('nombre', 'Lorem'));
     });
     await wait(() => {
-      slug && fireEvent.change(slug, setTextEvent('slug', 'Ipsum'));
+      precio && fireEvent.change(precio, setTextEvent('precio', '25000'));
     });
     await wait(() => {
-      body && fireEvent.change(body, setTextEvent('body', 'Dolor'));
+      detalle && fireEvent.change(detalle, setTextEvent('detalle', 'Dolor'));
     });
 
     await wait(() => {
@@ -100,8 +100,8 @@ describe('FormCrearProducto test', () => {
 
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
 
-    expect(formSubmitted.title).toBe('Lorem');
-    expect(formSubmitted.slug).toBe('Ipsum');
-    expect(formSubmitted.body).toBe('Dolor');
+    expect(formSubmitted.nombre).toBe('Lorem');
+    expect(formSubmitted.precio).toBe('25000');
+    expect(formSubmitted.detalle).toBe('Dolor');
   });
 });

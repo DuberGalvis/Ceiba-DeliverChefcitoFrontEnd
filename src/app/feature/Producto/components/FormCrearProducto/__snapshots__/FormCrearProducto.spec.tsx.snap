@@ -8,20 +8,20 @@ exports[`FormCrearProducto test should match snapshot 1`] = `
     </h2>
     <input
       class="sc-AxirZ eAukyj"
-      name="title"
-      placeholder="Title"
+      name="nombre"
+      placeholder="Nombre"
       value=""
     />
     <input
       class="sc-AxirZ eAukyj"
-      name="slug"
-      placeholder="Slug"
+      name="precio"
+      placeholder="Precio"
       value=""
     />
     <input
       class="sc-AxirZ eAukyj"
-      name="body"
-      placeholder="Body"
+      name="detalle"
+      placeholder="Detalle"
       value=""
     />
     <button
