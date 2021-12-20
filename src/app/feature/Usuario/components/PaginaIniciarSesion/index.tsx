@@ -48,7 +48,7 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
         validationSchema,
         onSubmit:handleSubmit,
     });
-
+    
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{paginaTitle}</h2>
@@ -73,7 +73,6 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
                 <SpanError>{formik.errors.clave}</SpanError>
             )}
             <Button type="submit">Siguiente</Button>
-            <Button type="button">Crea Una Cuenta</Button>
         </form>
     );
 };

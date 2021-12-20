@@ -24,6 +24,7 @@ import {
       }
       case SESION_USUARIO: {
         const usuario = action.payload;
+        console.log(usuario);
         return {
           ...state,
           usuarios: [...state.usuarios, usuario],
