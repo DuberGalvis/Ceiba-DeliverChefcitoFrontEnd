@@ -2,21 +2,24 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { DivContainer, DivRow } from './styles';
 import { FormCrearReunion } from '../../components/FormCrearReunion';
-import { ListarReuniones } from '../../components/ListarReuniones';
+import { ListaReuniones } from '../../components/ListaReuniones';
+import { PaginadorReunion } from '../../components/PaginadorReunion';
 import { Reunion } from '../../models/Reunion';
 import { useEffect } from 'react';
 import store from 'app/core/redux/store';
 
 interface GestionReunionProps {
   reuniones: Array<Reunion>;
-  listarReuniones: (numeroReuniones: number) => void;
+  listarReuniones: (numeroPagina: number) => void;
   agregarNuevaReunion: (reunion: Reunion) => void;
+  cantidadTotalReuniones: number;
 }
 
 export const GestionReunion: React.FC<GestionReunionProps> = ({
   agregarNuevaReunion,
+  reuniones= [],
   listarReuniones,
-  reuniones,
+  cantidadTotalReuniones = 0,
 }) => {
   useEffect(() => {
     listarReuniones(0);
@@ -31,11 +34,14 @@ export const GestionReunion: React.FC<GestionReunionProps> = ({
         />
       </DivRow>
       <DivRow>
-        <ListarReuniones
+        <ListaReuniones
           reuniones={reuniones}
         />
+        <PaginadorReunion
+          cantidadTotalReuniones={cantidadTotalReuniones} 
+          onClickCambiarPagina={listarReuniones}
+        />
       </DivRow>
-      {listarReuniones}
     </DivContainer>
   );
 };
@@ -44,4 +50,5 @@ GestionReunion.propTypes = {
   reuniones: PropTypes.array.isRequired,
   listarReuniones: PropTypes.func.isRequired,
   agregarNuevaReunion: PropTypes.func.isRequired,
+  cantidadTotalReuniones: PropTypes.number.isRequired,
 };

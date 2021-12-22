@@ -36,7 +36,6 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
       <DivRow>
         <ListaProductos
           productos={productos}
-          onClickEliminarProducto={eliminarProducto}
         />
         <PaginadorProductos
           cantidadTotalProductos={cantidadTotalProducto}

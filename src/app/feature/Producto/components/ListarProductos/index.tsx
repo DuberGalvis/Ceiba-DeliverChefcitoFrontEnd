@@ -1,17 +1,14 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { BtnEliminarProducto } from '../EliminarProducto';
 import { Producto } from '../../models/Producto';
 import { Table } from './styles';
 
 export interface ListaProductosProps {
   productos: Array<Producto>;
-  onClickEliminarProducto: (productos: Producto) => void;
 }
 
 export const ListaProductos: React.FC<ListaProductosProps> = ({
   productos,
-  onClickEliminarProducto,
 }) => {
   return (
     <Table>
@@ -35,12 +32,6 @@ export const ListaProductos: React.FC<ListaProductosProps> = ({
               <td>{producto.nombre}</td>
               <td>{`${producto.precio} `}</td>
               <td>{`${producto.detalle} `}</td>
-              <td>
-                <BtnEliminarProducto
-                  producto={producto}
-                  onEliminar={onClickEliminarProducto}
-                ></BtnEliminarProducto>
-              </td>
             </tr>
           );
         })}
@@ -51,5 +42,4 @@ export const ListaProductos: React.FC<ListaProductosProps> = ({
 
 ListaProductos.propTypes = {
   productos: PropTypes.array.isRequired,
-  onClickEliminarProducto: PropTypes.func.isRequired,
 };

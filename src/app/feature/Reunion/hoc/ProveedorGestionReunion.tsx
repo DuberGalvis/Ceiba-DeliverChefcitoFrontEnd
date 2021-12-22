@@ -13,4 +13,4 @@ const mapStateToProps = (state: EstadoGeneral) => {
 export const ProveedorGestionReunion = connect(mapStateToProps, {
     listarReuniones: listarReunionesAsync,
     agregarNuevaReunion,
-})(GestionReunion)
+})(GestionReunion);

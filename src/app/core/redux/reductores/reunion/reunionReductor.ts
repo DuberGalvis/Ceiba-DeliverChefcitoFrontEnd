@@ -8,6 +8,7 @@ import {
   
   const initialState: EstadoReunion = {
     reuniones: Array<Reunion>(),
+    cantidadTotalReuniones: 0,
   };
   
   export default function (
@@ -20,6 +21,7 @@ import {
         return {
           ...state,
           reuniones,
+          cantidadTotalReuniones: action.cantidadTotalReuniones,
         };
       }
       case AGREGAR_REUNION: {

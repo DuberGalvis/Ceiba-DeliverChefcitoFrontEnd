@@ -3,11 +3,13 @@ import * as React from 'react';
 import { Reunion } from '../../models/Reunion';
 import { Table } from './styles';
 
-export interface ListarReunionesProps {
+export interface ListaReunionesProps {
     reuniones: Array<Reunion>; 
 }
 
-export const ListarReuniones: React.FC<ListarReunionesProps> = ({reuniones}) => {
+export const ListaReuniones: React.FC<ListaReunionesProps> = ({
+    reuniones,
+}) => {
     return (
         <Table>
             <thead>
@@ -24,8 +26,8 @@ export const ListarReuniones: React.FC<ListarReunionesProps> = ({reuniones}) => 
                 {reuniones.map((reunion: Reunion) => {
                         return (
                             <tr key={reunion.tipo}>
-                                <td>{reunion.tipo}</td>
-                                <td>{reunion.precio}</td>
+                                <td>{`${reunion.tipo}`}</td>
+                                <td>{`${reunion.precio}`}</td>
                             </tr>
                         );
                     })}
@@ -34,6 +36,6 @@ export const ListarReuniones: React.FC<ListarReunionesProps> = ({reuniones}) => 
     );
 };
 
-ListarReuniones.propTypes = {
+ListaReuniones.propTypes = {
     reuniones: PropTypes.array.isRequired,
-}
+};

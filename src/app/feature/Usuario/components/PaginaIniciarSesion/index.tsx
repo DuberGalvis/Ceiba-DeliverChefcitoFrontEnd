@@ -6,6 +6,9 @@ import { Input } from 'app/shared/components/Input';
 import { SpanError } from './styles';
 import { FormikHelpers, useFormik } from 'formik';
 import { Usuario } from '../../models/Usuario';
+import { Link } from 'react-router-dom';
+import { irAgregarUsuario } from 'app/core/redux/acciones/usuario/UsuarioAcciones';
+import { useEffect } from 'react';
 
 interface FormValues {
     nombre: string;
@@ -48,7 +51,9 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
         validationSchema,
         onSubmit:handleSubmit,
     });
-    
+    useEffect(() => {
+        irAgregarUsuario();
+      }, );
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{paginaTitle}</h2>
@@ -73,6 +78,9 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
                 <SpanError>{formik.errors.clave}</SpanError>
             )}
             <Button type="submit">Siguiente</Button>
+            <Link to={`/usuario`}>
+                <Button type='button' onClick={irAgregarUsuario}>Crear Usuario</Button>
+            </Link>
         </form>
     );
 };

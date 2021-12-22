@@ -8,7 +8,7 @@ export const ReunionRouter = () => (
     <React.Suspense fallback={<LazyFallback />}>
         {}
         <Switch>
-            <Route path="/"component={MainPage}></Route>
+            <Route path="/" component={MainPage}></Route>
         </Switch>
     </React.Suspense>
 );

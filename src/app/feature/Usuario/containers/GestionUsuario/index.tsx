@@ -3,19 +3,20 @@ import * as React from 'react';
 import { DivContainer, DivRow } from './styles';
 import { FormCrearUsuario } from '../../components/FormCrearUsuario';
 import { Usuario } from '../../models/Usuario';
-import { useEffect } from 'react';
 import { PaginaIniciarSesion } from '../../components/PaginaIniciarSesion';
 import { CambioClaveUsuario } from '../../models/CambioClaveUsuario';
+import { useEffect } from 'react';
+import store from 'app/core/redux/store';
 
 interface GestionUsuarioProps {
   usuarios: Array<Usuario>;
   agregarNuevoUsuario: (usuario: Usuario) => void;
   actualizarClave: (cambioClaveUsuario: CambioClaveUsuario) => void;
   darDeBajaUsuario: (usuario: Usuario) => void;
-  agregarSesionUsuario: (usuario: Usuario) => void;
-  mostrarinicioSesion: boolean;
-  mostrarAgregarUsuario: boolean;
-  mostrarPanelPrincipal: boolean;
+  agregarSesionUsuario: (usuarios: Usuario) => void;
+  irInicioSesion: () => void;
+  irAgregarUsuario: () => void;
+  irPanelPrincipal: () => void;
 }
 
 export const GestionUsuario: React.FC<GestionUsuarioProps> = ({
@@ -24,21 +25,21 @@ export const GestionUsuario: React.FC<GestionUsuarioProps> = ({
     darDeBajaUsuario,
     agregarSesionUsuario,
     usuarios,
-    mostrarinicioSesion = true,
-    mostrarAgregarUsuario = false,
-    mostrarPanelPrincipal = false,
+    irInicioSesion,
+    irAgregarUsuario,
+    irPanelPrincipal,
 }) => {
-  // useEffect(() => {
-  //   agregarSesionUsuario();
-  // }, [agregarSesionUsuario]);
+  useEffect(() => {
+    irInicioSesion();
+  }, );
   return (
     <DivContainer>
       <DivRow>
-        {mostrarAgregarUsuario && <FormCrearUsuario
+        <FormCrearUsuario
           onSubmit={agregarNuevoUsuario}
           formTitle="Crear Usuario"
-        />}
-        {mostrarinicioSesion && <PaginaIniciarSesion 
+        />
+        {store.getState().usuario.mostrarInicio && <PaginaIniciarSesion 
           onSubmit={agregarSesionUsuario}
           paginaTitle="Inicio de Sesión"
         />}
@@ -48,6 +49,7 @@ export const GestionUsuario: React.FC<GestionUsuarioProps> = ({
 };
 
 GestionUsuario.propTypes = {
+  usuarios: PropTypes.array.isRequired,
   agregarNuevoUsuario: PropTypes.func.isRequired,
   agregarSesionUsuario: PropTypes.func.isRequired,
   actualizarClave: PropTypes.func.isRequired,

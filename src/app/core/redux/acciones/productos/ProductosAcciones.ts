@@ -11,6 +11,7 @@ export function listarProductos(
   productos: Array<Producto>,
   cantidadTotalProducto: number,
 ): TiposAccionesProducto {
+  console.log(productos);
   return {
     type: LISTAR_PRODUCTOS,
     payload: productos,
@@ -50,8 +51,8 @@ export function eliminarProducto(producto: Producto): TiposAccionesProducto {
 
 export function listarProductosAsync(numeroPagina: number) {
   return function (dispacth: any) {
-    ProductoRepositorio.consultarPorPagina(
-    ).then((respuesta: any) =>
+    ProductoRepositorio.consultarPorPagina()
+    .then((respuesta: any) =>
       dispacth(
         listarProductos(respuesta.data, Array.from(respuesta.data).length)
       )

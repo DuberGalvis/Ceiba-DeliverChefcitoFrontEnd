@@ -2,6 +2,11 @@ import {
     CERRAR_SESION_USUARIO,
     SESION_USUARIO,
     USUARIO_CREADO,
+    INICIO_SESION_USUARIO,
+    ERROR_CONSULTA,
+    MOSTRAR_AGREGAR,
+    MOSTRAR_INICIO,
+    MOSTRAR_PANEL,
     TiposAccionesUsuario,
   } from './UsuarioTiposAcciones';
   import { Usuario } from 'app/feature/Usuario/models/Usuario';
@@ -13,7 +18,15 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   ): TiposAccionesUsuario {
     return {
       type: CERRAR_SESION_USUARIO,
-      payload: [],
+      payload: usuario,
+    };
+  }
+
+  export function inicioSesionUsuario(
+  ): TiposAccionesUsuario {
+    return {
+      type: INICIO_SESION_USUARIO,
+      payload: true,
     };
   }
   
@@ -28,12 +41,21 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   }
 
   export function agregarUsuario(
-    usuario: Usuario
+    confirmacion: string
   ): TiposAccionesUsuario {
     return {
       type: USUARIO_CREADO,
-      payload: usuario,
+      payload: confirmacion,
     };
+  }
+
+  export function errorEnConsulta(
+    error: string
+  ): TiposAccionesUsuario {
+    return {
+      type: ERROR_CONSULTA,
+      payload: error,
+    }
   }
 
   export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
@@ -54,7 +76,14 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
           usuario
         ).then((respuesta: any) =>
         dispacth(
-            agregarUsuario(respuesta.data),
+          console.log(respuesta, 'esta es la respuesta'),
+            agregarUsuario(respuesta),
+        )
+      )
+      .catch((error: any) =>
+      dispacth(
+        console.log(error),
+        errorEnConsulta(error.message),
         )
       );
     };
@@ -62,14 +91,20 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
 
   export function iniciarSesionUsuarioAsync(usuario: Usuario) {
     return function (dispacth: any) {
+      dispacth(inicioSesionUsuario());
       UsuarioRepositorio.iniciarSesion(
         usuario
         ).then((respuesta: any) =>
-        dispacth(
-          console.log('1',respuesta.data),
-          agregarSesionUsuario(respuesta.data),
+          dispacth(
+            agregarSesionUsuario(respuesta.data),
+          )
         )
-      );
+        .catch ((error: any) =>
+          dispacth(
+            console.log(error),
+            errorEnConsulta(error.message),
+          )
+        );
     };
   }
 
@@ -85,7 +120,27 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
     };
   }
 
-  export let mostrarinicioSesion: boolean;
-  export let mostrarAgregarUsuario: boolean;
-  export let mostrarPanelPrincipal: boolean;
+  export function irAgregarUsuario(
+  ):TiposAccionesUsuario {
+    return {
+      type: MOSTRAR_AGREGAR,
+      payload: true,
+    }
+  }
+
+  export function irInicioSesion(
+  ):TiposAccionesUsuario {
+    return {
+      type: MOSTRAR_INICIO,
+      payload: true,
+    }
+  }
+
+  export function irPanelPrincipal(
+    ):TiposAccionesUsuario {
+      return {
+        type: MOSTRAR_PANEL,
+        payload: true,
+      }
+    }
   
