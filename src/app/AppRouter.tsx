@@ -6,6 +6,7 @@ import { NavigationHeader } from 'app/shared/components/NavigationHeader';
 import { ProductoRouter } from 'app/feature/Producto/ProductoRouter';
 import { ReunionRouter } from './feature/Reunion/ReunionRouter';
 import { UsuarioRouter } from './feature/Usuario/UsuarioRouter';
+import { PedidoRouter } from './feature/Pedido/PedidoRouter';
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
         <Route path="/home" component={HomeRouter} />
         <Route path="/productos" component={ProductoRouter} />
         <Route path="/reuniones" component={ReunionRouter} />
+        <Route path="/pedidos" component={PedidoRouter} />
         <Route path="/usuario" component={UsuarioRouter} />
       </Switch>
     </BrowserRouter>

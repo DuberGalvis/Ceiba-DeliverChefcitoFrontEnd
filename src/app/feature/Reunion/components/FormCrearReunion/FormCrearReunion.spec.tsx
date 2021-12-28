@@ -73,6 +73,6 @@ describe('FormCrearReunion test', () => {
         const formSubmitted = componentProps.onSubmit.firstCall.args[0];
     
         expect(formSubmitted.tipo).toBe('Lorem');
-        expect(formSubmitted.precio).toBe('24000');
+        expect(formSubmitted.precio).toBe(24000);
       });
 });

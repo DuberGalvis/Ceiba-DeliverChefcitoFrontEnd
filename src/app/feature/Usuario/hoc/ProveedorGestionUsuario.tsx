@@ -23,4 +23,4 @@ export const ProveedorGestionUsuario = connect(mapStateToProps, {
     irAgregarUsuario,
     irInicioSesion,
     irPanelPrincipal,
-})(GestionUsuario)
+})(GestionUsuario);

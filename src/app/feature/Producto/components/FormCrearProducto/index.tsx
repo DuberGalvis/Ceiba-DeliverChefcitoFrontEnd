@@ -10,7 +10,7 @@ import { useFormik } from 'formik';
 
 interface FormValues {
   nombre: string;
-  precio: number;
+  precio: string;
   detalle: string;
 }
 
@@ -23,7 +23,7 @@ interface FormCrearProductoProp {
 
 const validationSchema = Yup.object().shape<FormValues>({
   nombre: Yup.string().required('El campo nombre es requerido.'),
-  precio: Yup.number().required('El campo precio es requerido.'),
+  precio: Yup.string().required('El campo precio es requerido.'),
   detalle: Yup.string().required('El campo detalle es requerido.'),
 });
 
@@ -33,7 +33,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
   formTitle,
   initialValues = {
     nombre: '',
-    precio: 0,
+    precio: '',
     detalle: '',
   },
 }) => {
@@ -43,7 +43,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
   ) => {
     onSubmit({
       nombre: values.nombre,
-      precio: values.precio,
+      precio: parseInt(values.precio),
       detalle: values.detalle,
     });
     resetForm();
@@ -98,7 +98,7 @@ FormCrearProducto.propTypes = {
   disabled: PropTypes.bool,
   initialValues: PropTypes.shape({
     nombre: PropTypes.string.isRequired,
-    precio: PropTypes.number.isRequired,
+    precio: PropTypes.string.isRequired,
     detalle: PropTypes.string.isRequired,
   }),
 };

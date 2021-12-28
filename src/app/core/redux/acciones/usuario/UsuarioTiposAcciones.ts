@@ -12,6 +12,7 @@ export const MOSTRAR_PANEL = 'MOSTRAR_PANEL';
 interface AccionCerrarSesionUsuario {
   type: typeof CERRAR_SESION_USUARIO;
   payload: Usuario;
+  confirmacion: string;
 }
 
 interface AccionInicioSesionUsuario {

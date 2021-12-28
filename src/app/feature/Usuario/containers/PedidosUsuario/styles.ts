@@ -4,7 +4,6 @@ export const DivContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
 export const DivRow = styled.div`
@@ -24,15 +23,4 @@ export const DivRow = styled.div`
     width: 50%;
     flex: 0 0 50%;
   }
-`;
-
-export const InicioSesionImg = styled.img`
-  max-height: 50px;
-  max-width: 150px;
-  cursor: pointer;
-`;
-
-export const DivImg = styled.div`
-  display: flex;
-  justify-content: right;
 `;

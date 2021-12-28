@@ -34,16 +34,21 @@ import {
           usuarios: [
             ...state.usuarios.filter((u) => u.nombre !== usuario.nombre),
           ],
+          mostrarPanel: false,
+          mostrarAgregar: false,
+          mostrarInicio: true,
+          mensajeConfirmacion: action.confirmacion,
         };
       }
       case SESION_USUARIO: {
-        console.log(action.payload, 'payload');
         const usuario = action.payload;
-        console.log(usuario);
         return {
           ...state,
           usuarios: [ ...state.usuarios, usuario],
           loading: false,
+          mostrarPanel: true,
+          mostrarAgregar: false,
+          mostrarInicio: false,
         };
       }
       case INICIO_SESION_USUARIO: {

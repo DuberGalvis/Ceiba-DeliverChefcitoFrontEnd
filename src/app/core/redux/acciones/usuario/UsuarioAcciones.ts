@@ -15,10 +15,12 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   
   export function cerrarSesionUsuario(
     usuario: Usuario,
+    confirmacion: string,
   ): TiposAccionesUsuario {
     return {
       type: CERRAR_SESION_USUARIO,
       payload: usuario,
+      confirmacion,
     };
   }
 
@@ -59,12 +61,17 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   }
 
   export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
+    const usuario: Usuario = {nombre: cambioClaveUsuario.nombre, clave: cambioClaveUsuario.nuevaClave};
     return function (dispacth: any) {
       UsuarioRepositorio.actualizar(
         cambioClaveUsuario
       ).then((respuesta: any) =>
         dispacth(
-            agregarSesionUsuario(respuesta.data)
+          cerrarSesionUsuario(usuario, respuesta.data)
+        )
+      ).catch((error: any) =>
+        dispacth(
+          errorEnConsulta(error.message),
         )
       );
     };
@@ -75,14 +82,12 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
       UsuarioRepositorio.agregarUsuario(
           usuario
         ).then((respuesta: any) =>
-        dispacth(
-          console.log(respuesta, 'esta es la respuesta'),
-            agregarUsuario(respuesta),
+        dispacth(         
+            agregarUsuario(respuesta.statusText),
         )
       )
       .catch((error: any) =>
       dispacth(
-        console.log(error),
         errorEnConsulta(error.message),
         )
       );
@@ -90,6 +95,7 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   }
 
   export function iniciarSesionUsuarioAsync(usuario: Usuario) {
+    console.log(usuario);
     return function (dispacth: any) {
       dispacth(inicioSesionUsuario());
       UsuarioRepositorio.iniciarSesion(
@@ -114,7 +120,7 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
           usuario
         ).then((respuesta: any) =>
         dispacth(
-            cerrarSesionUsuario(respuesta.data),
+            cerrarSesionUsuario(usuario, respuesta.data),
         )
       );
     };

@@ -7,8 +7,8 @@ export const UsuarioRepositorio = {
         axiosIntance.get(`/usuarios?nombre=${nombre}&clave=${clave}`),
     agregarUsuario: ({nombre, clave}: Usuario) => 
         axiosIntance.post('/usuarios', {"nombre": nombre, "clave": clave, fechaCreacion: new Date().toISOString()}),
-    actualizar: ({nombre, clave, confirmarClave}: CambioClaveUsuario) => 
-        axiosIntance.patch('/usuarios', {"nombre": nombre, "claveActual": clave, "claveNueva": confirmarClave}),
+    actualizar: ({nombre, claveActual, nuevaClave}: CambioClaveUsuario) => 
+        axiosIntance.patch('/usuarios', {"nombre": nombre, "claveActual": claveActual, "claveNueva": nuevaClave}),
     darDeBaja: ({nombre}: Usuario) => 
         axiosIntance.delete(`/usuarios/:${nombre}`),
 };

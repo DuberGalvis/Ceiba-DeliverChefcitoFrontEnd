@@ -10,7 +10,7 @@ import { useFormik } from 'formik';
 
 interface FormValues {
     tipo: string;
-    precio: number;
+    precio: string;
 }
 
 interface FormCrearReunionProp {
@@ -22,7 +22,7 @@ interface FormCrearReunionProp {
 
 const validationSchema = Yup.object().shape<FormValues>({
     tipo: Yup.string().required('El campo tipo es requerido.'),
-    precio: Yup.number().required('El campo precio es requerido.'),
+    precio: Yup.string().required('El campo precio es requerido.'),
 });
 
 export const FormCrearReunion: React.FC<FormCrearReunionProp> = ({
@@ -31,7 +31,7 @@ export const FormCrearReunion: React.FC<FormCrearReunionProp> = ({
     formTitle,
     initialValues = {
         tipo: '',
-        precio: 0,
+        precio: '',
     },
 }) => {
     const handleSubmit = (
@@ -40,7 +40,7 @@ export const FormCrearReunion: React.FC<FormCrearReunionProp> = ({
     ) => {
         onSubmit({
             tipo: values.tipo,
-            precio: values.precio,
+            precio: parseInt(values.precio),
         });
         resetForm();
     };
@@ -84,6 +84,6 @@ FormCrearReunion.propTypes = {
     disabled: PropTypes.bool,
     initialValues: PropTypes.shape({
         tipo: PropTypes.string.isRequired,
-        precio: PropTypes.number.isRequired,
+        precio: PropTypes.string.isRequired,
     }),
 };

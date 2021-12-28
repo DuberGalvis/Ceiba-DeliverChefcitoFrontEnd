@@ -8,6 +8,7 @@ import { Usuario } from '../../models/Usuario';
 import { SpanError } from './styles';
 import { useFormik } from 'formik';
 
+let mensajeClaveErronea: string = ''; 
 interface FormValues {
     nombre: string;
     clave: string;
@@ -41,11 +42,17 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
         values: FormValues,
         { resetForm }: FormikHelpers<FormValues>
     ) => {
-        onSubmit({
-            nombre: values.nombre,
-            clave: values.clave,
-        });
-        resetForm();
+        if(values.clave !== values.confirmarClave){
+            mensajeClaveErronea = `Error, La clave no coincide, 
+            ingrese correctamente la clave.`;
+            resetForm();               
+        } else {
+            onSubmit({
+                nombre: values.nombre,
+                clave: values.clave,
+            });
+            resetForm();
+        }
     };
     const formik = useFormik({
         initialValues,
@@ -56,6 +63,7 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
+            <SpanError>{mensajeClaveErronea}</SpanError>
             <Input
                 disabled={disabled}
                 name="nombre"

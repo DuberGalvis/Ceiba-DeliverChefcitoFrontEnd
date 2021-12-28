@@ -1,5 +1,5 @@
 export interface CambioClaveUsuario {
     nombre: string;
-    clave: string;
-    confirmarClave: string;
+    claveActual: string;
+    nuevaClave: string;
 }

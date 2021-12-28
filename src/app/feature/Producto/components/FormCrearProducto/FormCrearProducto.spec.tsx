@@ -101,7 +101,7 @@ describe('FormCrearProducto test', () => {
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
 
     expect(formSubmitted.nombre).toBe('Lorem');
-    expect(formSubmitted.precio).toBe('25000');
+    expect(formSubmitted.precio).toBe(25000);
     expect(formSubmitted.detalle).toBe('Dolor');
   });
 });
