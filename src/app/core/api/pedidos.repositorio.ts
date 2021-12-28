@@ -1,5 +1,4 @@
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
-import { Usuario } from 'app/feature/Usuario/models/Usuario';
 import { axiosIntance } from '../config/AxiosConfig';
 
 export const PedidoRepositorio = {

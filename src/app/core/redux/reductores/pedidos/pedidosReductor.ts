@@ -11,7 +11,7 @@ import { Pedido } from 'app/feature/Pedido/models/Pedido';
 const initialState: EstadoPedido = {
     pedidos: Array<Pedido>(),
     cantidadTotalPedido: 0,
-}
+};
 
 export default function (
     state = initialState,
@@ -23,14 +23,14 @@ export default function (
             return { 
                 ...state,
                 pedidos: [ ...state.pedidos, pedido],
-            }
+            };
         }
         case CANCELAR_PEDIDO:{
             const pedidoCancel = action.payload;
             return { 
                 ...state,
                 pedidos: [ ...state.pedidos, pedidoCancel],
-            }
+            };
         }
         case LISTAR_PEDIDOS_USUARIO: {
             const pedidos = action.payload;
@@ -38,7 +38,7 @@ export default function (
                 ...state,
                 pedidos,
                 cantidadTotalPedido: action.cantidadTotalPedido,
-            }
+            };
         }
         case LISTAR_PEDIDOS_ACTIVOS: {
             const pedidosActivos = action.payload;
@@ -46,7 +46,7 @@ export default function (
                 ...state,
                 pedidos: pedidosActivos,
                 cantidadTotalPedido: action.cantidadTotalPedido,
-            }
+            };
         }
 
         default:

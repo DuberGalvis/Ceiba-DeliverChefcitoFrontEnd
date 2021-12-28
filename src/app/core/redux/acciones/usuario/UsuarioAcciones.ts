@@ -35,7 +35,6 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   export function agregarSesionUsuario(
     usuario: Usuario,
   ): TiposAccionesUsuario {
-    console.log(usuario);
     return {
       type: SESION_USUARIO,
       payload: usuario,
@@ -57,7 +56,7 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
     return {
       type: ERROR_CONSULTA,
       payload: error,
-    }
+    };
   }
 
   export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
@@ -95,7 +94,6 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   }
 
   export function iniciarSesionUsuarioAsync(usuario: Usuario) {
-    console.log(usuario);
     return function (dispacth: any) {
       dispacth(inicioSesionUsuario());
       UsuarioRepositorio.iniciarSesion(
@@ -107,7 +105,6 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
         )
         .catch ((error: any) =>
           dispacth(
-            console.log(error),
             errorEnConsulta(error.message),
           )
         );
@@ -131,22 +128,22 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
     return {
       type: MOSTRAR_AGREGAR,
       payload: true,
-    }
+    };
   }
 
-  export function irInicioSesion(
+export function irInicioSesion(
   ):TiposAccionesUsuario {
-    return {
-      type: MOSTRAR_INICIO,
-      payload: true,
-    }
-  }
+  return {
+    type: MOSTRAR_INICIO,
+    payload: true,
+  };
+}
 
-  export function irPanelPrincipal(
-    ):TiposAccionesUsuario {
-      return {
-        type: MOSTRAR_PANEL,
-        payload: true,
-      }
-    }
-  
+export function irPanelPrincipal(
+  ):TiposAccionesUsuario {
+  return {
+    type: MOSTRAR_PANEL,
+    payload: true,
+  };
+}
+

@@ -59,3 +59,4 @@ export type TiposAccionesUsuario =
   | AccionCrearPanel
   | AccionInicioSesionUsuario
   | AccionErrorConsultaUsuario;
+  

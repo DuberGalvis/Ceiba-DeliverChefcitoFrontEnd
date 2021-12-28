@@ -11,7 +11,6 @@ export function listarProductos(
   productos: Array<Producto>,
   cantidadTotalProducto: number,
 ): TiposAccionesProducto {
-  console.log(productos);
   return {
     type: LISTAR_PRODUCTOS,
     payload: productos,
@@ -25,8 +24,6 @@ export function agregarNuevoProducto(producto: Producto) {
         producto
       ).then((respuesta: any) =>
         dispacth(
-          console.log(producto),
-          console.log(respuesta),
           agregarProducto(respuesta.data)
         )
       );

@@ -10,7 +10,6 @@ export function listarReuniones(
   reuniones: Array<Reunion>,
   cantidadTotalReuniones: number,
 ): TiposAccionesReunion {
-  console.log(reuniones);
   return {
     type: LISTAR_REUNIONES,
     payload: reuniones,
@@ -29,7 +28,6 @@ export function respuestaAgregado(
 
 export function agregarNuevaReunion( reunion: Reunion ) {
   return function (dispacth: any) {
-    console.log(reunion);
     ReunionRepositorio.crearReunion(
       reunion
     ).then((respuesta: any) =>
@@ -50,4 +48,4 @@ export function listarReunionesAsync(numeroPagina: number) {
     );
   };
 }
-  
+ 
