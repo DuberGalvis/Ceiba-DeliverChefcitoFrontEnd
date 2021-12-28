@@ -8,7 +8,6 @@ import { Usuario } from '../../models/Usuario';
 import { SpanError } from './styles';
 import { useFormik } from 'formik';
 
-let mensajeClaveErronea: string = ''; 
 interface FormValues {
     nombre: string;
     clave: string;
@@ -42,17 +41,11 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
         values: FormValues,
         { resetForm }: FormikHelpers<FormValues>
     ) => {
-        if(values.clave !== values.confirmarClave){
-            mensajeClaveErronea = `Error, La clave no coincide, 
-            ingrese correctamente la clave.`;
-            resetForm();               
-        } else {
-            onSubmit({
-                nombre: values.nombre,
-                clave: values.clave,
-            });
-            resetForm();
-        }
+        onSubmit({
+            nombre: values.nombre,
+            clave: values.clave,
+        });
+        resetForm();
     };
     const formik = useFormik({
         initialValues,
@@ -63,7 +56,6 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
-            <SpanError>{mensajeClaveErronea}</SpanError>
             <Input
                 disabled={disabled}
                 name="nombre"
@@ -91,8 +83,7 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
                 value={formik.values.confirmarClave}
                 onChange={formik.handleChange} 
             />
-            {formik.touched.confirmarClave && formik.errors.confirmarClave && 
-            formik.values.confirmarClave !== formik.values.clave && (
+            {formik.touched.confirmarClave && formik.errors.confirmarClave && (
                 <SpanError>{formik.errors.confirmarClave}</SpanError>
             )}
             <Button type="submit">Registrar</Button>
@@ -108,6 +99,5 @@ FormCrearUsuario.propTypes = {
         nombre: PropTypes.string.isRequired,
         clave: PropTypes.string.isRequired,
         confirmarClave: PropTypes.string.isRequired,
-        fechaCreacion: PropTypes.string.isRequired,
     }),
 };

@@ -117,7 +117,7 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
   export function darDeBajaUsuario(usuario: Usuario) {
     return function (dispacth: any) {
       UsuarioRepositorio.darDeBaja(
-          usuario
+          usuario.nombre
         ).then((respuesta: any) =>
         dispacth(
             cerrarSesionUsuario(usuario, respuesta.data),

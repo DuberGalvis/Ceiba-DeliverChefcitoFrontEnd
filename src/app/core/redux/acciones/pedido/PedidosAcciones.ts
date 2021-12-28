@@ -77,24 +77,11 @@ export function cancelarPedidoAsync()
 
 export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: number )
 {
-    console.log(usuario);
     return function (dispacth: any) {
-        PedidoRepositorio.consultarPedidosUsuario(usuario)
+        PedidoRepositorio.consultarPedidosUsuario(usuario.nombre)
         .then((respuesta: any) =>
             dispacth(
                 listarPedidosUsuario(respuesta.data, Array.from(respuesta.data).length)
-            )
-        )
-    };
-}
-
-export function listarPedidosActivosAsync( numeroPagina: number,)
-{
-    return function (dispacth: any) {
-        PedidoRepositorio.consultarPedidosActivos()
-        .then((respuesta: any) =>
-            dispacth(
-                listarPedidosActivos(respuesta.data, Array.from(respuesta.data).length)
             )
         )
     };

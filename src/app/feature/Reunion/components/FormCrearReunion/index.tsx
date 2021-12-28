@@ -40,7 +40,7 @@ export const FormCrearReunion: React.FC<FormCrearReunionProp> = ({
     ) => {
         onSubmit({
             tipo: values.tipo,
-            precio: parseInt(values.precio),
+            precio: parseInt(values.precio, 10),
         });
         resetForm();
     };

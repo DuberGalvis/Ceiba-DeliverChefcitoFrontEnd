@@ -11,17 +11,15 @@ export const PedidoRepositorio = {
         direccion, 
         valorTotal, 
         horasDeServicio,}: Pedido) =>
-        axiosIntance.post('/pedidos', {"usuario": nombreUsuario, 
-        "producto": nombreProducto,
-        "reunion": tipoReunion,
-        "fechaRealizacion": fechaRealizacion,
-        "direccion": direccion,
-        "valorTotal": valorTotal,
-        "horasDeServicio": horasDeServicio,}),
+        axiosIntance.post('/pedidos', {'usuario': nombreUsuario, 
+        'producto': nombreProducto,
+        'reunion': tipoReunion,
+        fechaRealizacion,
+        direccion,
+        valorTotal,
+        horasDeServicio,}),
     cancelarPedido: () =>
         axiosIntance.patch('/pedidos'),
-    consultarPedidosUsuario: ({nombre}: Usuario) => 
+    consultarPedidosUsuario: (nombre: string) => 
         axiosIntance.get(`/pedidos?nombre=${nombre}`),
-    consultarPedidosActivos: () => 
-        axiosIntance.get('/pedidos'),
 };

@@ -9,6 +9,7 @@ export const NavigationHeader: React.FC = () => {
     { label: 'Home', url: '/home' },
     { label: 'Productos', url: '/productos' },
     { label: 'Reuniones', url: '/reuniones' },
+    { label: 'Pedidos', url: '/pedidos' },
     { label: 'Iniciar Sesión', url: '/usuario' },
   ];
   return (

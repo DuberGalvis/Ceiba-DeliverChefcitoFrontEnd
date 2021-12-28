@@ -5,6 +5,6 @@ export const ReunionRepositorio = {
   consultarPorPagina: () => 
     axiosIntance.get('/reuniones'),
   crearReunion: ({tipo, precio}: Reunion) => 
-    axiosIntance.post('/reuniones', { "tipo": tipo, "precio": Number(precio)}),
+    axiosIntance.post('/reuniones', { tipo, 'precio': Number(precio)}),
 };
 

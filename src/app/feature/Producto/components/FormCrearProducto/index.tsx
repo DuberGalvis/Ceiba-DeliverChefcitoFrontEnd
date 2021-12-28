@@ -43,7 +43,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
   ) => {
     onSubmit({
       nombre: values.nombre,
-      precio: parseInt(values.precio),
+      precio: parseInt(values.precio, 10),
       detalle: values.detalle,
     });
     resetForm();
