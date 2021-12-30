@@ -1,6 +1,11 @@
 import{
     agregarNuevoUsuario,
     iniciarSesionUsuarioAsync,
+    listarPedidosUsuarioAsync,
+    cancelarPedidoUsuarioAsync,
+    listarProductosAsync,
+    listarReunionesAsync,
+    agregarPedidoUsuarioAsync,
     actualizarClave,
     darDeBajaUsuario,
     irAgregarUsuario,
@@ -18,6 +23,11 @@ const mapStateToProps = (state: EstadoGeneral) => {
 export const ProveedorGestionUsuario = connect(mapStateToProps, {
     agregarNuevoUsuario,
     agregarSesionUsuario: iniciarSesionUsuarioAsync,
+    listarPedidosUsuario: listarPedidosUsuarioAsync,
+    cancelarPedidoUsuario :cancelarPedidoUsuarioAsync,
+    listarProductos: listarProductosAsync,
+    listarReuniones: listarReunionesAsync,
+    agregarPedidoUsuario: agregarPedidoUsuarioAsync,
     actualizarClave,
     darDeBajaUsuario,
     irAgregarUsuario,

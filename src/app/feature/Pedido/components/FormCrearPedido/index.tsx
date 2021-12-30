@@ -7,47 +7,47 @@ import { Input } from 'app/shared/components/Input';
 import { Pedido } from '../../models/Pedido';
 import { SpanError } from './styles';
 import { useFormik } from 'formik';
+import { Usuario } from 'app/feature/Usuario/models/Usuario';
+import { Producto } from 'app/feature/Producto/models/Producto';
+import { Reunion } from 'app/feature/Reunion/models/Reunion';
 
 const fechaDeHoy: Date = new Date();
 interface FormValues {
-    nombreUsuario: string;
-    nombreProducto: string;
-    tipoReunion: string;
     fechaRealizacion: string;
     direccion: string;
-    valorTotal: number;
-    horasDeServicio: number;
+    valorTotal: string;
+    horasDeServicio: string;
 }
 
 interface FormCrearPedidoProp {
   onSubmit: (payload: Pedido) => any;
   disabled?: boolean;
   formTitle: string;
+  usuario: Usuario;
+  producto: Producto;
+  reunion: Reunion;
   initialValues?: FormValues;
 }
 
 const validationSchema = Yup.object().shape<FormValues>({
-    nombreUsuario: Yup.string().required('El Usuario es requerido.'),
-    nombreProducto: Yup.string().required('El Producto es requerido.'),
-    tipoReunion: Yup.string().required('La Reunion es requerido.'),
     fechaRealizacion: Yup.string().required('El Fecha  de Realizacion es requerido.'),
     direccion: Yup.string().required('El campo Direccion es requerido.'),
-    valorTotal: Yup.number().required('El campo Valor Total es requerido.'),
-    horasDeServicio: Yup.number().required('El campo Horas de Servicio es requerido.'),
+    valorTotal: Yup.string().required('El campo Valor Total es requerido.'),
+    horasDeServicio: Yup.string().required('El campo Horas de Servicio es requerido.'),
 });
 
 export const FormCrearPedido: React.FC<FormCrearPedidoProp> = ({
     onSubmit,
     disabled,
     formTitle,
+    usuario = {nombre: '', clave: ''},
+    producto = {nombre: '', detalle: '', precio: 0},
+    reunion = {tipo: '', precio: 0},
     initialValues = {
-        nombreUsuario: '',
-        nombreProducto: '',
-        tipoReunion: '',
         fechaRealizacion: new Date(fechaDeHoy.getTime() + (24 * 60 * 60 * 1000)).toISOString(),
         direccion: '',
-        valorTotal: 0,
-        horasDeServicio: 0,
+        valorTotal: '0',
+        horasDeServicio: '0',
   },
 }) => {
   const handleSubmit = (
@@ -55,13 +55,13 @@ export const FormCrearPedido: React.FC<FormCrearPedidoProp> = ({
     { resetForm }: FormikHelpers<FormValues>
 ) => {
     onSubmit({
-        nombreUsuario: values.nombreUsuario,
-        nombreProducto: values.nombreProducto,
-        tipoReunion: values.tipoReunion,
+        usuario,
+        producto,
+        reunion,
         fechaRealizacion: values.fechaRealizacion,
         direccion: values.direccion,
-        valorTotal: values.valorTotal,
-        horasDeServicio: values.horasDeServicio,
+        valorTotal: parseInt(values.valorTotal),
+        horasDeServicio: parseInt(values.horasDeServicio),
     });
     resetForm();
     };
@@ -103,12 +103,9 @@ FormCrearPedido.propTypes = {
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     initialValues: PropTypes.shape({
-        nombreUsuario: PropTypes.string.isRequired,
-        nombreProducto: PropTypes.string.isRequired,
-        tipoReunion: PropTypes.string.isRequired,
         fechaRealizacion: PropTypes.string.isRequired,
         direccion: PropTypes.string.isRequired,
-        valorTotal: PropTypes.number.isRequired,
-        horasDeServicio: PropTypes.number.isRequired,
+        valorTotal: PropTypes.string.isRequired,
+        horasDeServicio: PropTypes.string.isRequired,
     }),
 };

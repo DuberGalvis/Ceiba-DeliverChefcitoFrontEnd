@@ -1,28 +1,31 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { Button } from 'app/shared/components/Button';
-import { PedidoListar } from '../../models/PedidoListar';
+import { Usuario } from '../../models/Usuario';
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 
 interface BtnCancelarPedidoUsuarioProps {
     onCancelar: (pedidoListar: PedidoListar) => any;
     pedidoListar: PedidoListar;
+    usuario: Usuario;
 }
 
-export const BtnCancelarPedido: React.FC<BtnCancelarPedidoUsuarioProps> = ({
+export const BtnCancelarPedidoUsuario: React.FC<BtnCancelarPedidoUsuarioProps> = ({
     onCancelar,
     pedidoListar,
+    usuario,
 }) => {
     const handleCancelar = () => onCancelar(pedidoListar);
     return(
         <Button onClick={handleCancelar}>
             <span role='img' aria-labelledby='cancelar'>
-                ❌
+                Cancelar❌
             </span>
         </Button>
     );
 };
 
-BtnCancelarPedido.propTypes = {
+BtnCancelarPedidoUsuario.propTypes = {
     pedidoListar: PropTypes.shape({
         id: PropTypes.number.isRequired,
         nombreUsuario: PropTypes.string.isRequired,

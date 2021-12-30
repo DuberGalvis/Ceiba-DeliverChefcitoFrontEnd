@@ -1,16 +1,24 @@
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { PedidoListar } from '../../models/PedidoListar';
-import { BtnCancelarPedido } from '../CancelarPedido';
+import { Usuario } from '../../models/Usuario';
+import { BtnCancelarPedidoUsuario } from '../CancelarPedidoUsuario';
+//import { BtnModificarPedidoUsuario } from '../ModificarPedidoUsuario';
 import { Table } from './styles';
 
-export interface ListarPedidosProps {
+export interface PanelInicialUsuarioProps {
   pedidosListar: Array<PedidoListar>;
-  onClickCancelarPedido: (pedidosListar: PedidoListar) => void;
+  usuario: Usuario;
+  tablaListarTitulo: string;
+  //onClickModificarPedido: (pedido: Pedido) => void;
+  onClickCancelarPedido: (pedidoListar: PedidoListar) => void;
 }
 
-export const ListarPedidos: React.FC<ListarPedidosProps> = ({
+export const PanelInicialUsuario: React.FC<PanelInicialUsuarioProps> = ({
   pedidosListar,
+  usuario,
+  tablaListarTitulo,
+  // onClickModificarPedido,
   onClickCancelarPedido,
 }) => {
   return (
@@ -38,7 +46,7 @@ export const ListarPedidos: React.FC<ListarPedidosProps> = ({
         </tr>
       </thead>
       <tbody>
-        {pedidosListar.map((pedidoListar: PedidoListar, index) => {
+      {pedidosListar.map((pedidoListar: PedidoListar, index) => {
           return (
             <tr key={index}>
               <td>{`${pedidoListar.nombreProducto} `}</td>
@@ -48,10 +56,17 @@ export const ListarPedidos: React.FC<ListarPedidosProps> = ({
               <td>{`${pedidoListar.horasDeServicio} `}</td>
               <td>{`${pedidoListar.valorTotal} `}</td>
               <td>
-                <BtnCancelarPedido
+                {/* <BtnModificarPedidoUsuario
+                pedido={pedido}
+                onModificar={onClickModificarPedido} 
+                ></BtnModificarPedidoUsuario> */}
+              </td>
+              <td>
+                <BtnCancelarPedidoUsuario
                 pedidoListar={pedidoListar}
+                usuario={usuario}
                 onCancelar={onClickCancelarPedido} 
-                ></BtnCancelarPedido>
+                ></BtnCancelarPedidoUsuario>
               </td>
             </tr>
           );
@@ -61,7 +76,6 @@ export const ListarPedidos: React.FC<ListarPedidosProps> = ({
   );
 };
 
-ListarPedidos.propTypes = {
-    pedidosListar: PropTypes.array.isRequired,
-    onClickCancelarPedido: PropTypes.func.isRequired,
+PanelInicialUsuario.propTypes = {
+  pedidosListar: PropTypes.array.isRequired,
 };

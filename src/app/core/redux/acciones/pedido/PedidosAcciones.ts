@@ -8,6 +8,7 @@ import {
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoRepositorio } from 'app/core/api/pedidos.repositorio';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 
 export function agregarPedido(
     pedido: Pedido,
@@ -19,32 +20,32 @@ export function agregarPedido(
 }
 
 export function cancelarPedido(
-    pedido: Pedido,
+    pedidoListar: PedidoListar,
 ): TiposAccionesPedido {
     return {
         type: CANCELAR_PEDIDO,
-        payload: pedido,
+        payload: pedidoListar,
     };
 }
 
 export function listarPedidosUsuario(
-    pedidos: Array<Pedido>,
+    pedidoListar: Array<PedidoListar>,
     cantidadTotalPedido: number,
 ): TiposAccionesPedido {
     return {
         type: LISTAR_PEDIDOS_USUARIO,
-        payload: pedidos,
+        payload: pedidoListar,
         cantidadTotalPedido,
     };
 }
 
 export function listarPedidosActivos(
-    pedidos: Array<Pedido>,
+    pedidosListar: Array<PedidoListar>,
     cantidadTotalPedido: number,
 ): TiposAccionesPedido {
     return {
         type: LISTAR_PEDIDOS_ACTIVOS,
-        payload: pedidos,
+        payload: pedidosListar,
         cantidadTotalPedido,
             
     };

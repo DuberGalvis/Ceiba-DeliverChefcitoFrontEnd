@@ -7,11 +7,20 @@ import {
     MOSTRAR_AGREGAR,
     MOSTRAR_INICIO,
     MOSTRAR_PANEL,
+    LISTAR_PEDIDOS_USUARIO,
+    CANCELAR_PEDIDO_USUARIO,
+    AGREGAR_PEDIDO_USUARIO,
+    LISTAR_PRODUCTOS,
+    LISTAR_REUNIONES,
     TiposAccionesUsuario,
   } from './UsuarioTiposAcciones';
   import { Usuario } from 'app/feature/Usuario/models/Usuario';
   import { UsuarioRepositorio } from 'app/core/api/usuario.repositorio';
 import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuario';
+import { Pedido } from 'app/feature/Pedido/models/Pedido';
+import { Producto } from 'app/feature/Producto/models/Producto';
+import { Reunion } from 'app/feature/Reunion/models/Reunion';
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
   
   export function cerrarSesionUsuario(
     usuario: Usuario,
@@ -58,6 +67,63 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
       payload: error,
     };
   }
+
+export function listarPedidosUsuario(
+  pedidos: Array<PedidoListar>,
+  cantidadTotalPedido: number,
+): TiposAccionesUsuario {
+    return {
+        type: LISTAR_PEDIDOS_USUARIO,
+        payload: pedidos,
+        cantidadTotalPedido
+    };
+}
+
+export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: number )
+{
+    return function (dispacth: any) {
+        UsuarioRepositorio.consultarPedidosUsuario(usuario.nombre)
+        .then((respuesta: any) =>
+            dispacth(
+                listarPedidosUsuario(respuesta.data, Array.from(respuesta.data).length)
+            )
+        )
+    };
+}
+
+export function cancelarPedidoUsuario(
+  pedido: PedidoListar,
+  confirmacion: string,
+): TiposAccionesUsuario {
+  return {
+      type: CANCELAR_PEDIDO_USUARIO,
+      payload: pedido,
+      confirmacion,
+  };
+}
+
+export function agregarPedidoUsuario(
+  pedido: Pedido,
+  //confirmacion: string,
+): TiposAccionesUsuario {
+  return {
+      type: AGREGAR_PEDIDO_USUARIO,
+      payload: pedido,
+      //confirmacion,
+  };
+}
+
+export function agregarPedidoUsuarioAsync(pedido: Pedido)
+{
+    return function (dispacth: any) {
+      UsuarioRepositorio.agregarPedido(pedido)
+        .then((respuesta: any) =>
+            dispacth(
+              agregarPedidoUsuario(respuesta.data)
+            )
+        )
+    };
+}
 
   export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
     const usuario: Usuario = {nombre: cambioClaveUsuario.nombre, clave: cambioClaveUsuario.nuevaClave};
@@ -123,6 +189,18 @@ import { CambioClaveUsuario } from 'app/feature/Usuario/models/CambioClaveUsuari
     };
   }
 
+export function cancelarPedidoUsuarioAsync(pedidoListar: PedidoListar)
+{
+    return function (dispacth: any) {
+      UsuarioRepositorio.cancelarPedido(pedidoListar)
+        .then((respuesta: any) =>
+            dispacth(
+              cancelarPedidoUsuario(pedidoListar, respuesta.data.message)
+            )
+        )
+    };
+}
+
   export function irAgregarUsuario(
   ):TiposAccionesUsuario {
     return {
@@ -147,3 +225,46 @@ export function irPanelPrincipal(
   };
 }
 
+export function listarProductos(
+  productos: Array<Producto>,
+  cantidadTotalProducto: number,
+): TiposAccionesUsuario {
+  return {
+    type: LISTAR_PRODUCTOS,
+    payload: productos,
+    cantidadTotalProducto,
+  };
+}
+
+export function listarProductosAsync(numeroPagina: number) {
+  return function (dispacth: any) {
+    UsuarioRepositorio.consultarProductos()
+    .then((respuesta: any) =>
+      dispacth(
+        listarProductos(respuesta.data, Array.from(respuesta.data).length)
+      )
+    );
+  };
+}
+
+export function listarReuniones(
+  reuniones: Array<Reunion>,
+  cantidadTotalReuniones: number,
+): TiposAccionesUsuario {
+  return {
+    type: LISTAR_REUNIONES,
+    payload: reuniones,
+    cantidadTotalReuniones,
+  };
+}
+
+export function listarReunionesAsync(numeroPagina: number) {
+  return function (dispacth: any) {
+    UsuarioRepositorio.consultarReuniones()
+    .then((respuesta: any) =>
+      dispacth(
+        listarReuniones(respuesta.data, Array.from(respuesta.data).length),
+      )
+    );
+  };
+}

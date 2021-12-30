@@ -3,16 +3,16 @@ import { axiosIntance } from '../config/AxiosConfig';
 
 export const PedidoRepositorio = {
     agregarPedido: (
-        {nombreUsuario, 
-        nombreProducto, 
-        tipoReunion, 
+        {usuario, 
+        producto, 
+        reunion, 
         fechaRealizacion, 
         direccion, 
         valorTotal, 
         horasDeServicio,}: Pedido) =>
-        axiosIntance.post('/pedidos', {'usuario': nombreUsuario, 
-        'producto': nombreProducto,
-        'reunion': tipoReunion,
+        axiosIntance.post('/pedidos', {'usuario': usuario, 
+        'producto': producto,
+        'reunion': reunion,
         fechaRealizacion,
         direccion,
         valorTotal,

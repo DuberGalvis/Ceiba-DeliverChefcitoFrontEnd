@@ -7,9 +7,14 @@ import {
 } from '../../acciones/pedido/PedidosTiposAcciones';
 import { EstadoPedido } from '../../modelo/EstadoPedido';
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 
 const initialState: EstadoPedido = {
     pedidos: Array<Pedido>(),
+    pedidosListar: Array<PedidoListar>(),
+    usuario: {nombre: '', clave: ''},
+    producto: {nombre: '', detalle: '', precio: 0},
+    reunion: {tipo: '', precio: 0},
     cantidadTotalPedido: 0,
 };
 
@@ -26,17 +31,17 @@ export default function (
             };
         }
         case CANCELAR_PEDIDO:{
-            const pedidoCancel = action.payload;
+            const pedidoListar = action.payload;
             return { 
                 ...state,
-                pedidos: [ ...state.pedidos, pedidoCancel],
+                pedidosListar: [ ...state.pedidosListar, pedidoListar],
             };
         }
         case LISTAR_PEDIDOS_USUARIO: {
-            const pedidos = action.payload;
+            const pedidosListar = action.payload;
             return {
                 ...state,
-                pedidos,
+                pedidosListar,
                 cantidadTotalPedido: action.cantidadTotalPedido,
             };
         }
@@ -44,7 +49,7 @@ export default function (
             const pedidosActivos = action.payload;
             return {
                 ...state,
-                pedidos: pedidosActivos,
+                pedidosListar: pedidosActivos,
                 cantidadTotalPedido: action.cantidadTotalPedido,
             };
         }

@@ -7,17 +7,26 @@ import { Pedido } from '../../models/Pedido';
 import { useEffect } from 'react';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
 import { FormCrearPedido } from '../../components/FormCrearPedido';
+import { Producto } from 'app/feature/Producto/models/Producto';
+import { Reunion } from 'app/feature/Reunion/models/Reunion';
+import { PedidoListar } from '../../models/PedidoListar';
 
 interface GestionPedidosProps {
-  pedidos: Array<Pedido>;
+  usuario: Usuario;
+  producto: Producto;
+  reunion: Reunion;
+  pedidosListar: Array<PedidoListar>;
   agregarPedido: (pedido: Pedido) => void;
   listarPedidosUsuario: (usuario: Usuario, numeroPagina: number) => void;
-  cancelarPedido: (pedido: Pedido) => void;
+  cancelarPedido: (pedidoListar: PedidoListar) => void;
   cantidadTotalPedido: number;
 }
 
 export const GestionPedidos: React.FC<GestionPedidosProps> = ({
-  pedidos,
+  usuario,
+  producto,
+  reunion,
+  pedidosListar,
   agregarPedido,
   listarPedidosUsuario,
   cancelarPedido,
@@ -30,7 +39,7 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
     <DivContainer>
       <DivRow>
         <ListarPedidos
-          pedidos={pedidos}
+          pedidosListar={pedidosListar}
           onClickCancelarPedido={cancelarPedido}
         />
         <PaginadorPedidos
@@ -40,6 +49,9 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
         <FormCrearPedido 
           onSubmit={agregarPedido}
           formTitle='Ingresar Pedido'
+          usuario={usuario}
+          producto={producto}
+          reunion={reunion}
         />
       </DivRow>
     </DivContainer>
@@ -47,7 +59,7 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
 };
 
 GestionPedidos.propTypes = {
-    pedidos: PropTypes.array.isRequired,
+    pedidosListar: PropTypes.array.isRequired,
     listarPedidosUsuario: PropTypes.func.isRequired,
     cancelarPedido: PropTypes.func.isRequired,
     cantidadTotalPedido: PropTypes.number.isRequired,

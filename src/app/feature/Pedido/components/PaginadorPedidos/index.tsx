@@ -1,6 +1,6 @@
-import { Usuario } from 'app/feature/Usuario/models/Usuario';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { Usuario } from '../../../Usuario/models/Usuario';
 
 interface PaginadorPedidosProps {
   cantidadTotalPedidos: number;
@@ -28,7 +28,8 @@ export const PaginadorPedidos: React.FC<PaginadorPedidosProps> = ({
       {rango.map((index) => {
         return (
           <button
-            onClick={() => onClickCambiarPagina({nombre: '', clave: ''}, index)}
+            onClick={() => onClickCambiarPagina({nombre: '', 
+              clave: '', }, index)}
             key={index.toString()}
           >
             {index + 1}

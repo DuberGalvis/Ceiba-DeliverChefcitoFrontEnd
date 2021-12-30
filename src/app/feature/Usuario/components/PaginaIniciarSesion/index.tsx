@@ -52,7 +52,7 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
     });
     useEffect(() => {
         irAgregarUsuario();
-      }, );
+      }, []);
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{paginaTitle}</h2>
@@ -67,6 +67,7 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
                 <SpanError>{formik.errors.nombre}</SpanError>
             )}
             <Input
+                type="password"
                 disabled={disabled}
                 name="clave"
                 placeholder="Clave"
