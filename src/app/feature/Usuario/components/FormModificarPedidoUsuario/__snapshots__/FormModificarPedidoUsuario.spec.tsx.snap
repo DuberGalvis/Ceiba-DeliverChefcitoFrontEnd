@@ -15,7 +15,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       name="producto"
     >
       <option
-        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"
+        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye\\"}"
       >
         Nombre: Paella Española | Precio: 38000
       </option>

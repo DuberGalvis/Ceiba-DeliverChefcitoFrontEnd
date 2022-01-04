@@ -28,7 +28,7 @@ exports[`FormCrearProducto test should match snapshot 1`] = `
       class="sc-AxjAm kgxTKy"
       type="submit"
     >
-      Registrar
+      Registrar Producto
     </button>
   </form>
 </div>
