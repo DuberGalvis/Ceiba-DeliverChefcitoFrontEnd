@@ -148,6 +148,9 @@ describe('FormModificarPedidoUsuario test', () => {
   it('should submit', async () => {
     const elem = componentWrapper.container;
 
+    const fechaDeHoy: Date = new Date();
+    const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (24 * 60 * 60 * 1000));
+
     const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
@@ -191,7 +194,8 @@ describe('FormModificarPedidoUsuario test', () => {
         tipo: 'TIPO_PEQUENA',
         precio: 25000
     });
-    expect(formSubmitted.fechaRealizacion).toBe(new Date('January 4, 2022 3:00 PM').toUTCString());
+    expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaDiaSiguiente.setHours(15,0,0))
+      .toLocaleString('es-CO', { hour12: true}));
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
     expect(formSubmitted.valorTotal).toBe(63000);
     expect(formSubmitted.horasDeServicio).toBe(4);
