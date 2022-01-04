@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RenderResult, fireEvent, render, wait } from '@testing-library/react';
 import { SinonStub, stub } from 'sinon';
-import { FormCrearUsuario } from './';
+import { FormCrearUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 
 describe('FormCrearUsuario test', () => {

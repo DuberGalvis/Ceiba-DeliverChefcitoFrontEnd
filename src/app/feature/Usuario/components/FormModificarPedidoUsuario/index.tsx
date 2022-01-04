@@ -5,6 +5,7 @@ import { Button } from 'app/shared/components/Button';
 import { FormikHelpers } from 'formik/dist/types';
 import { Input } from 'app/shared/components/Input';
 import { Pedido } from '../../../Pedido/models/Pedido';
+import { PedidoListar } from '../../../Pedido/models/PedidoListar';
 import { SpanError, Select } from './styles';
 import { useFormik } from 'formik';
 import { Producto } from 'app/feature/Producto/models/Producto';
@@ -42,13 +43,14 @@ interface FormValues {
     horasDeServicio: number;
 }
 
-interface FormCrearPedidoUsuarioProp {
-  onSubmit: (payload: Pedido) => any;
+interface FormModificarPedidoUsuarioProp {
+  onSubmit: (pedidoListar: PedidoListar, payload: Pedido) => any;
   disabled?: boolean;
   formTitle: string;
   productos: Producto[];
   usuarios: Usuario[];
   reuniones: Reunion[];
+  pedidoListar: PedidoListar;
   initialValues?: FormValues;
 }
 
@@ -65,13 +67,14 @@ const validationSchema = Yup.object().shape<FormValues>({
     .max(8, 'Maximo 8 horas'),
 });
 
-export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
+export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp> = ({
     onSubmit,
     disabled,
     formTitle,
     usuarios,
     productos,
     reuniones,
+    pedidoListar,
     initialValues = {
         producto: '',
         reunion: '',
@@ -85,8 +88,8 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     values: FormValues,
     { resetForm }: FormikHelpers<FormValues>
 ) => {
-        onSubmit({
-            usuario:  usuarios[0],
+        onSubmit(pedidoListar, {
+            usuario: usuarios[0],
             producto: JSON.parse(values.producto),
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: new Date(fechaInicio).toLocaleString('es-CO', { hour12: true}),
@@ -132,7 +135,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             </Select>
             {formik.touched.producto && formik.errors.producto && (
                 <SpanError>{formik.errors.producto}</SpanError>
-            )}              
+            )}
             <label>
                 Tipos de Reuniones:{' '}
             </label>
@@ -144,7 +147,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
                         key={reunion.tipo} 
                         value={JSON.stringify(reunion)}
                         >
-                        {reunion.tipo} | Precio: {reunion.precio}
+                            {reunion.tipo} | Precio: {reunion.precio}
                     </option>
                 ))}
             </Select>
@@ -167,7 +170,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             />
             {formik.touched.fechaRealizacion && formik.errors.fechaRealizacion && (
                 <SpanError>{formik.errors.fechaRealizacion}</SpanError>
-            )}                
+            )}
             <Input 
                 type="hidden"
                 name="fechaRealizacionAux"
@@ -201,13 +204,13 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             </label>
             {formik.touched.valorTotal && formik.errors.valorTotal && (
                 <SpanError>{formik.errors.valorTotal}</SpanError>
-            )}            
-            <Button type="submit">Hacer Pedido</Button>
+            )}
+            <Button type="submit">Modificar Pedido</Button>
         </form>
     );
 };
 
-FormCrearPedidoUsuario.propTypes = {
+FormModificarPedidoUsuario.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,

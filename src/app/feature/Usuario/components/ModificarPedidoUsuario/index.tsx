@@ -1,24 +1,24 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { Pedido } from '../../../Pedido/models/Pedido';
 import { Button } from 'app/shared/components/Button';
 import { Link } from 'react-router-dom';
+import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 
 interface BtnModificarPedidoUsuarioProps {
-    onModificar: (pedido: Pedido) => any;
-    pedido: Pedido;
+    onModificar: (pedidoListar: PedidoListar) => any;
+    pedidoListar: PedidoListar;
 }
 
 export const BtnModificarPedidoUsuario: React.FC<BtnModificarPedidoUsuarioProps> = ({
     onModificar,
-    pedido,
+    pedidoListar,
 }) => {
-    const handleCancelar = () => onModificar(pedido);
+    const handleModificar = () => onModificar(pedidoListar);
     return(
-        <Link to='/' replace={true}>
-            <Button onClick={handleCancelar}>
-                <span role='img' aria-labelledby='cancelar'>
-                    💡
+        <Link to='/usuario' replace={true}>
+            <Button onClick={handleModificar}>
+                <span role='img' aria-labelledby='modificar'>
+                    Modificar💡
                 </span>
             </Button>
         </Link>
@@ -26,25 +26,15 @@ export const BtnModificarPedidoUsuario: React.FC<BtnModificarPedidoUsuarioProps>
 };
 
 BtnModificarPedidoUsuario.propTypes = {
-    pedido: PropTypes.shape({
-        usuario: PropTypes.shape({
-            nombre: PropTypes.string.isRequired,
-            clave: PropTypes.string.isRequired,
-        }).isRequired,
-        producto: PropTypes.shape({
-            nombre: PropTypes.string.isRequired,
-            detalle: PropTypes.string.isRequired,
-            precio: PropTypes.number.isRequired,
-        }).isRequired,
-        reunion: PropTypes.shape({
-            tipo: PropTypes.string.isRequired,
-            precio: PropTypes.number.isRequired,
-        }).isRequired,
+    pedidoListar: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        nombreUsuario: PropTypes.string.isRequired,
+        nombreProducto: PropTypes.string.isRequired,
+        tipoReunion: PropTypes.string.isRequired,
         fechaRealizacion: PropTypes.string.isRequired,
         direccion: PropTypes.string.isRequired,
         valorTotal: PropTypes.number.isRequired,
         horasDeServicio: PropTypes.number.isRequired,
-        productos: PropTypes.array.isRequired,
     }).isRequired,
     onModificar:PropTypes.func.isRequired,
 };

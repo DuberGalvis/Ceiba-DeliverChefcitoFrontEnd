@@ -17,11 +17,14 @@ export const CANCELAR_PEDIDO_USUARIO = 'CANCELAR_PEDIDO_USUARIO';
 export const AGREGAR_PEDIDO_USUARIO = 'AGREGAR_PEDIDO_USUARIO';
 export const LISTAR_PRODUCTOS = 'LISTAR_PRODUCTOS';
 export const LISTAR_REUNIONES = 'LISTAR_REUNIONES';
+export const MODIFICAR_PEDIDO = 'MODIFICAR_PEDIDO';
+export const MOSTRAR_MODIFICAR_PEDIDO = 'INICIO_MODIFICAR_PEDIDO';
+export const MOSTRAR_ACTUALIZAR = 'MOSTRAR_ACTUALIZAR';
 
 interface AccionCerrarSesionUsuario {
   type: typeof CERRAR_SESION_USUARIO;
-  payload: Usuario;
-  confirmacion: string;
+  payload: string;
+
 }
 
 interface AccionInicioSesionUsuario {
@@ -77,6 +80,11 @@ interface AccionCrearPanel {
   payload: boolean;
 }
 
+interface AccionMostrarActualizar {
+  type: typeof MOSTRAR_ACTUALIZAR;
+  payload: boolean;
+}
+
 interface AccionListarProductos {
   type: typeof LISTAR_PRODUCTOS;
   payload: Producto[];
@@ -87,6 +95,18 @@ interface AccionListarReuniones {
   type: typeof LISTAR_REUNIONES;
   payload: Reunion[];
   cantidadTotalReuniones: number;
+}
+
+interface AccionIrModificarPedido {
+  type: typeof MOSTRAR_MODIFICAR_PEDIDO;
+  payload: PedidoListar;
+  //cantidadTotalReuniones: number;
+}
+
+interface AccionModificarPedido {
+  type: typeof MODIFICAR_PEDIDO;
+  payload: Pedido;
+  //cantidadTotalReuniones: number;
 }
 
 export type TiposAccionesUsuario =
@@ -102,5 +122,8 @@ export type TiposAccionesUsuario =
   | AccionCancelarPedidoUsuario
   | AccionAgregarPedidoUsuario
   | AccionListarProductos
-  | AccionListarReuniones;
+  | AccionListarReuniones
+  | AccionModificarPedido
+  | AccionIrModificarPedido
+  | AccionMostrarActualizar;
   

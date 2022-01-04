@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormCrearPedidoUsuario test should match snapshot 1`] = `
+<div>
+  <form>
+    <h2>
+      Form test
+    </h2>
+    <p>
+      <label>
+        Productos Disponibles:
+         
+      </label>
+      <select
+        name="producto"
+      >
+        <option
+          value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"
+        >
+          Nombre: Paella Española | Precio: 38000
+        </option>
+      </select>
+    </p>
+    <p>
+      <label>
+        Tipos de Reuniones:
+         
+      </label>
+      <select
+        name="reunion"
+      >
+        <option
+          value="{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"
+        >
+          TIPO_PEQUENA | Precio: 25000
+        </option>
+        <option
+          value="{\\"tipo\\":\\"TIPO_MEDIANA\\",\\"precio\\":50000}"
+        >
+          TIPO_MEDIANA | Precio: 50000
+        </option>
+        <option
+          value="{\\"tipo\\":\\"TIPO_GRANDE\\",\\"precio\\":75000}"
+        >
+          TIPO_GRANDE | Precio: 75000
+        </option>
+      </select>
+    </p>
+    <p>
+      <label>
+        Fecha y hora de inicio del evento:
+      </label>
+      <div
+        class="react-datepicker-wrapper"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            class=""
+            name="fechaRealizacion"
+            type="text"
+            value="January 4, 2022 3:00 PM"
+          />
+        </div>
+      </div>
+    </p>
+    <input
+      class="sc-AxirZ eAukyj"
+      name="fechaRealizacionAux"
+      type="hidden"
+      value="Tue Jan 04 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+    />
+    <input
+      class="sc-AxirZ eAukyj"
+      name="direccion"
+      placeholder="Ingrese la Dirección del evento. (Solo en Medellín)"
+      value=""
+    />
+    <input
+      class="sc-AxirZ eAukyj"
+      name="horasDeServicio"
+      placeholder="Ingrese el numero Horas del servicio, (minimo 4 horas)"
+      type="number"
+      value="0"
+    />
+    <p>
+      <label
+        for="valorTotalPedido"
+      >
+        Valor total de su pedido:
+        0
+      </label>
+    </p>
+    <button
+      class="sc-AxjAm kgxTKy"
+      type="submit"
+    >
+      Hacer Pedido
+    </button>
+  </form>
+</div>
+`;

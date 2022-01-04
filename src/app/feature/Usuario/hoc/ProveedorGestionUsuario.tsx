@@ -6,11 +6,15 @@ import{
     listarProductosAsync,
     listarReunionesAsync,
     agregarPedidoUsuarioAsync,
+    modificarPedidoUsuarioAsync,
     actualizarClave,
     darDeBajaUsuario,
     irAgregarUsuario,
     irInicioSesion,
     irPanelPrincipal,
+    irActualizarClave,
+    irModificarPedidoUsuario,
+    cerrarSesionUsuario,
 } from 'app/core/redux/acciones/usuario/UsuarioAcciones';
 import { EstadoGeneral } from 'app/core/redux/modelo/EstadoGeneral';
 import { GestionUsuario } from '../containers/GestionUsuario';
@@ -28,9 +32,13 @@ export const ProveedorGestionUsuario = connect(mapStateToProps, {
     listarProductos: listarProductosAsync,
     listarReuniones: listarReunionesAsync,
     agregarPedidoUsuario: agregarPedidoUsuarioAsync,
+    modificarPedidoUsuario :modificarPedidoUsuarioAsync,
     actualizarClave,
     darDeBajaUsuario,
     irAgregarUsuario,
     irInicioSesion,
     irPanelPrincipal,
+    irActualizarClave,
+    irModificarPedidoUsuario,
+    cerrarSesionUsuario,
 })(GestionUsuario);

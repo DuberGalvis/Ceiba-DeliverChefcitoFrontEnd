@@ -26,7 +26,7 @@ export const DivRow = styled.div`
   }
 `;
 
-export const InicioSesionImg = styled.img`
+export const BotonesUsuarioImg = styled.img`
   max-height: 50px;
   max-width: 150px;
   cursor: pointer;

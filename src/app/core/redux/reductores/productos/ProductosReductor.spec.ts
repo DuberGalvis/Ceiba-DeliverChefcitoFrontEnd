@@ -1,6 +1,6 @@
 import { EstadoProducto } from 'app/core/redux/modelo/EstadoProducto';
 import { Producto } from 'app/feature/Producto/models/Producto';
-import { agregarProducto } from 'app/core/redux/acciones/productos/ProductosAcciones';
+import { agregarProducto, listarProductos, eliminarProducto } from 'app/core/redux/acciones/productos/ProductosAcciones';
 import reductorProductos from './productosReductor';
 
 describe('Reductor productos', () => {
@@ -24,6 +24,71 @@ describe('Reductor productos', () => {
     const nuevoEstado = reductorProductos(
       estadoInicial,
       agregarProducto(nuevoProducto)
+    );
+
+    // Assert
+    expect(nuevoEstado).toStrictEqual(estadoEsperado);
+  });
+
+  it('debería listar los productos', () => {
+    // Arrange
+    const estadoInicial: EstadoProducto = {
+      cantidadTotalProducto: 2,
+      productos: [],
+    };
+    const listaProductos: Producto[] = [{
+        nombre: 'Bandeja Paisa',
+        precio: 45000,
+        detalle: 'Lorem Ipsum is simply dummy text of the printing and',
+      },
+      {
+        nombre: 'Tallarines al Pesto',
+        precio: 27000,
+        detalle: 'Lorem Ipsum is simply dummy text of the printing and',
+      },
+    ];
+    const estadoEsperado: EstadoProducto = {
+      ...estadoInicial,
+      productos: listaProductos,
+      cantidadTotalProducto: 2,
+    };
+
+    // Act
+    const nuevoEstado = reductorProductos(
+      estadoInicial,
+      listarProductos(listaProductos, 2)
+    );
+
+    // Assert
+    expect(nuevoEstado).toStrictEqual(estadoEsperado);
+  });
+
+  it('debería eliminar el producto', () => {
+    // Arrange
+    const estadoInicial: EstadoProducto = {
+      cantidadTotalProducto: 1,
+      productos: [{
+        nombre: 'Bandeja Paisa',
+        precio: 45000,
+        detalle: 'Lorem Ipsum is simply dummy text of the printing and',
+      }],
+    };
+    const productoEliminar: Producto = {
+      nombre: 'Bandeja Paisa',
+      precio: 45000,
+      detalle: 'Lorem Ipsum is simply dummy text of the printing and',
+    };
+    const estadoEsperado: EstadoProducto = {
+      ...estadoInicial,
+      productos: [
+        ...estadoInicial.productos.filter((p) => p.nombre !== productoEliminar.nombre),
+      ],
+    };
+
+    // Act
+    const nuevoEstado = reductorProductos(
+      estadoInicial,
+      eliminarProducto(productoEliminar)
     );
 
     // Assert

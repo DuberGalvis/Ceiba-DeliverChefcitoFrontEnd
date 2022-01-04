@@ -23,4 +23,6 @@ export interface EstadoUsuario {
   mostrarAgregar: boolean;
   mostrarInicio: boolean;
   mostrarPanel: boolean;
+  mostrarModificar: boolean;
+  mostrarActualizar: boolean;
 }

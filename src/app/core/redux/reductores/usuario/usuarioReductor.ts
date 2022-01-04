@@ -12,6 +12,9 @@ import {
   AGREGAR_PEDIDO_USUARIO,
   LISTAR_PRODUCTOS,
   LISTAR_REUNIONES,
+  MODIFICAR_PEDIDO,
+  MOSTRAR_MODIFICAR_PEDIDO,
+  MOSTRAR_ACTUALIZAR,
   TiposAccionesUsuario,
 } from '../../acciones/usuario/UsuarioTiposAcciones';
 import { EstadoUsuario } from '../../modelo/EstadoUsuario';
@@ -59,6 +62,8 @@ const initialState: EstadoUsuario = {
   mostrarAgregar: false,
   mostrarInicio: true,
   mostrarPanel: false,
+  mostrarModificar: false,
+  mostrarActualizar: false,
 };
 
 export default function (
@@ -67,16 +72,14 @@ export default function (
 ): EstadoUsuario {
   switch (action.type) {
     case CERRAR_SESION_USUARIO: {
-      const usuario = action.payload;
       return {
         ...state,
-        usuarios: [
-          ...state.usuarios.filter((u) => u.nombre !== usuario.nombre),
-        ],
+        usuarios: [],
         mostrarPanel: false,
         mostrarAgregar: false,
         mostrarInicio: true,
-        mensajeConfirmacion: action.confirmacion,
+        mostrarModificar: false,
+        mensajeConfirmacion: action.payload,
       };
     }
     case SESION_USUARIO: {
@@ -88,6 +91,7 @@ export default function (
         mostrarPanel: true,
         mostrarAgregar: false,
         mostrarInicio: false,
+        mostrarModificar: false,
       };
     }
     case INICIO_SESION_USUARIO: {
@@ -112,6 +116,7 @@ export default function (
         mostrarPanel: false,
         mostrarAgregar: false,
         mostrarInicio: true,
+        mostrarModificar: false,
       };
     }    
     case CANCELAR_PEDIDO_USUARIO: {
@@ -119,7 +124,7 @@ export default function (
       return {
         ...state,
         pedidosListar: [
-          ...state.pedidosListar.filter((p) => p.fechaRealizacion !== pedidoListar.fechaRealizacion),
+          ...state.pedidosListar.filter((p) => p.id !== pedidoListar.id),
         ],
         mensajeConfirmacion: action.confirmacion,
       };
@@ -139,6 +144,7 @@ export default function (
         mostrarPanel: true,
         mostrarAgregar: false,
         mostrarInicio: false,
+        mostrarModificar: false,
         //mensajeConfirmacion: action.confirmacion,
       };
     }
@@ -148,6 +154,7 @@ export default function (
         mostrarAgregar: action.payload,
         mostrarInicio: false,
         mostrarPanel: false,
+        mostrarModificar: false,
       };
     }
     case MOSTRAR_INICIO: {
@@ -156,6 +163,7 @@ export default function (
         mostrarInicio: action.payload,
         mostrarAgregar: false,
         mostrarPanel: false,
+        mostrarModificar: false,
       };
     }
     case MOSTRAR_PANEL: {
@@ -164,6 +172,7 @@ export default function (
         mostrarPanel: action.payload,
         mostrarAgregar: false,
         mostrarInicio: false,
+        mostrarModificar: false,
       };
     }
     case LISTAR_PRODUCTOS: {
@@ -174,12 +183,47 @@ export default function (
         cantidadTotalProducto: action.cantidadTotalProducto,
       };
     }
+    case MOSTRAR_ACTUALIZAR: {
+      return {
+        ...state,
+        mostrarActualizar: action.payload,
+        mostrarPanel: false,
+        mostrarAgregar: false,
+        mostrarInicio: false,
+        mostrarModificar: false,
+      };
+    }
     case LISTAR_REUNIONES: {
       const reuniones = action.payload;
       return {
         ...state,
         reuniones,
         cantidadTotalReuniones: action.cantidadTotalReuniones,
+      };
+    }
+    case MOSTRAR_MODIFICAR_PEDIDO: {
+      const pedidoListar = action.payload;
+      return {
+        ...state,
+        pedidoListar,
+        mostrarPanel: false,
+        mostrarAgregar: false,
+        mostrarInicio: false,
+        mostrarActualizar: false,
+        mostrarModificar: true,
+        //mensajeConfirmacion: action.confirmacion,
+      };
+    }
+    case MODIFICAR_PEDIDO: {
+      const pedido = action.payload;
+      return {
+        ...state,
+        pedidos: [...state.pedidos, pedido],
+        mostrarPanel: true,
+        mostrarAgregar: false,
+        mostrarInicio: false,
+        mostrarModificar: false
+        //mensajeConfirmacion: action.confirmacion,
       };
     }
     

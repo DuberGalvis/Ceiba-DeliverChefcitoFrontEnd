@@ -3,24 +3,37 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { Usuario } from '../../models/Usuario';
 import { BtnCancelarPedidoUsuario } from '../CancelarPedidoUsuario';
-//import { BtnModificarPedidoUsuario } from '../ModificarPedidoUsuario';
+import { BtnModificarPedidoUsuario } from '../ModificarPedidoUsuario';
 import { Table } from './styles';
+import { useEffect } from 'react';
+
+const fechaYHora = (fechaRealizacion: string) => {
+  if(fechaRealizacion.length === 0) {
+    return 'Fecha no encontrada';
+  }
+  return new Date(fechaRealizacion).toLocaleString('es-CO', { hour12: true});
+};
 
 export interface PanelInicialUsuarioProps {
   pedidosListar: Array<PedidoListar>;
   usuario: Usuario;
   tablaListarTitulo: string;
-  //onClickModificarPedido: (pedido: Pedido) => void;
+  onClickModificarPedido: (pedidoListar: PedidoListar) => void;
   onClickCancelarPedido: (pedidoListar: PedidoListar) => void;
+  listarPedidosUsuario: (usuario: Usuario, numeroPaginas: number) => void;
 }
 
 export const PanelInicialUsuario: React.FC<PanelInicialUsuarioProps> = ({
   pedidosListar,
   usuario,
   tablaListarTitulo,
-  // onClickModificarPedido,
+  onClickModificarPedido,
   onClickCancelarPedido,
+  listarPedidosUsuario,
 }) => {
+  useEffect(() => {
+    listarPedidosUsuario(usuario, 0);
+  },);
   return (
     <Table>
       <thead>
@@ -48,18 +61,18 @@ export const PanelInicialUsuario: React.FC<PanelInicialUsuarioProps> = ({
       <tbody>
       {pedidosListar.map((pedidoListar: PedidoListar, index) => {
           return (
-            <tr key={index}>
+            <tr key={pedidoListar.id}>
               <td>{`${pedidoListar.nombreProducto} `}</td>
               <td>{`${pedidoListar.tipoReunion} `}</td>
-              <td>{`${pedidoListar.fechaRealizacion} `}</td>
+              <td>{`${fechaYHora(pedidoListar.fechaRealizacion)}`}</td>
               <td>{`${pedidoListar.direccion} `}</td>
               <td>{`${pedidoListar.horasDeServicio} `}</td>
               <td>{`${pedidoListar.valorTotal} `}</td>
               <td>
-                {/* <BtnModificarPedidoUsuario
-                pedido={pedido}
+                <BtnModificarPedidoUsuario
+                pedidoListar={pedidoListar}
                 onModificar={onClickModificarPedido} 
-                ></BtnModificarPedidoUsuario> */}
+                ></BtnModificarPedidoUsuario>
               </td>
               <td>
                 <BtnCancelarPedidoUsuario

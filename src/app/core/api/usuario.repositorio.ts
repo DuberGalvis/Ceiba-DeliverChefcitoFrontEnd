@@ -12,7 +12,7 @@ export const UsuarioRepositorio = {
     actualizar: ({nombre, claveActual, nuevaClave}: CambioClaveUsuario) => 
         axiosIntance.patch('/usuarios', { nombre,  claveActual, 'claveNueva': nuevaClave}),
     darDeBaja: (nombre: string) => 
-        axiosIntance.delete(`/usuarios/:${nombre}`),
+        axiosIntance.delete(`/usuarios?nombre=${nombre}`),
     cancelarPedido: ({id}: PedidoListar) =>
         axiosIntance.patch('/pedidos/cancelar', {id}),
     consultarPedidosUsuario: (nombre: string) => 
@@ -22,20 +22,42 @@ export const UsuarioRepositorio = {
     consultarReuniones: () => 
         axiosIntance.get('/reuniones'),
     agregarPedido: (
-            {usuario, 
-            producto, 
-            reunion, 
-            fechaRealizacion, 
-            direccion, 
-            valorTotal, 
-            horasDeServicio,}: Pedido) =>
-            axiosIntance.post('/pedidos', {
-                'usuario': usuario, 
-                'producto': producto,
-                'reunion': reunion,
-                fechaRealizacion,
-                direccion,
-                valorTotal,
-                horasDeServicio,
-            }),
+        {usuario, 
+        producto, 
+        reunion, 
+        fechaRealizacion, 
+        direccion, 
+        valorTotal, 
+        horasDeServicio,}: Pedido
+        ) =>
+        axiosIntance.post('/pedidos', {
+            usuario, 
+            producto,
+            reunion,
+            fechaRealizacion: new Date(fechaRealizacion).toISOString(),
+            direccion,
+            valorTotal,
+            horasDeServicio,
+        }),
+    modificarPedido: ({
+        id
+        }: PedidoListar,
+        {usuario, 
+        producto, 
+        reunion, 
+        fechaRealizacion, 
+        direccion, 
+        valorTotal, 
+        horasDeServicio,}: Pedido
+        ) =>
+        axiosIntance.patch('/pedidos', {
+            id,
+            usuario, 
+            producto,
+            reunion,
+            fechaRealizacion,
+            direccion,
+            valorTotal,
+            horasDeServicio,
+        }),
 };
