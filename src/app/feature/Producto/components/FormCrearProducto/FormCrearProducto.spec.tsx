@@ -54,7 +54,7 @@ describe('FormCrearProducto test', () => {
     expect(spans[1].textContent).toBe('El campo detalle es requerido.');
   });
 
-  it('should fail on submit two fields missing', async () => {
+  it('should fail on submit one fields missing', async () => {
     const elem = componentWrapper.container;
 
     const nombre = elem.querySelector('input[name="nombre"]');

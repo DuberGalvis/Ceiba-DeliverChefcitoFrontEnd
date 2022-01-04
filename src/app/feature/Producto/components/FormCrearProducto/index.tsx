@@ -87,7 +87,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
       {formik.touched.detalle && formik.errors.detalle && (
         <SpanError>{formik.errors.detalle}</SpanError>
       )}
-      <Button type="submit">Registrar</Button>
+      <Button type="submit">Registrar Producto</Button>
     </form>
   );
 };

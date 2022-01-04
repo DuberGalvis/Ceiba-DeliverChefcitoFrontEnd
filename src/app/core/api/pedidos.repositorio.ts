@@ -10,9 +10,9 @@ export const PedidoRepositorio = {
         direccion, 
         valorTotal, 
         horasDeServicio,}: Pedido) =>
-        axiosIntance.post('/pedidos', {'usuario': usuario, 
-        'producto': producto,
-        'reunion': reunion,
+        axiosIntance.post('/pedidos', { usuario, 
+        producto,
+        reunion,
         fechaRealizacion,
         direccion,
         valorTotal,

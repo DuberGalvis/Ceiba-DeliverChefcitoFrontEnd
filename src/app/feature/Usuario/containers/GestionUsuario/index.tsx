@@ -8,7 +8,7 @@ import { CambioClaveUsuario } from '../../models/CambioClaveUsuario';
 import store from 'app/core/redux/store';
 import ImgIniciaSesion from 'assets/img/imgIniciaSesion.png';
 import ImgRegistrate from 'assets/img/imgRegistrate.png';
-import ImgSalidaSegura from 'assets/img/imgSalidaSegura.png'
+import ImgSalidaSegura from 'assets/img/imgSalidaSegura.png';
 import ImgDarDeBaja from 'assets/img/imgDarDeBaja.png';
 import ImgActualizarClave from 'assets/img/imgActualizarClave.png';
 import { useEffect } from 'react';

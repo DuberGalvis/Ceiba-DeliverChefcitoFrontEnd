@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state: EstadoGeneral) => {
     return state.reuniones;
-}
+};
 
 export const ProveedorGestionReunion = connect(mapStateToProps, {
     listarReuniones: listarReunionesAsync,

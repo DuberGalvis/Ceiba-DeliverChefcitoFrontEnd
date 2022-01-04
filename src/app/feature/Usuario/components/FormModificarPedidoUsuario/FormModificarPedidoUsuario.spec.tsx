@@ -17,7 +17,7 @@ describe('FormModificarPedidoUsuario test', () => {
       productos: [{
               nombre: 'Paella Española',
               precio: 38000,
-              detalle: 'Verduras y sustituye la carne por diversos mariscos, moluscos y pescados'
+              detalle: 'Verduras y sustituye'
           }
         ],
       usuarios:[{nombre: 'Lorem', clave: '1234'}],
@@ -75,7 +75,7 @@ describe('FormModificarPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
 
     await wait(() => {
@@ -97,7 +97,7 @@ describe('FormModificarPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -125,7 +125,7 @@ describe('FormModificarPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -160,7 +160,7 @@ describe('FormModificarPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye la carne por diversos mariscos, moluscos y pescados\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -188,7 +188,7 @@ describe('FormModificarPedidoUsuario test', () => {
     expect(formSubmitted.producto).toStrictEqual({
         nombre: 'Paella Española',
         precio: 38000,
-        detalle: 'Verduras y sustituye la carne por diversos mariscos, moluscos y pescados'
+        detalle: 'Verduras y sustituye'
     });
     expect(formSubmitted.reunion).toStrictEqual({
         tipo: 'TIPO_PEQUENA',

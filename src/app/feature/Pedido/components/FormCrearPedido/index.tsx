@@ -12,6 +12,11 @@ import { Producto } from 'app/feature/Producto/models/Producto';
 import { Reunion } from 'app/feature/Reunion/models/Reunion';
 
 const fechaDeHoy: Date = new Date();
+const HORAS = 24;
+const MINUTOS = 60;
+const SEGUNDOS = 60;
+const MILISEGUNDOS = 1000;
+const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS * MINUTOS * SEGUNDOS * MILISEGUNDOS));
 interface FormValues {
     fechaRealizacion: string;
     direccion: string;
@@ -44,7 +49,7 @@ export const FormCrearPedido: React.FC<FormCrearPedidoProp> = ({
     producto = {nombre: '', detalle: '', precio: 0},
     reunion = {tipo: '', precio: 0},
     initialValues = {
-        fechaRealizacion: new Date(fechaDeHoy.getTime() + (24 * 60 * 60 * 1000)).toISOString(),
+        fechaRealizacion: new Date(fechaDiaSiguiente).toISOString(),
         direccion: '',
         valorTotal: '0',
         horasDeServicio: '0',
@@ -60,8 +65,8 @@ export const FormCrearPedido: React.FC<FormCrearPedidoProp> = ({
         reunion,
         fechaRealizacion: values.fechaRealizacion,
         direccion: values.direccion,
-        valorTotal: parseInt(values.valorTotal),
-        horasDeServicio: parseInt(values.horasDeServicio),
+        valorTotal: parseInt(values.valorTotal, 10),
+        horasDeServicio: parseInt(values.horasDeServicio, 10),
     });
     resetForm();
     };

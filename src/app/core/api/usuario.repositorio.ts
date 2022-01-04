@@ -1,5 +1,5 @@
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
-import { CambioClaveUsuario }  from 'app/feature/Usuario/models/CambioClaveUsuario'
+import { CambioClaveUsuario }  from 'app/feature/Usuario/models/CambioClaveUsuario';
 import { axiosIntance } from '../config/AxiosConfig';
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
@@ -34,10 +34,10 @@ export const UsuarioRepositorio = {
             usuario, 
             producto,
             reunion,
-            fechaRealizacion: new Date(fechaRealizacion).toISOString(),
             direccion,
             valorTotal,
             horasDeServicio,
+            fechaRealizacion: new Date(fechaRealizacion).toISOString(),
         }),
     modificarPedido: ({
         id

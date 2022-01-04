@@ -22,10 +22,9 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state: EstadoGeneral) => {
     return state.usuario;
-}
+};
 
 export const ProveedorGestionUsuario = connect(mapStateToProps, {
-    agregarNuevoUsuario,
     agregarSesionUsuario: iniciarSesionUsuarioAsync,
     listarPedidosUsuario: listarPedidosUsuarioAsync,
     cancelarPedidoUsuario :cancelarPedidoUsuarioAsync,
@@ -33,6 +32,7 @@ export const ProveedorGestionUsuario = connect(mapStateToProps, {
     listarReuniones: listarReunionesAsync,
     agregarPedidoUsuario: agregarPedidoUsuarioAsync,
     modificarPedidoUsuario :modificarPedidoUsuarioAsync,
+    agregarNuevoUsuario,
     actualizarClave,
     darDeBajaUsuario,
     irAgregarUsuario,

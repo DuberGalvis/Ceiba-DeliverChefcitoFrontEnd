@@ -9,6 +9,7 @@ import { SpanError } from './styles';
 import { useFormik } from 'formik';
 import { Usuario } from '../../models/Usuario';
 
+const CUATRO = 4;
 interface FormValues {
     claveActual: string;
     nuevaClave: string;
@@ -28,7 +29,7 @@ const validationSchema = Yup.object().shape<FormValues>({
     nuevaClave: Yup.string().required('El campo de nueva clave es requerido.'),
     confirmarNuevaClave: Yup.string().oneOf([Yup.ref('nuevaClave'), undefined], 'Error, La nueva clave no coincide')
     .required('El campo de confirmar nueva clave es requerido.')
-    .min(4),
+    .min(CUATRO),
 });
 
 export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = ({

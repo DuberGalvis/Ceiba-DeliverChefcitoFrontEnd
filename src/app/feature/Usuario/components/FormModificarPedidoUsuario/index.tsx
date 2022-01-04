@@ -16,7 +16,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
 
 const fechaDeHoy: Date = new Date();
-const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (24 * 60 * 60 * 1000));
+const HORAS = 24;
+const MINUTOS = 60;
+const SEGUNDOS = 60;
+const MILISEGUNDOS = 1000;
+const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS * MINUTOS * SEGUNDOS * MILISEGUNDOS));
+const CUATRO = 4;
+const OCHO = 8;
+const HORA15 = 15;
+const HORA19 = 19;
 const valorPedido = (producto: string, 
     reunion: string) => {
         if(!producto && !reunion){
@@ -63,8 +71,8 @@ const validationSchema = Yup.object().shape<FormValues>({
     .positive('El valor del pedido no puede ser 0'),
     horasDeServicio: Yup.number().required('El campo Horas de Servicio es requerido.')
     .positive().integer()
-    .min(4, 'Minimo 4 horas')
-    .max(8, 'Maximo 8 horas'),
+    .min(CUATRO, 'Minimo 4 horas')
+    .max(OCHO, 'Maximo 8 horas'),
 });
 
 export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp> = ({
@@ -104,17 +112,17 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
         validationSchema,
         onSubmit:handleSubmit,
     });
-    let valor = valorPedido(formik.values.producto, formik.values.reunion)
+    let valor = valorPedido(formik.values.producto, formik.values.reunion);
     formik.values.valorTotal = valor;
-    const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(15,0,0)));
-    const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(15,0,0));
-    const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(19,0,0));
+    const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
+    const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
+    const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
     const fechaRealizacion = (fecha: Date) => {
          formik.values.fechaRealizacion = !fecha
         ? new Date(fechaDiaSiguiente).toString()
         : fecha.toString();
         return formik.values.fechaRealizacion;
-    }
+    };
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>

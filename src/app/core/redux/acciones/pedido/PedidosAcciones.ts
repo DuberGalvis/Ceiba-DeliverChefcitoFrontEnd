@@ -59,8 +59,7 @@ export function agregarPedidoAsync(pedido: Pedido)
             dispacth(
                 agregarPedido(respuesta.data)
             )
-        )
-
+        );
     };
 }
 
@@ -72,7 +71,7 @@ export function cancelarPedidoAsync()
             dispacth(
                 listarPedidosActivos(respuesta.data, Array.from(respuesta.data).length)
             )
-        )
+        );
     };
 }
 
@@ -84,6 +83,6 @@ export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: numbe
             dispacth(
                 listarPedidosUsuario(respuesta.data, Array.from(respuesta.data).length)
             )
-        )
+        );
     };
 }

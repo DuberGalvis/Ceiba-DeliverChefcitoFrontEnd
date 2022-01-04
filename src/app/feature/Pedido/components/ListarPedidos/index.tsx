@@ -1,17 +1,14 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { PedidoListar } from '../../models/PedidoListar';
-import { BtnCancelarPedido } from '../CancelarPedido';
 import { Table } from './styles';
 
 export interface ListarPedidosProps {
   pedidosListar: Array<PedidoListar>;
-  onClickCancelarPedido: (pedidosListar: PedidoListar) => void;
 }
 
 export const ListarPedidos: React.FC<ListarPedidosProps> = ({
   pedidosListar,
-  onClickCancelarPedido,
 }) => {
   return (
     <Table>
@@ -47,12 +44,6 @@ export const ListarPedidos: React.FC<ListarPedidosProps> = ({
               <td>{`${pedidoListar.direccion} `}</td>
               <td>{`${pedidoListar.horasDeServicio} `}</td>
               <td>{`${pedidoListar.valorTotal} `}</td>
-              <td>
-                <BtnCancelarPedido
-                pedidoListar={pedidoListar}
-                onCancelar={onClickCancelarPedido} 
-                ></BtnCancelarPedido>
-              </td>
             </tr>
           );
         })}
@@ -63,5 +54,4 @@ export const ListarPedidos: React.FC<ListarPedidosProps> = ({
 
 ListarPedidos.propTypes = {
     pedidosListar: PropTypes.array.isRequired,
-    onClickCancelarPedido: PropTypes.func.isRequired,
 };

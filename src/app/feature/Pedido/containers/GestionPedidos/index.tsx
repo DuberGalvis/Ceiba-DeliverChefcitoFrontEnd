@@ -18,7 +18,6 @@ interface GestionPedidosProps {
   pedidosListar: Array<PedidoListar>;
   agregarPedido: (pedido: Pedido) => void;
   listarPedidosUsuario: (usuario: Usuario, numeroPagina: number) => void;
-  cancelarPedido: (pedidoListar: PedidoListar) => void;
   cantidadTotalPedido: number;
 }
 
@@ -29,7 +28,6 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
   pedidosListar,
   agregarPedido,
   listarPedidosUsuario,
-  cancelarPedido,
   cantidadTotalPedido,
 }) => {
   useEffect(() => {
@@ -40,7 +38,6 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
       <DivRow>
         <ListarPedidos
           pedidosListar={pedidosListar}
-          onClickCancelarPedido={cancelarPedido}
         />
         <PaginadorPedidos
           cantidadTotalPedidos={cantidadTotalPedido}
@@ -61,6 +58,5 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
 GestionPedidos.propTypes = {
     pedidosListar: PropTypes.array.isRequired,
     listarPedidosUsuario: PropTypes.func.isRequired,
-    cancelarPedido: PropTypes.func.isRequired,
     cantidadTotalPedido: PropTypes.number.isRequired,
 };

@@ -87,7 +87,7 @@ export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: numbe
             dispacth(
                 listarPedidosUsuario(respuesta.data, Array.from(respuesta.data).length)
             )
-        )
+        );
     };
 }
 
@@ -121,7 +121,7 @@ export function agregarPedidoUsuarioAsync(pedido: Pedido)
           dispacth(
             agregarPedidoUsuario(respuesta.data)
           )
-      )
+      );
   };
 }
 
@@ -196,7 +196,7 @@ export function cancelarPedidoUsuarioAsync(pedidoListar: PedidoListar)
             dispacth(
               cancelarPedidoUsuario(pedidoListar, respuesta.data.message)
             )
-        )
+        );
     };
 }
 
