@@ -1,6 +1,5 @@
 import { EstadoUsuario } from 'app/core/redux/modelo/EstadoUsuario';
-import { Usuario } from 'app/feature/Producto/models/Producto';
-import { agregarUsuario } from 'app/core/redux/acciones/usuario/usuarioAcciones';
+import { agregarUsuario } from 'app/core/redux/acciones/usuario/UsuarioAcciones';
 import reductorUsuario from './usuarioReductor';
 
 describe('Reductor usuario', () => {
