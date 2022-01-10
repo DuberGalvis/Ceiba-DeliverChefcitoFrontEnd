@@ -164,4 +164,6 @@ GestionPedidos.propTypes = {
   agregarPedidoUsuario: PropTypes.func.isRequired,
   cancelarPedidoUsuario: PropTypes.func.isRequired,
   listarPedidos: PropTypes.func.isRequired,
+  listarProductos: PropTypes.func.isRequired,
+  listarReuniones: PropTypes.func.isRequired,
 };

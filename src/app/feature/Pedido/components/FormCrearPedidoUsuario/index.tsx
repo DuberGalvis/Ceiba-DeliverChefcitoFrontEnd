@@ -230,6 +230,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
 
 FormCrearPedidoUsuario.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    validarDiaFestivo: PropTypes.func.isRequired,
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     initialValues: PropTypes.shape({

@@ -79,4 +79,5 @@ AjustesUsuario.propTypes = {
   usuarios: PropTypes.array.isRequired,
   actualizarClave: PropTypes.func.isRequired,
   darDeBajaUsuario: PropTypes.func.isRequired,
+  borrarMensajes: PropTypes.func.isRequired,
 };

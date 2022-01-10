@@ -6,7 +6,7 @@ import { FormikHelpers } from 'formik/dist/types';
 import { Input } from 'app/shared/components/Input';
 import { Pedido } from '../../../Pedido/models/Pedido';
 import { PedidoListar } from '../../../Pedido/models/PedidoListar';
-import { SpanError, Select, H2ModificarPedido } from './styles';
+import { SpanError, Select } from './styles';
 import { useFormik } from 'formik';
 import { Producto } from 'app/feature/Producto/models/Producto';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';

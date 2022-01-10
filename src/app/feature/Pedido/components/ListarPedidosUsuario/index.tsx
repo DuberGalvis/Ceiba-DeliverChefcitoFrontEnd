@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { Usuario } from '../../../Usuario/models/Usuario';
 import { BtnCancelarPedidoUsuario } from '../CancelarPedidoUsuario';
-import { H2Cancelar, Table } from './styles';
+import { Table } from './styles';
 import { useEffect } from 'react';
 import { BtnModificarPedidoUsuario } from '../ModificarPedidoUsuario';
 import { MostrarMensaje } from '../MostrarMensaje';
@@ -107,4 +107,8 @@ export const ListarPedidosUsuario: React.FC<ListarPedidosUsuarioProps> = ({
 
 ListarPedidosUsuario.propTypes = {
   pedidosListar: PropTypes.array.isRequired,
+  usuario: PropTypes.shape({
+    nombre: PropTypes.string.isRequired,
+    clave: PropTypes.string.isRequired,
+  }).isRequired,
 };
