@@ -2,7 +2,6 @@ import { Reunion } from 'app/feature/Reunion/models/Reunion';
 
 export const LISTAR_REUNIONES = 'LISTAR_REUNIONES';
 export const AGREGAR_REUNION = 'AGREGAR_REUNION';
-export const ERROR_CONSULTA = 'ERROR_CONSULTA';
 
 interface AccionListarReuniones {
   type: typeof LISTAR_REUNIONES;

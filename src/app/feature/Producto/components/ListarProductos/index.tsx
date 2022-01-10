@@ -18,10 +18,10 @@ export const ListaProductos: React.FC<ListaProductosProps> = ({
             <b>Nombre del Producto</b>
           </td>
           <td>
-            <b>Precio</b>
+            <b>Detalles</b>
           </td>
           <td>
-            <b>Detalles</b>
+            <b>Precio</b>
           </td>
         </tr>
       </thead>
@@ -30,8 +30,8 @@ export const ListaProductos: React.FC<ListaProductosProps> = ({
           return (
             <tr key={producto.nombre}>
               <td>{producto.nombre}</td>
-              <td>{`${producto.precio} `}</td>
               <td>{`${producto.detalle} `}</td>
+              <td>${`${producto.precio} `}</td>
             </tr>
           );
         })}

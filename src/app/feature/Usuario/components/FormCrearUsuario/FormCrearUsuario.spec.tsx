@@ -14,6 +14,8 @@ describe('FormCrearUsuario test', () => {
     componentProps = {
       formTitle: 'Form test',
       onSubmit: stub(),
+      irInicioSesion: stub(),
+      mensajeErrorCreacion: '',
     };
     componentWrapper = render(<FormCrearUsuario {...componentProps} />);
   });

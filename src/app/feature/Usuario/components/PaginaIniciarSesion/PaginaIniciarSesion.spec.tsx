@@ -14,6 +14,7 @@ describe('FormCrearUsuario test', () => {
     componentProps = {
       paginaTitle: 'Form test',
       onSubmit: stub(),
+      mensajeErrorSesion: '',
     };
     componentWrapper = render(<PaginaIniciarSesion {...componentProps} />);
   });

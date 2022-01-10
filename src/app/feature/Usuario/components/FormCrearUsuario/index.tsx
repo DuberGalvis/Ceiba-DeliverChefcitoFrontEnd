@@ -7,7 +7,9 @@ import { Input } from 'app/shared/components/Input';
 import { Usuario } from '../../models/Usuario';
 import { SpanError } from './styles';
 import { useFormik } from 'formik';
+import { MostrarMensajeUsuario } from '../MostrarMensajeUsuario';
 
+const CUATRO = 4;
 interface FormValues {
     nombre: string;
     clave: string;
@@ -16,21 +18,28 @@ interface FormValues {
 
 interface FormCrearUsuarioProp {
     onSubmit: (payload: Usuario) => any;
+    irInicioSesion: () => void;
     disabled?: boolean;
     formTitle: string;
+    mensajeErrorCreacion: string;
     initialValues?: FormValues;
 }
 
 const validationSchema = Yup.object().shape<FormValues>({
     nombre: Yup.string().required('El campo nombre es requerido.'),
-    clave: Yup.string().required('El campo clave es requerido.'),
-    confirmarClave: Yup.string().required('El campo de confirmar clave es requerido.'),
+    clave: Yup.string().required('El campo clave es requerido.')
+    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    confirmarClave: Yup.string().oneOf([Yup.ref('clave'), undefined], 'Error, La clave no coincide')
+    .required('El campo de confirmar clave es requerido.')
+    .min(CUATRO, 'Numero minimo de caracteres es 4'),
 });
 
 export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
     onSubmit,
+    irInicioSesion,
     disabled,
     formTitle,
+    mensajeErrorCreacion,
     initialValues = {
         nombre: '',
         clave: '',
@@ -52,10 +61,12 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
         validationSchema,
         onSubmit:handleSubmit,
     });
-
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
+            <MostrarMensajeUsuario 
+                mensaje={mensajeErrorCreacion}
+            />
             <Input
                 disabled={disabled}
                 name="nombre"
@@ -95,6 +106,7 @@ FormCrearUsuario.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
+    mensajeErrorCreacion: PropTypes.string.isRequired,
     initialValues: PropTypes.shape({
         nombre: PropTypes.string.isRequired,
         clave: PropTypes.string.isRequired,

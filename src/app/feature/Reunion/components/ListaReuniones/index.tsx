@@ -23,11 +23,11 @@ export const ListaReuniones: React.FC<ListaReunionesProps> = ({
                 </tr>
             </thead>
             <tbody>
-                {reuniones.map((reunion: Reunion) => {
+                {reuniones.map((reunion: Reunion, index) => {
                         return (
-                            <tr key={reunion.tipo}>
+                            <tr key={index}>
                                 <td>{`${reunion.tipo}`}</td>
-                                <td>{`${reunion.precio}`}</td>
+                                <td>${`${reunion.precio}`}</td>
                             </tr>
                         );
                     })}

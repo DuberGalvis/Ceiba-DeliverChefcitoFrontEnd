@@ -1,81 +1,43 @@
 import {
-    AGREGAR_PEDIDO,
-    CANCELAR_PEDIDO,
     LISTAR_PEDIDOS_USUARIO,
-    LISTAR_PEDIDOS_ACTIVOS,
+    AGREGAR_PEDIDO_USUARIO,
+    CANCELAR_PEDIDO,
+    MODIFICAR_PEDIDO,
+    LISTAR_PRODUCTOS_PEDIDO,
+    LISTAR_REUNIONES_PEDIDO,
+    LISTAR_PEDIDOS,
+    MOSTRAR_MODIFICAR,
+    MOSTRAR_PEDIDOS,
+    FECHA_FESTIVO,
+    ERROR_CONSULTA,
     TiposAccionesPedido,
 } from './PedidosTiposAcciones';
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoRepositorio } from 'app/core/api/pedidos.repositorio';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
+import { Reunion } from 'app/feature/Reunion/models/Reunion';
+import { Producto } from 'app/feature/Producto/models/Producto';
+import { Fecha } from 'app/feature/Pedido/models/Fecha';
 
-export function agregarPedido(
-    pedido: Pedido,
-): TiposAccionesPedido {
-    return {
-        type: AGREGAR_PEDIDO,
-        payload: pedido,
-    };
-}
-
-export function cancelarPedido(
-    pedidoListar: PedidoListar,
-): TiposAccionesPedido {
-    return {
-        type: CANCELAR_PEDIDO,
-        payload: pedidoListar,
-    };
-}
+const COLOMBIA = 'CO';
+const UNO = 1;
 
 export function listarPedidosUsuario(
-    pedidoListar: Array<PedidoListar>,
-    cantidadTotalPedido: number,
-): TiposAccionesPedido {
-    return {
-        type: LISTAR_PEDIDOS_USUARIO,
-        payload: pedidoListar,
-        cantidadTotalPedido,
-    };
-}
-
-export function listarPedidosActivos(
     pedidosListar: Array<PedidoListar>,
     cantidadTotalPedido: number,
 ): TiposAccionesPedido {
+    let mensajeSinPedidos: string = '';
+    if (cantidadTotalPedido === 0)  mensajeSinPedidos = '¡No tienes Pedidos Pendientes!';
     return {
-        type: LISTAR_PEDIDOS_ACTIVOS,
+        type: LISTAR_PEDIDOS_USUARIO,
         payload: pedidosListar,
         cantidadTotalPedido,
-            
+        mensajeSinPedidos,
     };
 }
-
-export function agregarPedidoAsync(pedido: Pedido)
-{
-    return function (dispacth: any) {
-        PedidoRepositorio.agregarPedido(pedido)
-        .then((respuesta: any) =>
-            dispacth(
-                agregarPedido(respuesta.data)
-            )
-        );
-    };
-}
-
-export function cancelarPedidoAsync()
-{
-    return function (dispacth: any) {
-        PedidoRepositorio.cancelarPedido()
-        .then((respuesta: any) =>
-            dispacth(
-                listarPedidosActivos(respuesta.data, Array.from(respuesta.data).length)
-            )
-        );
-    };
-}
-
-export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: number )
+  
+export function listarPedidosUsuarioAsync(usuario: Usuario)
 {
     return function (dispacth: any) {
         PedidoRepositorio.consultarPedidosUsuario(usuario.nombre)
@@ -86,3 +48,182 @@ export function listarPedidosUsuarioAsync( usuario: Usuario, numeroPagina: numbe
         );
     };
 }
+
+export function agregarPedidoUsuario(
+    pedido: Pedido,
+    mensajeConfirmacion: string,
+): TiposAccionesPedido {
+    return {
+        type: AGREGAR_PEDIDO_USUARIO,
+        payload: pedido,
+        mensajeConfirmacion: `Su pedido fue ${mensajeConfirmacion}`,
+    };
+}
+  
+export function agregarPedidoUsuarioAsync(pedido: Pedido)
+{
+    console.log(pedido.fechaRealizacion);
+    return function (dispacth: any) {
+        PedidoRepositorio.agregarPedido(pedido)
+        .then((respuesta: any) =>
+            dispacth(
+                agregarPedidoUsuario(pedido, respuesta.statusText)
+            )
+        );
+    };
+}
+
+export function cancelarPedidoUsuario(
+    pedidoListar: PedidoListar,
+    mensajeConfirmacion: string,
+): TiposAccionesPedido {
+    console.log(mensajeConfirmacion)
+    return {
+        type: CANCELAR_PEDIDO,
+        payload: pedidoListar,
+        mensajeConfirmacion,
+    };
+}
+
+export function cancelarPedidoUsuarioAsync(pedidoListar: PedidoListar)
+{
+    return function (dispacth: any) {
+      PedidoRepositorio.cancelarPedido(pedidoListar)
+        .then((respuesta: any) =>
+            dispacth(
+              cancelarPedidoUsuario(pedidoListar, respuesta.data)
+            )
+        );
+    };
+}
+
+export function modificarPedidoUsuario(
+    mensajeConfirmacion: string,
+): TiposAccionesPedido {
+    console.log(mensajeConfirmacion);
+    return {
+        type: MODIFICAR_PEDIDO,
+        mensajeConfirmacion: `Su Pedido ha sido modificado ${mensajeConfirmacion}`,
+    };
+}
+  
+export function modificarPedidoUsuarioAsync(pedidoListar: PedidoListar, pedido: Pedido) {
+    console.log(pedidoListar, pedido);
+    return function (dispacth: any) {
+            PedidoRepositorio.modificarPedido(pedidoListar, pedido)
+            .then((respuesta: any) =>
+            dispacth(
+                modificarPedidoUsuario(respuesta.statusText),
+            )
+        );
+    };
+}
+
+export function listarProductos(
+    productos: Array<Producto>,
+    cantidadTotalProductos: number,
+): TiposAccionesPedido {
+    return {
+        type: LISTAR_PRODUCTOS_PEDIDO,
+        payload: productos,
+        cantidadTotalProductos,
+    };
+}
+
+export function listarProductosAsync() {
+    return function (dispacth: any) {
+        PedidoRepositorio.consultarProductos()
+      .then((respuesta: any) =>
+        dispacth(
+          listarProductos(respuesta.data, Array.from(respuesta.data).length)
+        )
+      );
+    };
+  }
+
+export function listarReuniones(
+    reuniones: Array<Reunion>,
+): TiposAccionesPedido {
+    return {
+        type: LISTAR_REUNIONES_PEDIDO,
+        payload: reuniones,
+    };
+}
+
+export function listarReunionesAsync() {
+  return function (dispacth: any) {
+    PedidoRepositorio.consultarReuniones()
+    .then((respuesta: any) =>
+      dispacth(
+        listarReuniones(respuesta.data),
+      )
+    );
+  };
+}
+
+export function listarPedidos(
+    numeroPaginas: number,
+): TiposAccionesPedido {
+    return {
+        type: LISTAR_PEDIDOS,
+        numeroPaginas,
+    };
+}
+
+export function irModificarPedidoUsuario(
+    pedidoModificar: PedidoListar,
+):TiposAccionesPedido {
+    return {
+        type: MOSTRAR_MODIFICAR,
+        payload: pedidoModificar,
+        mostrarModificar: true,
+    };
+}
+
+export function irPedidosUsuario(
+):TiposAccionesPedido {
+    return {
+        type: MOSTRAR_PEDIDOS,
+        mostrarModificar: false,
+    };
+}
+
+export function errorConsulta(
+    mensajeError: string,
+):TiposAccionesPedido {
+    return {
+        type: ERROR_CONSULTA,
+        mensajeError,
+    };
+}
+
+export function validarDiaFestivo(
+    fechaFestivo: Array<any>,
+):TiposAccionesPedido {
+    let esFestivo: boolean = fechaFestivo.length > 0 ? true : false;
+    return {
+        type: FECHA_FESTIVO,
+        payload: esFestivo,
+    };
+}
+
+export function validarDiaFestivoAsync(fecha: Date) {
+    const fechaFestivo: Fecha = {
+        country: COLOMBIA,
+        year: new Date(fecha).getFullYear(),
+        day: new Date(fecha).getDate(),
+        month: new Date(fecha).getMonth() + UNO,
+    }
+    console.log(fechaFestivo);
+    return function (dispacth: any) {
+      PedidoRepositorio.consultarFestivo(
+        fechaFestivo
+        ).then((respuesta: any) => dispacth(         
+            validarDiaFestivo(respuesta.response.holidays),
+        )
+      ).catch((errorAPICalendar: any) => dispacth(
+          errorConsulta(errorAPICalendar),
+        )
+      );
+    };
+  }

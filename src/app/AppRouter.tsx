@@ -6,6 +6,7 @@ import { NavigationHeader } from 'app/shared/components/NavigationHeader';
 import { ProductoRouter } from 'app/feature/Producto/ProductoRouter';
 import { ReunionRouter } from './feature/Reunion/ReunionRouter';
 import { UsuarioRouter } from './feature/Usuario/UsuarioRouter';
+import { UsuarioAjustesRouter } from './feature/Usuario/UsuarioAjustesRouter';
 import { PedidoRouter } from './feature/Pedido/PedidoRouter';
 
 export const AppRouter = () => {
@@ -19,6 +20,7 @@ export const AppRouter = () => {
         <Route path="/reuniones" component={ReunionRouter} />
         <Route path="/pedidos" component={PedidoRouter} />
         <Route path="/usuario" component={UsuarioRouter} />
+        <Route path="/ajustes" component={UsuarioAjustesRouter} />
       </Switch>
     </BrowserRouter>
   );

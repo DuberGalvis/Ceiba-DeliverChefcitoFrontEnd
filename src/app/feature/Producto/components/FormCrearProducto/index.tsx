@@ -53,7 +53,6 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
     validationSchema,
     onSubmit: handleSubmit,
   });
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <h2>{formTitle}</h2>

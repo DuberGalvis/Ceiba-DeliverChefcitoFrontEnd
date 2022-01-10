@@ -1,21 +1,54 @@
 import {
-    AGREGAR_PEDIDO,
-    CANCELAR_PEDIDO,
     LISTAR_PEDIDOS_USUARIO,
-    LISTAR_PEDIDOS_ACTIVOS,
+    AGREGAR_PEDIDO_USUARIO,
+    CANCELAR_PEDIDO,
+    MODIFICAR_PEDIDO,
+    LISTAR_PRODUCTOS_PEDIDO,
+    LISTAR_REUNIONES_PEDIDO,
+    LISTAR_PEDIDOS,
+    MOSTRAR_MODIFICAR,
+    MOSTRAR_PEDIDOS,
+    FECHA_FESTIVO,
+    ERROR_CONSULTA,
     TiposAccionesPedido,
 } from '../../acciones/pedido/PedidosTiposAcciones';
 import { EstadoPedido } from '../../modelo/EstadoPedido';
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
+import { Producto } from 'app/feature/Producto/models/Producto';
+import { Reunion } from 'app/feature/Reunion/models/Reunion';
 
 const initialState: EstadoPedido = {
+    pedido: {
+        usuario: {nombre: '', clave: ''},
+        producto: {nombre: '', detalle: '', precio: 0},
+        reunion: {tipo: '', precio: 0},
+        fechaRealizacion: '',
+        direccion: '',
+        horasDeServicio: 0,
+        valorTotal: 0,
+    },
     pedidos: Array<Pedido>(),
+    pedidoListar: {
+        id: 0,
+        nombreUsuario: '',
+        nombreProducto: '',
+        tipoReunion: '',
+        fechaRealizacion: '',
+        direccion: '',
+        horasDeServicio: 0,
+        valorTotal: 0,
+    },
     pedidosListar: Array<PedidoListar>(),
-    usuario: {nombre: '', clave: ''},
-    producto: {nombre: '', detalle: '', precio: 0},
-    reunion: {tipo: '', precio: 0},
-    cantidadTotalPedido: 0,
+    productos: Array<Producto>(),
+    reuniones: Array<Reunion>(),
+    mensajeConfirmacion: '',
+    mensajeExcepcion: '',
+    mensajeExitoCancelar: '',
+    cantidadTotalPedidos: 0,
+    cantidadTotalProductos: 0,
+    esFestivo: false,
+    mostrarModificar: false,
 };
 
 export default function (
@@ -23,34 +56,103 @@ export default function (
     action: TiposAccionesPedido,
 ): EstadoPedido {
     switch (action.type) {
-        case AGREGAR_PEDIDO: {
+        case LISTAR_PEDIDOS_USUARIO: {
+            const pedidosListar = action.payload;
+            return {
+                ...state,
+                pedidosListar,
+                cantidadTotalPedidos: action.cantidadTotalPedido,
+                mensajeExitoCancelar: action.mensajeSinPedidos,
+            };
+        }
+        case AGREGAR_PEDIDO_USUARIO: {
             const pedido = action.payload;
             return { 
                 ...state,
                 pedidos: [ ...state.pedidos, pedido],
+                mensajeConfirmacion: action.mensajeConfirmacion,
+                mensajeExitoCancelar: '',
             };
         }
         case CANCELAR_PEDIDO:{
             const pedidoListar = action.payload;
             return { 
                 ...state,
-                pedidosListar: [ ...state.pedidosListar, pedidoListar],
+                pedidosListar: [
+                    ...state.pedidosListar.filter((p) => p.id !== pedidoListar.id),
+                ],
+                mensajeExitoCancelar: action.mensajeConfirmacion,
+                mensajeConfirmacion: '',
+                mensajeExcepcion: '',
             };
         }
-        case LISTAR_PEDIDOS_USUARIO: {
-            const pedidosListar = action.payload;
+        case MODIFICAR_PEDIDO: {
+            const mensajeConfirmacion = action.mensajeConfirmacion;
             return {
                 ...state,
-                pedidosListar,
-                cantidadTotalPedido: action.cantidadTotalPedido,
+                mensajeConfirmacion,
+                mensajeExitoCancelar: '',
+                mensajeExcepcion: '',
             };
         }
-        case LISTAR_PEDIDOS_ACTIVOS: {
-            const pedidosActivos = action.payload;
+        case LISTAR_PRODUCTOS_PEDIDO: {
+            const productos = action.payload;
             return {
                 ...state,
-                pedidosListar: pedidosActivos,
-                cantidadTotalPedido: action.cantidadTotalPedido,
+                productos,
+                cantidadTotalProductos: action.cantidadTotalProductos,
+
+            };
+        }
+        case LISTAR_REUNIONES_PEDIDO: {
+            const reuniones = action.payload;
+            return {
+                ...state,
+                reuniones,
+
+            };
+        }
+        case LISTAR_PEDIDOS: {
+            return {
+                ...state,
+                cantidadTotalPedidos: action.numeroPaginas,
+            };
+        }
+        case MOSTRAR_MODIFICAR: {
+            const pedidoListar = action.payload;
+            return {
+                ...state,
+                pedidoListar,
+                mostrarModificar: action.mostrarModificar,
+                mensajeConfirmacion: '',
+                mensajeExcepcion: '',
+                mensajeExitoCancelar: '',
+            };
+        }
+        case MOSTRAR_PEDIDOS: {
+            return {
+                ...state,
+                mostrarModificar: action.mostrarModificar,
+                mensajeConfirmacion: '',
+                mensajeExcepcion: '',
+                mensajeExitoCancelar: '',
+            };
+        }
+        case FECHA_FESTIVO: {
+            return {
+                ...state,
+                esFestivo: action.payload,
+                mensajeConfirmacion: '',
+                mensajeExcepcion: '',
+                mensajeExitoCancelar: '',
+            };
+        }
+        case ERROR_CONSULTA: {
+            return {
+                ...state,
+                mensajeExcepcion: action.mensajeError,
+                mensajeConfirmacion: '',
+                mensajeExitoCancelar: '',
             };
         }
 

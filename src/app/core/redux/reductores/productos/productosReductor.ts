@@ -1,6 +1,5 @@
 import {
   AGREGAR_PRODUCTO,
-  ELIMINAR_PRODUCTO,
   LISTAR_PRODUCTOS,
   TiposAccionesProducto,
 } from '../../acciones/productos/ProductosTiposAcciones';
@@ -30,16 +29,6 @@ export default function (
       return {
         ...state,
         productos: [...state.productos, producto],
-      };
-    }
-
-    case ELIMINAR_PRODUCTO: {
-      const producto = action.payload;
-      return {
-        ...state,
-        productos: [
-          ...state.productos.filter((p) => p.nombre !== producto.nombre),
-        ],
       };
     }
 

@@ -5,42 +5,48 @@ import { Button } from 'app/shared/components/Button';
 import { FormikHelpers } from 'formik/dist/types';
 import { Input } from 'app/shared/components/Input';
 import { CambioClaveUsuario } from '../../models/CambioClaveUsuario';
-import { SpanError } from './styles';
+import { H2Error, SpanError } from './styles';
 import { useFormik } from 'formik';
 import { Usuario } from '../../models/Usuario';
+import { Link } from 'react-router-dom';
 
 const CUATRO = 4;
 interface FormValues {
     claveActual: string;
-    nuevaClave: string;
-    confirmarNuevaClave: string;
+    claveNueva: string;
+    confirmarclaveNueva: string;
 }
 
 interface FormActualizarContrasenaProp {
     onSubmit: (payload: CambioClaveUsuario) => any;
+    borrarMensajeError: () => void;
     disabled?: boolean;
     formTitle: string;
     usuario: Usuario;
+    mensajeError: string;
     initialValues?: FormValues;
 }
 
 const validationSchema = Yup.object().shape<FormValues>({
     claveActual: Yup.string().required('El campo clave actual es requerido.'),
-    nuevaClave: Yup.string().required('El campo de nueva clave es requerido.'),
-    confirmarNuevaClave: Yup.string().oneOf([Yup.ref('nuevaClave'), undefined], 'Error, La nueva clave no coincide')
+    claveNueva: Yup.string().required('El campo de nueva clave es requerido.')
+    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    confirmarclaveNueva: Yup.string().oneOf([Yup.ref('claveNueva'), undefined], 'Error, La nueva clave no coincide')
     .required('El campo de confirmar nueva clave es requerido.')
-    .min(CUATRO),
+    .min(CUATRO, 'Numero minimo de caracteres es 4'),
 });
 
 export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = ({
     onSubmit,
+    borrarMensajeError,
     disabled,
     formTitle,
     usuario,
+    mensajeError,
     initialValues = {
         claveActual: '',
-        nuevaClave: '',
-        confirmarNuevaClave: '',
+        claveNueva: '',
+        confirmarclaveNueva: '',
     },
 }) => {
     const handleSubmit = (
@@ -50,7 +56,7 @@ export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = 
         onSubmit({
             nombre: usuario.nombre,
             claveActual: values.claveActual,
-            nuevaClave: values.nuevaClave,
+            claveNueva: values.claveNueva,
         });
         resetForm();
     };
@@ -59,6 +65,22 @@ export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = 
         validationSchema,
         onSubmit:handleSubmit,
     });
+    if (mensajeError.length > 0) {
+        return (
+            <div>
+                <H2Error>
+                    {mensajeError}
+                </H2Error>
+                <Link to='/ajustes' replace={true}>
+                    <Button onClick={borrarMensajeError}>
+                        <span role='img' aria-labelledby='regresar'>
+                            ⬅️Regresar⬅️
+                        </span>
+                    </Button>
+                </Link>
+            </div>
+        );
+    }
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
@@ -74,23 +96,23 @@ export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = 
             )}
             <Input
                 disabled={disabled}
-                name="nuevaClave"
+                name="claveNueva"
                 placeholder="Ingrese la nueva Clave"
-                value={formik.values.nuevaClave}
+                value={formik.values.claveNueva}
                 onChange={formik.handleChange} 
             />
-            {formik.touched.nuevaClave && formik.errors.nuevaClave && (
-                <SpanError>{formik.errors.nuevaClave}</SpanError>
+            {formik.touched.claveNueva && formik.errors.claveNueva && (
+                <SpanError>{formik.errors.claveNueva}</SpanError>
             )}
             <Input
                 disabled={disabled}
-                name="confirmarNuevaClave"
+                name="confirmarclaveNueva"
                 placeholder="Confirme la Nueva Clave"
-                value={formik.values.confirmarNuevaClave}
+                value={formik.values.confirmarclaveNueva}
                 onChange={formik.handleChange} 
             />
-            {formik.touched.confirmarNuevaClave && formik.errors.confirmarNuevaClave && (
-                <SpanError>{formik.errors.confirmarNuevaClave}</SpanError>
+            {formik.touched.confirmarclaveNueva && formik.errors.confirmarclaveNueva && (
+                <SpanError>{formik.errors.confirmarclaveNueva}</SpanError>
             )}
             <Button type="submit">Registrar</Button>
         </form>
@@ -101,13 +123,14 @@ FormActualizarContrasena.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
+    mensajeError: PropTypes.string.isRequired,
     usuario: PropTypes.shape({
         nombre: PropTypes.string.isRequired,
         clave: PropTypes.string.isRequired,
     }).isRequired,
     initialValues: PropTypes.shape({
         claveActual: PropTypes.string.isRequired,
-        nuevaClave: PropTypes.string.isRequired,
-        confirmarNuevaClave: PropTypes.string.isRequired,
+        claveNueva: PropTypes.string.isRequired,
+        confirmarclaveNueva: PropTypes.string.isRequired,
     }),
 };

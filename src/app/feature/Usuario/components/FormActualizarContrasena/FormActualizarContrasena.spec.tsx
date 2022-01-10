@@ -14,7 +14,9 @@ describe('FormActualizarContrasena test', () => {
     componentProps = {
       formTitle: 'Form test',
       usuario: {nombre: 'Lorem', clave: '1234'},
+      mensajeError: '',
       onSubmit: stub(),
+      borrarMensajeError: stub(),
     };
     componentWrapper = render(<FormActualizarContrasena {...componentProps} />);
   });
@@ -59,14 +61,14 @@ describe('FormActualizarContrasena test', () => {
     const elem = componentWrapper.container;
 
     const claveActual = elem.querySelector('input[name="claveActual"]');
-    const nuevaClave = elem.querySelector('input[name="nuevaClave"]');
+    const claveNueva = elem.querySelector('input[name="claveNueva"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         claveActual && fireEvent.change(claveActual, setTextEvent('claveActual', '1234'));
     });
     await wait(() => {
-        nuevaClave && fireEvent.change(nuevaClave, setTextEvent('nuevaClave', '4321'));
+        claveNueva && fireEvent.change(claveNueva, setTextEvent('claveNueva', '4321'));
     });
 
     await wait(() => {
@@ -77,22 +79,22 @@ describe('FormActualizarContrasena test', () => {
     expect(spans[0].textContent).toBe('El campo de confirmar nueva clave es requerido.');
   });
 
-  it('should fail on submit compare two fields nuevaClave and confirmarNuevaClave', async () => {
+  it('should fail on submit compare two fields claveNueva and confirmarclaveNueva', async () => {
     const elem = componentWrapper.container;
 
     const claveActual = elem.querySelector('input[name="claveActual"]');
-    const nuevaClave = elem.querySelector('input[name="nuevaClave"]');
-    const confirmarNuevaClave = elem.querySelector('input[name="confirmarNuevaClave"]');
+    const claveNueva = elem.querySelector('input[name="claveNueva"]');
+    const confirmarclaveNueva = elem.querySelector('input[name="confirmarclaveNueva"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         claveActual && fireEvent.change(claveActual, setTextEvent('claveActual', '1234'));
     });
     await wait(() => {
-        nuevaClave && fireEvent.change(nuevaClave, setTextEvent('nuevaClave', '4321'));
+        claveNueva && fireEvent.change(claveNueva, setTextEvent('claveNueva', '4321'));
     });
     await wait(() => {
-      confirmarNuevaClave && fireEvent.change(confirmarNuevaClave, setTextEvent('confirmarNuevaClave', '4322'));
+      confirmarclaveNueva && fireEvent.change(confirmarclaveNueva, setTextEvent('confirmarclaveNueva', '4322'));
     });
 
     await wait(() => {
@@ -107,18 +109,18 @@ describe('FormActualizarContrasena test', () => {
     const elem = componentWrapper.container;
 
     const claveActual = elem.querySelector('input[name="claveActual"]');
-    const nuevaClave = elem.querySelector('input[name="nuevaClave"]');
-    const confirmarNuevaClave = elem.querySelector('input[name="confirmarNuevaClave"]');
+    const claveNueva = elem.querySelector('input[name="claveNueva"]');
+    const confirmarclaveNueva = elem.querySelector('input[name="confirmarclaveNueva"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         claveActual && fireEvent.change(claveActual, setTextEvent('claveActual', '1234'));
     });
     await wait(() => {
-        nuevaClave && fireEvent.change(nuevaClave, setTextEvent('nuevaClave', '4321'));
+        claveNueva && fireEvent.change(claveNueva, setTextEvent('claveNueva', '4321'));
     });
     await wait(() => {
-        confirmarNuevaClave && fireEvent.change(confirmarNuevaClave, setTextEvent('confirmarNuevaClave', '4321'));
+        confirmarclaveNueva && fireEvent.change(confirmarclaveNueva, setTextEvent('confirmarclaveNueva', '4321'));
     });
 
     await wait(() => {
@@ -129,6 +131,6 @@ describe('FormActualizarContrasena test', () => {
 
     expect(formSubmitted.nombre).toBe('Lorem');
     expect(formSubmitted.claveActual).toBe('1234');
-    expect(formSubmitted.nuevaClave).toBe('4321');
+    expect(formSubmitted.claveNueva).toBe('4321');
   });
 });

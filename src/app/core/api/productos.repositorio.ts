@@ -5,5 +5,5 @@ export const ProductoRepositorio = {
   consultarPorPagina: () =>
     axiosIntance.get('/productos'),
   crearProducto: ({nombre, precio, detalle}: Producto) =>
-    axiosIntance.post('/productos', { nombre, detalle, 'precio': Number(precio)}),
+    axiosIntance.post('/productos', { nombre, detalle, precio}),
 };

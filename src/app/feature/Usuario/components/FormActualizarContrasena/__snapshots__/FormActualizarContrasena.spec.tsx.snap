@@ -14,13 +14,13 @@ exports[`FormActualizarContrasena test should match snapshot 1`] = `
     />
     <input
       class="sc-AxirZ eAukyj"
-      name="nuevaClave"
+      name="claveNueva"
       placeholder="Ingrese la nueva Clave"
       value=""
     />
     <input
       class="sc-AxirZ eAukyj"
-      name="confirmarNuevaClave"
+      name="confirmarclaveNueva"
       placeholder="Confirme la Nueva Clave"
       value=""
     />

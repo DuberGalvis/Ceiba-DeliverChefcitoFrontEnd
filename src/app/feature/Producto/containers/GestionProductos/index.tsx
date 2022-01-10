@@ -6,39 +6,43 @@ import { ListaProductos } from '../../components/ListarProductos';
 import { PaginadorProductos } from '../../components/PaginadorProductos';
 import { Producto } from '../../models/Producto';
 import { useEffect } from 'react';
+import { EstadoProducto } from 'app/core/redux/modelo/EstadoProducto';
+import { EstadoUsuario } from 'app/core/redux/modelo/EstadoUsuario';
+import { MenuLogueado } from 'app/shared/components/MenuLogueado';
 
 interface GestionProductosProps {
-  productos: Array<Producto>;
+  productos: EstadoProducto;
+  usuario: EstadoUsuario;
   listarProductos: (numeroPagina: number) => void;
   agregarNuevoProducto: (producto: Producto) => void;
-  eliminarProducto: (producto: Producto) => void;
-  cantidadTotalProducto: number;
 }
 
 export const GestionProductos: React.FC<GestionProductosProps> = ({
-  agregarNuevoProducto,
   productos,
+  usuario,
+  agregarNuevoProducto,
   listarProductos,
-  eliminarProducto,
-  cantidadTotalProducto,
 }) => {
   useEffect(() => {
     listarProductos(0);
   }, [listarProductos]);
+  const estaLogueado: boolean = usuario.usuarios.length > 0 ? true : false;
   return (
     <DivContainer>
+      {estaLogueado && 
+      <MenuLogueado
+        usuario={usuario.usuarios[0]}    
+      />}
       <DivRow>
-        <FormCrearProducto
+      {!estaLogueado && <FormCrearProducto
           onSubmit={agregarNuevoProducto}
-          formTitle="Crear producto"
-        />
-      </DivRow>
-      <DivRow>
+          formTitle="Crear Producto"
+        />}
         <ListaProductos
-          productos={productos}
+          productos={productos.productos}
         />
         <PaginadorProductos
-          cantidadTotalProductos={cantidadTotalProducto}
+          cantidadTotalProductos={productos.cantidadTotalProducto}
           onClickCambiarPagina={listarProductos}
         />
       </DivRow>
@@ -47,9 +51,28 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
 };
 
 GestionProductos.propTypes = {
-  productos: PropTypes.array.isRequired,
+  productos: PropTypes.shape({
+    productos: PropTypes.array.isRequired,
+    cantidadTotalProducto: PropTypes.number.isRequired,
+  }).isRequired,
+  usuario: PropTypes.shape({
+    usuarios: PropTypes.array.isRequired,
+    usuario: PropTypes.shape({
+      nombre: PropTypes.string.isRequired,
+      clave: PropTypes.string.isRequired,
+    }).isRequired,
+    cambioClaveUsuario: PropTypes.shape({
+      nombre: PropTypes.string.isRequired, 
+      claveActual: PropTypes.string.isRequired, 
+      claveNueva: PropTypes.string.isRequired,
+    }).isRequired,
+    mensajeError: PropTypes.string.isRequired,
+    mensajeConfirmacion: PropTypes.string.isRequired,
+    mostrarAgregar: PropTypes.bool.isRequired,
+    mostrarInicio: PropTypes.bool.isRequired,
+    mostrarPanel: PropTypes.bool.isRequired,
+    mostrarActualizar: PropTypes.bool.isRequired,
+  }).isRequired,
   listarProductos: PropTypes.func.isRequired,
   agregarNuevoProducto: PropTypes.func.isRequired,
-  eliminarProducto: PropTypes.func.isRequired,
-  cantidadTotalProducto: PropTypes.number.isRequired,
 };

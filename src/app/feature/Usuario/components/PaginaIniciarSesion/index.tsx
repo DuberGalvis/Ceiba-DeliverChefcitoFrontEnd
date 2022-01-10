@@ -8,6 +8,7 @@ import { FormikHelpers, useFormik } from 'formik';
 import { Usuario } from '../../models/Usuario';
 import { irAgregarUsuario } from 'app/core/redux/acciones/usuario/UsuarioAcciones';
 import { useEffect } from 'react';
+import { MostrarMensajeUsuario } from '../MostrarMensajeUsuario';
 
 interface FormValues {
     nombre: string;
@@ -18,6 +19,7 @@ interface PaginaIniciarSesionProp {
     onSubmit: (payload: Usuario) => any;
     disabled?: boolean;
     paginaTitle: string;
+    mensajeErrorSesion: string;
     initialValues?: FormValues;
 }
 
@@ -30,6 +32,7 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
     onSubmit,
     disabled,
     paginaTitle,
+    mensajeErrorSesion,
     initialValues = {
         nombre: '',
         clave: '',
@@ -56,6 +59,9 @@ export const PaginaIniciarSesion: React.FC<PaginaIniciarSesionProp> = ({
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{paginaTitle}</h2>
+            <MostrarMensajeUsuario 
+                mensaje={mensajeErrorSesion}
+            />
             <Input
                 disabled={disabled}
                 name="nombre"

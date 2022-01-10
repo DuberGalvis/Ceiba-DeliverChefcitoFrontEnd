@@ -1,6 +1,5 @@
 import {
   AGREGAR_PRODUCTO,
-  ELIMINAR_PRODUCTO,
   LISTAR_PRODUCTOS,
   TiposAccionesProducto,
 } from './ProductosTiposAcciones';
@@ -35,13 +34,6 @@ export function agregarProducto(
 ): TiposAccionesProducto {
   return {
     type: AGREGAR_PRODUCTO,
-    payload: producto,
-  };
-}
-
-export function eliminarProducto(producto: Producto): TiposAccionesProducto {
-  return {
-    type: ELIMINAR_PRODUCTO,
     payload: producto,
   };
 }
