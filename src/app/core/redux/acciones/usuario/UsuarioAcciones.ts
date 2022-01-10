@@ -105,7 +105,6 @@ export function agregarNuevoUsuario(usuario: Usuario) {
   export function errorEnConsulta(
     error: string
   ): TiposAccionesUsuario {
-    console.log(error);
     return {
       type: ERROR_CONSULTA,
       payload: error,

@@ -62,7 +62,6 @@ export function agregarPedidoUsuario(
   
 export function agregarPedidoUsuarioAsync(pedido: Pedido)
 {
-    console.log(pedido.fechaRealizacion);
     return function (dispacth: any) {
         PedidoRepositorio.agregarPedido(pedido)
         .then((respuesta: any) =>
@@ -77,7 +76,6 @@ export function cancelarPedidoUsuario(
     pedidoListar: PedidoListar,
     mensajeConfirmacion: string,
 ): TiposAccionesPedido {
-    console.log(mensajeConfirmacion)
     return {
         type: CANCELAR_PEDIDO,
         payload: pedidoListar,
@@ -100,7 +98,6 @@ export function cancelarPedidoUsuarioAsync(pedidoListar: PedidoListar)
 export function modificarPedidoUsuario(
     mensajeConfirmacion: string,
 ): TiposAccionesPedido {
-    console.log(mensajeConfirmacion);
     return {
         type: MODIFICAR_PEDIDO,
         mensajeConfirmacion: `Su Pedido ha sido modificado ${mensajeConfirmacion}`,
@@ -108,7 +105,6 @@ export function modificarPedidoUsuario(
 }
   
 export function modificarPedidoUsuarioAsync(pedidoListar: PedidoListar, pedido: Pedido) {
-    console.log(pedidoListar, pedido);
     return function (dispacth: any) {
             PedidoRepositorio.modificarPedido(pedidoListar, pedido)
             .then((respuesta: any) =>
@@ -214,7 +210,6 @@ export function validarDiaFestivoAsync(fecha: Date) {
         day: new Date(fecha).getDate(),
         month: new Date(fecha).getMonth() + UNO,
     }
-    console.log(fechaFestivo);
     return function (dispacth: any) {
       PedidoRepositorio.consultarFestivo(
         fechaFestivo
