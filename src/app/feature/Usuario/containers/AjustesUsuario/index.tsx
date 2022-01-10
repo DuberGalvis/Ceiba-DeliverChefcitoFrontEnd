@@ -10,7 +10,7 @@ import { FormActualizarContrasena } from '../../components/FormActualizarContras
 import { MenuLogueado } from '../../../../shared/components/MenuLogueado';
 import { useEffect } from 'react';
 
-const CIERRE_SESION: string = 'Se ha cerrado sesión correctamente';
+const CIERRE_SESION = 'Se ha cerrado sesión correctamente';
 interface AjustesUsuarioProps {
   usuarios: Usuario[];
   mensajeError: string;

@@ -27,7 +27,7 @@ export function listarPedidosUsuario(
     pedidosListar: Array<PedidoListar>,
     cantidadTotalPedido: number,
 ): TiposAccionesPedido {
-    let mensajeSinPedidos: string = '';
+    let mensajeSinPedidos = '';
     if (cantidadTotalPedido === 0)  mensajeSinPedidos = '¡No tienes Pedidos Pendientes!';
     return {
         type: LISTAR_PEDIDOS_USUARIO,
@@ -209,7 +209,7 @@ export function validarDiaFestivoAsync(fecha: Date) {
         year: new Date(fecha).getFullYear(),
         day: new Date(fecha).getDate(),
         month: new Date(fecha).getMonth() + UNO,
-    }
+    };
     return function (dispacth: any) {
       PedidoRepositorio.consultarFestivo(
         fechaFestivo

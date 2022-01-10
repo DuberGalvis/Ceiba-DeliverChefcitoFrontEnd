@@ -22,7 +22,7 @@ export function cerrarSesionUsuario(
 }
 
 export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
-  const mensajeActualizacion: string = 'Se ha Actualizado su Clave, Inicie Sesión';
+  const mensajeActualizacion = 'Se ha Actualizado su Clave, Inicie Sesión';
   return function (dispacth: any) {
     UsuarioRepositorio.actualizar(
       cambioClaveUsuario
@@ -39,7 +39,7 @@ export function actualizarClave(cambioClaveUsuario: CambioClaveUsuario) {
 }
 
 export function darDeBajaUsuario(usuario: Usuario) {
-  const mensajeRetiro: string = 'Se ha dado de baja su cuenta';
+  const mensajeRetiro = 'Se ha dado de baja su cuenta';
   return function (dispacth: any) {
     UsuarioRepositorio.darDeBaja(
         usuario.nombre

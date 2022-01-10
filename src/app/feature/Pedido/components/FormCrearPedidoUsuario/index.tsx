@@ -57,7 +57,7 @@ interface FormCrearPedidoUsuarioProp {
   disabled?: boolean;
   formTitle: string;
   productos: Producto[];
-  usuario: Usuario;
+  usuarioPedido: Usuario;
   reuniones: Reunion[];
   mensajePedido: string;
   esFestivo: boolean;
@@ -82,7 +82,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     validarDiaFestivo,
     disabled,
     formTitle,
-    usuario,
+    usuarioPedido,
     productos,
     reuniones,
     mensajePedido,
@@ -101,7 +101,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     { resetForm }: FormikHelpers<FormValues>
 ) => {
         onSubmit({
-            usuario: usuario,
+            usuario: usuarioPedido,
             producto: JSON.parse(values.producto),
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: fechaInicio.toISOString(),
@@ -121,12 +121,6 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
     const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
     const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
-    // const fechaRealizacion = (fecha: Date) => {
-    //      formik.values.fechaRealizacion = !fecha
-    //     ? new Date(fechaDiaSiguiente).toString()
-    //     : fecha.toString();
-    //     return formik.values.fechaRealizacion;
-    // };
     formik.values.fechaRealizacion = !fechaInicio
         ? ''
         : fechaInicio.toString();

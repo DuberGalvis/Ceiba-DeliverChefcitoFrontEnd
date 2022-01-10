@@ -80,7 +80,8 @@ describe('FormCrearPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
+          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
 
     await wait(() => {
@@ -102,7 +103,8 @@ describe('FormCrearPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
+          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -130,7 +132,8 @@ describe('FormCrearPedidoUsuario test', () => {
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
+          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -155,6 +158,7 @@ describe('FormCrearPedidoUsuario test', () => {
 
     const fechaDeHoy: Date = new Date();
     const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILSEG));
+    const SEISMIL3 = 6300;
 
     const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
@@ -164,11 +168,12 @@ describe('FormCrearPedidoUsuario test', () => {
     const valorTotalPedido = elem.querySelector('label[name="valorTotalPedido"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    const fechaComparar = new Date(fechaDiaSiguiente.setHours(15,0,0))
+    const fechaComparar = new Date(fechaDiaSiguiente.setHours(HORA15,0,0))
     .toISOString();
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",\\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
+          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -205,7 +210,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
-    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(63000);
-    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(4);
+    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SEISMIL3);
+    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(CUATRO);
   });
 });
