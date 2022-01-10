@@ -36,7 +36,7 @@ export const ListarPedidosUsuario: React.FC<ListarPedidosUsuarioProps> = ({
 }) => {
   useEffect(() => {
     listarPedidosUsuario(usuario);
-  },[listarPedidosUsuario]);
+  },[listarPedidosUsuario, usuario]);
   return (
     <div>
       <h2>

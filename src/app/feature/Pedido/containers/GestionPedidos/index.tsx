@@ -44,10 +44,10 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
 }) => {
   useEffect(() => {
     listarProductos();
-  },[]);
+  },[listarProductos]);
   useEffect(() => {
     listarReuniones();
-  },[]);
+  },[listarReuniones]);
   return (
     <DivContainer>
       {usuario && 

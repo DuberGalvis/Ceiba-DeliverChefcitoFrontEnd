@@ -32,7 +32,7 @@ export const AjustesUsuario: React.FC<AjustesUsuarioProps> = ({
 }) => {
   useEffect(() => {
     borrarMensajes();
-  },[]);
+  },[borrarMensajes]);
   const handleDarDeBaja = () => darDeBajaUsuario(usuarios[0]);
   const handleCerrarSesion = () => cerrarSesionUsuario(CIERRE_SESION);
   return (

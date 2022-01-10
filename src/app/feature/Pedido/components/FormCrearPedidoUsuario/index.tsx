@@ -129,7 +129,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     };
     useEffect(() => {
         validarDiaFestivo(fechaInicio);
-      },[]);
+      },[validarDiaFestivo, fechaInicio]);
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
