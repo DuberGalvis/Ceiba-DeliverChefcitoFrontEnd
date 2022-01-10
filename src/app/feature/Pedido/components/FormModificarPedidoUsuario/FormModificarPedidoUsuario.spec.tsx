@@ -199,7 +199,7 @@ describe('FormModificarPedidoUsuario test', () => {
         tipo: 'TIPO_PEQUENA',
         precio: 25000
     });
-    expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaDiaSiguiente.setHours(15,0,0))
+    expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
     expect(parseInt(formSubmitted.valorTotal, 10)).toBe(63000);

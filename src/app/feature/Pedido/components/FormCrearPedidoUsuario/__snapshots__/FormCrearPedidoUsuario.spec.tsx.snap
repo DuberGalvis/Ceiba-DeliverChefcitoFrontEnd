@@ -57,7 +57,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot 1`] = `
           class=""
           name="fechaRealizacion"
           type="text"
-          value="January 10, 2022 3:00 PM"
+          value="January 11, 2022 3:00 PM"
         />
       </div>
     </div>
@@ -65,7 +65,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot 1`] = `
       class="sc-AxirZ eAukyj"
       name="fechaRealizacionAux"
       type="hidden"
-      value="Mon Jan 10 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+      value="Tue Jan 11 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
     />
     <input
       class="sc-AxirZ eAukyj"

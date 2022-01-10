@@ -104,7 +104,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             usuario: usuario,
             producto: JSON.parse(values.producto),
             reunion: JSON.parse(values.reunion),
-            fechaRealizacion: new Date(fechaInicio).toISOString(),
+            fechaRealizacion: fechaInicio.toISOString(),
             direccion: values.direccion,
             valorTotal: valorPedido(values.producto, values.reunion),
             horasDeServicio: values.horasDeServicio,
@@ -121,12 +121,15 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
     const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
     const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
-    const fechaRealizacion = (fecha: Date) => {
-         formik.values.fechaRealizacion = !fecha
-        ? new Date(fechaDiaSiguiente).toString()
-        : fecha.toString();
-        return formik.values.fechaRealizacion;
-    };
+    // const fechaRealizacion = (fecha: Date) => {
+    //      formik.values.fechaRealizacion = !fecha
+    //     ? new Date(fechaDiaSiguiente).toString()
+    //     : fecha.toString();
+    //     return formik.values.fechaRealizacion;
+    // };
+    formik.values.fechaRealizacion = !fechaInicio
+        ? ''
+        : fechaInicio.toString();
     useEffect(() => {
         validarDiaFestivo(fechaInicio);
       },[validarDiaFestivo, fechaInicio]);
@@ -192,7 +195,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             <Input 
                 type="hidden"
                 name="fechaRealizacionAux"
-                value={fechaRealizacion(fechaInicio)}
+                value={formik.values.fechaRealizacion}
                 onChange={formik.handleChange}
             />
             <Input

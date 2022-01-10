@@ -4,6 +4,16 @@ import { SinonStub, stub } from 'sinon';
 import { FormCrearPedidoUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 
+const DOS = 2;
+const TRES = 3;
+const CUATRO = 4;
+const CINCO = 5;
+const HORAS24 = 24;
+const HORA15 = 15;
+const MINUTOS60 = 60;
+const SEGUNDOS60 = 60;
+const MILSEG = 1000;
+
 describe('FormCrearPedidoUsuario test', () => {
   let componentWrapper: RenderResult;
   let componentProps: React.ComponentProps<typeof FormCrearPedidoUsuario> & {
@@ -56,12 +66,12 @@ describe('FormCrearPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(5);
+    expect(spans.length).toBe(CINCO);
     expect(spans[0].textContent).toBe('El Producto es requerido.');
     expect(spans[1].textContent).toBe('La Reunion es requerida.');
-    expect(spans[2].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[3].textContent).toBe('El campo Horas de Servicio es requerido.');
-    expect(spans[4].textContent).toBe('El valor del pedido no puede ser 0');
+    expect(spans[DOS].textContent).toBe('El campo Direccion es requerido.');
+    expect(spans[TRES].textContent).toBe('El campo Horas de Servicio es requerido.');
+    expect(spans[CUATRO].textContent).toBe('El valor del pedido no puede ser 0');
   });
 
   it('should fail on submit five fields missing', async () => {
@@ -77,10 +87,10 @@ describe('FormCrearPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(3);
+    expect(spans.length).toBe(TRES);
     expect(spans[0].textContent).toBe('La Reunion es requerida.');
     expect(spans[1].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[2].textContent).toBe('Minimo 4 horas');
+    expect(spans[DOS].textContent).toBe('Minimo 4 horas');
   });
 
   it('should fail on submit two fields missing', async () => {
@@ -105,7 +115,7 @@ describe('FormCrearPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(2);
+    expect(spans.length).toBe(DOS);
     expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
     expect(spans[1].textContent).toBe('Minimo 4 horas');
   });
@@ -144,7 +154,7 @@ describe('FormCrearPedidoUsuario test', () => {
     const elem = componentWrapper.container;
 
     const fechaDeHoy: Date = new Date();
-    const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (24 * 60 * 60 * 1000));
+    const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILSEG));
 
     const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
@@ -192,7 +202,7 @@ describe('FormCrearPedidoUsuario test', () => {
         tipo: 'TIPO_PEQUENA',
         precio: 25000
     });
-    expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaDiaSiguiente.setHours(15,0,0))
+    expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
     expect(parseInt(formSubmitted.valorTotal, 10)).toBe(63000);
