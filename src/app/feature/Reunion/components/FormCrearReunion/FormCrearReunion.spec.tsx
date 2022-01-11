@@ -25,12 +25,13 @@ describe('FormCrearReunion test', () => {
     it('should fail on submit all fields missing', async () => {
         const elem = componentWrapper.container;
         const submitButton = elem.querySelector('button[type="submit"]');
-    
+        const DOS = 2;
+
         await wait(() => {
           submitButton && fireEvent.click(submitButton);
         });
         const spans = elem.querySelectorAll('span');
-        expect(spans.length).toBe(2);
+        expect(spans.length).toBe(DOS);
         expect(spans[0].textContent).toBe('El campo tipo es requerido.');
         expect(spans[1].textContent).toBe('El campo precio es requerido.');
       });
@@ -55,7 +56,8 @@ describe('FormCrearReunion test', () => {
     
       it('should submit', async () => {
         const elem = componentWrapper.container;
-    
+        const VEINTI4MIL = 24000;
+
         const tipo = elem.querySelector('input[name="tipo"]');
         const precio = elem.querySelector('input[name="precio"]');
         const submitButton = elem.querySelector('button[type="submit"]');
@@ -73,6 +75,6 @@ describe('FormCrearReunion test', () => {
         const formSubmitted = componentProps.onSubmit.firstCall.args[0];
     
         expect(formSubmitted.tipo).toBe('Lorem');
-        expect(formSubmitted.precio).toBe(24000);
+        expect(formSubmitted.precio).toBe(VEINTI4MIL);
       });
 });

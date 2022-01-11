@@ -4,6 +4,10 @@ import { SinonStub, stub } from 'sinon';
 import { FormCrearProducto } from './';
 import { setTextEvent } from 'app/shared/utils/test';
 
+const DOS = 2;
+const TRES = 3;
+const VEINTI5MIL: 25000;
+
 describe('FormCrearProducto test', () => {
   let componentWrapper: RenderResult;
   let componentProps: React.ComponentProps<typeof FormCrearProducto> & {
@@ -101,7 +105,7 @@ describe('FormCrearProducto test', () => {
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
 
     expect(formSubmitted.nombre).toBe('Lorem');
-    expect(formSubmitted.precio).toBe(25000);
+    expect(formSubmitted.precio).toBe(VEINTI5MIL);
     expect(formSubmitted.detalle).toBe('Dolor');
   });
 });

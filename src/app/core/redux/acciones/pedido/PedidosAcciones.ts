@@ -28,7 +28,9 @@ export function listarPedidosUsuario(
     cantidadTotalPedido: number,
 ): TiposAccionesPedido {
     let mensajeSinPedidos = '';
-    if (cantidadTotalPedido === 0)  mensajeSinPedidos = '¡No tienes Pedidos Pendientes!';
+    if (cantidadTotalPedido === 0){
+        mensajeSinPedidos = '¡No tienes Pedidos Pendientes!'
+    }
     return {
         type: LISTAR_PEDIDOS_USUARIO,
         payload: pedidosListar,

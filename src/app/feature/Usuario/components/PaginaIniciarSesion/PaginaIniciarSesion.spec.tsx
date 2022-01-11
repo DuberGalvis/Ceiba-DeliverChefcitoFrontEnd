@@ -26,12 +26,13 @@ describe('FormCrearUsuario test', () => {
   it('should fail on submit all fields missing', async () => {
     const elem = componentWrapper.container;
     const submitButton = elem.querySelector('button[type="submit"]');
+    const DOS = 2;
 
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(2);
+    expect(spans.length).toBe(DOS);
     expect(spans[0].textContent).toBe('El campo nombre es requerido.');
     expect(spans[1].textContent).toBe('El campo clave es requerido.');
   });

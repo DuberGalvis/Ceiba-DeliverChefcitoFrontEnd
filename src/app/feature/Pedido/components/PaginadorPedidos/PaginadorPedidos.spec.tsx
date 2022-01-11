@@ -37,10 +37,11 @@ describe('PaginadorPedidos Test', () => {
         onClickCambiarPagina={() => {}}
       />
     );
+    const DOS = 2;
     const buttons = componentWrapper.find('button');
     expect(buttons.at(0).text()).toBe('1');
     expect(buttons.at(1).text()).toBe('2');
-    expect(buttons.at(2).exists()).toBeFalsy();
+    expect(buttons.at(DOS).exists()).toBeFalsy();
   });
 });
 
