@@ -30,7 +30,7 @@ export function listarPedidosUsuario(
     let mensajeSinPedidos = '';
     if (cantidadTotalPedido === 0){
         mensajeSinPedidos = '¡No tienes Pedidos Pendientes!'
-    }
+    };
     return {
         type: LISTAR_PEDIDOS_USUARIO,
         payload: pedidosListar,
@@ -70,6 +70,9 @@ export function agregarPedidoUsuarioAsync(pedido: Pedido)
             dispacth(
                 agregarPedidoUsuario(pedido, respuesta.statusText)
             )
+        ).catch((errorAgregarPedido: any) => dispacth(
+            errorConsulta(errorAgregarPedido.message),
+          )
         );
     };
 }

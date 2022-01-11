@@ -114,7 +114,7 @@ export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = 
             {formik.touched.confirmarclaveNueva && formik.errors.confirmarclaveNueva && (
                 <SpanError>{formik.errors.confirmarclaveNueva}</SpanError>
             )}
-            <Button type="submit">Registrar</Button>
+            <Button type="submit">Actualizar</Button>
         </form>
     );
 };

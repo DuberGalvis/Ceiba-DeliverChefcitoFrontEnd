@@ -102,7 +102,7 @@ export function agregarNuevoUsuario(usuario: Usuario) {
   };
 }
 
-  export function errorEnConsulta(
+export function errorEnConsulta(
     error: string
   ): TiposAccionesUsuario {
     return {
