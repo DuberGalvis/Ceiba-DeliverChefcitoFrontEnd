@@ -6,7 +6,7 @@ import { setTextEvent } from 'app/shared/utils/test';
 
 const DOS = 2;
 const TRES = 3;
-const VEINTI5MIL: 25000;
+const VEINTI5MIL = 25000;
 
 describe('FormCrearProducto test', () => {
   let componentWrapper: RenderResult;
