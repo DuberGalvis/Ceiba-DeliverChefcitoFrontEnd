@@ -1,13 +1,9 @@
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
-import { Producto } from 'app/feature/Producto/models/Producto';
-import { Reunion } from 'app/feature/Reunion/models/Reunion';
 export const LISTAR_PEDIDOS_USUARIO = 'LISTAR_PEDIDOS_USUARIO';
 export const AGREGAR_PEDIDO_USUARIO = 'AGREGAR_PEDIDO_USUARIO';
 export const CANCELAR_PEDIDO = 'CANCELAR_PEDIDO';
 export const MODIFICAR_PEDIDO = 'MODIFICAR_PEDIDO';
-export const LISTAR_PRODUCTOS_PEDIDO = 'LISTAR_PRODUCTOS_PEDIDO';
-export const LISTAR_REUNIONES_PEDIDO = 'LISTAR_REUNIONES_PEDIDO';
 export const LISTAR_PEDIDOS = 'LISTAR_PEDIDOS';
 export const MOSTRAR_MODIFICAR = 'MOSTRAR_MODIFICAR';
 export const MOSTRAR_PEDIDOS = 'MOSTRAR_PEDIDOS';
@@ -36,17 +32,6 @@ interface AccionCancelarPedido {
 interface AccionModificarPedido {
     type: typeof MODIFICAR_PEDIDO;
     mensajeConfirmacion: string;
-}
-
-interface AccionListarProductos {
-    type: typeof LISTAR_PRODUCTOS_PEDIDO;
-    payload: Producto[];
-    cantidadTotalProductos: number;
-}
-
-interface AccionListarReuniones {
-    type: typeof LISTAR_REUNIONES_PEDIDO;
-    payload: Reunion[];
 }
 
 interface AccionListarPedidos {
@@ -80,8 +65,6 @@ export type TiposAccionesPedido =
   | AccionAgregarPedidoUsuario
   | AccionCancelarPedido
   | AccionModificarPedido
-  | AccionListarProductos
-  | AccionListarReuniones
   | AccionListarPedidos
   | AccionMostrarModificar
   | AccionMostrarPedidos

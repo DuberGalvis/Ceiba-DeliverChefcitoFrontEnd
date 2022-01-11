@@ -12,18 +12,22 @@ import { MenuLogueado } from 'app/shared/components/MenuLogueado';
 import { EstadoUsuario } from 'app/core/redux/modelo/EstadoUsuario';
 import { EstadoPedido } from 'app/core/redux/modelo/EstadoPedido';
 import { FormModificarPedidoUsuario } from '../../components/FormModificarPedidoUsuario';
+import { EstadoProducto } from 'app/core/redux/modelo/EstadoProducto';
+import { EstadoReunion } from 'app/core/redux/modelo/EstadoReunion';
 
 interface GestionPedidosProps {
   usuario: EstadoUsuario;
   pedidos: EstadoPedido;
+  productos: EstadoProducto;
+  reuniones: EstadoReunion;
   listarPedidosUsuario: (usuario: Usuario) => void;
   agregarPedidoUsuario: (pedido: Pedido) => void;
   cancelarPedidoUsuario: (pedidoListar: PedidoListar) => void;
   modificarPedidoUsuario: (pedidoListar: PedidoListar, pedido: Pedido) => void;
   listarPedidos: (numeroPagina: number) => void;
   validarDiaFestivo: (fechaFestivo: Date) => void;
-  listarProductos: () => void;
-  listarReuniones: () => void;
+  listarProductos: (numeroPaginas: number) => void;
+  listarReuniones: (numeroPagina: number) => void;
   irModificarPedidoUsuario: (pedidoListar: PedidoListar) => void;
   irPedidosUsuario: () => void;
 }
@@ -31,6 +35,8 @@ interface GestionPedidosProps {
 export const GestionPedidos: React.FC<GestionPedidosProps> = ({
   usuario,
   pedidos,
+  productos,
+  reuniones,
   agregarPedidoUsuario,
   listarPedidosUsuario,
   cancelarPedidoUsuario,
@@ -43,10 +49,10 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
   irPedidosUsuario,
 }) => {
   useEffect(() => {
-    listarProductos();
+    listarProductos(0);
   },[listarProductos]);
   useEffect(() => {
-    listarReuniones();
+    listarReuniones(0);
   },[listarReuniones]);
   return (
     <DivContainer>
@@ -76,9 +82,9 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
       <FormCrearPedidoUsuario 
           onSubmit={agregarPedidoUsuario}
           validarDiaFestivo={validarDiaFestivo}
-          productos={pedidos.productos}
+          productos={productos.productos}
           usuarioPedido={usuario.usuarios[0]}
-          reuniones={pedidos.reuniones}
+          reuniones={reuniones.reuniones}
           formTitle="Crea tu Pedido"
           mensajePedido={pedidos.mensajeConfirmacion} 
           esFestivo={pedidos.esFestivo}
@@ -89,9 +95,9 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
         onSubmit={modificarPedidoUsuario}
         irPedidos={irPedidosUsuario}
         formTitle={'Modifique su Pedido'}
-        productos={pedidos.productos}
+        productos={productos.productos}
         usuarios={usuario.usuarios}
-        reuniones={pedidos.reuniones}
+        reuniones={reuniones.reuniones}
         mensajeModificar={pedidos.mensajeConfirmacion}
         pedidoListar={pedidos.pedidoListar}
       />  }    

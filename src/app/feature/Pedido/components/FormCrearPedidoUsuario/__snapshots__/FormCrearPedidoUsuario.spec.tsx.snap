@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormCrearPedidoUsuario test should match snapshot 1`] = `
+exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] = `
 <div>
   <form>
     <h2>
@@ -15,9 +15,9 @@ exports[`FormCrearPedidoUsuario test should match snapshot 1`] = `
       name="producto"
     >
       <option
-        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye\\"}"
+        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":40000,\\"detalle\\":\\"Verduras y sustituye\\"}"
       >
-        Nombre: Paella Española | Precio: 38000
+        Nombre: Paella Española | Precio: 40000
       </option>
     </select>
     <label>

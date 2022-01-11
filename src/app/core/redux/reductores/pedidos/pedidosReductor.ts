@@ -3,8 +3,6 @@ import {
     AGREGAR_PEDIDO_USUARIO,
     CANCELAR_PEDIDO,
     MODIFICAR_PEDIDO,
-    LISTAR_PRODUCTOS_PEDIDO,
-    LISTAR_REUNIONES_PEDIDO,
     LISTAR_PEDIDOS,
     MOSTRAR_MODIFICAR,
     MOSTRAR_PEDIDOS,
@@ -15,8 +13,6 @@ import {
 import { EstadoPedido } from '../../modelo/EstadoPedido';
 import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
-import { Producto } from 'app/feature/Producto/models/Producto';
-import { Reunion } from 'app/feature/Reunion/models/Reunion';
 
 const initialState: EstadoPedido = {
     pedido: {
@@ -40,13 +36,10 @@ const initialState: EstadoPedido = {
         valorTotal: 0,
     },
     pedidosListar: Array<PedidoListar>(),
-    productos: Array<Producto>(),
-    reuniones: Array<Reunion>(),
     mensajeConfirmacion: '',
     mensajeExcepcion: '',
     mensajeExitoCancelar: '',
     cantidadTotalPedidos: 0,
-    cantidadTotalProductos: 0,
     esFestivo: false,
     mostrarModificar: false,
 };
@@ -93,23 +86,6 @@ export default function (
                 mensajeConfirmacion,
                 mensajeExitoCancelar: '',
                 mensajeExcepcion: '',
-            };
-        }
-        case LISTAR_PRODUCTOS_PEDIDO: {
-            const productos = action.payload;
-            return {
-                ...state,
-                productos,
-                cantidadTotalProductos: action.cantidadTotalProductos,
-
-            };
-        }
-        case LISTAR_REUNIONES_PEDIDO: {
-            const reuniones = action.payload;
-            return {
-                ...state,
-                reuniones,
-
             };
         }
         case LISTAR_PEDIDOS: {

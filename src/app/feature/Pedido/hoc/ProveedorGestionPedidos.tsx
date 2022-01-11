@@ -3,19 +3,19 @@ import {
     agregarPedidoUsuarioAsync,
     cancelarPedidoUsuarioAsync,
     modificarPedidoUsuarioAsync,
-    listarProductosAsync,
-    listarReunionesAsync,
     validarDiaFestivoAsync,
     listarPedidos,
     irModificarPedidoUsuario,
     irPedidosUsuario,
   } from 'app/core/redux/acciones/pedido/PedidosAcciones';
+  import { listarProductosAsync } from 'app/core/redux/acciones/productos/ProductosAcciones'
+  import { listarReunionesAsync } from 'app/core/redux/acciones/reunion/ReunionAcciones'
   import { EstadoGeneral } from 'app/core/redux/modelo/EstadoGeneral';
   import { GestionPedidos } from '../containers/GestionPedidos';
   import { connect } from 'react-redux';
   
-  const mapStateToProps = ({pedidos, usuario}: EstadoGeneral) => {
-    return {pedidos, usuario};
+  const mapStateToProps = ({pedidos, usuario, productos, reuniones}: EstadoGeneral) => {
+    return {pedidos, usuario, productos, reuniones};
   };
   
   export const ProveedorGestionPedidos = connect(mapStateToProps, {

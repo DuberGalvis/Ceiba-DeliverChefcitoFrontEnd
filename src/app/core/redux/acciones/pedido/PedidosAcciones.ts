@@ -3,8 +3,6 @@ import {
     AGREGAR_PEDIDO_USUARIO,
     CANCELAR_PEDIDO,
     MODIFICAR_PEDIDO,
-    LISTAR_PRODUCTOS_PEDIDO,
-    LISTAR_REUNIONES_PEDIDO,
     LISTAR_PEDIDOS,
     MOSTRAR_MODIFICAR,
     MOSTRAR_PEDIDOS,
@@ -16,8 +14,6 @@ import { Pedido } from 'app/feature/Pedido/models/Pedido';
 import { PedidoRepositorio } from 'app/core/api/pedidos.repositorio';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
 import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
-import { Reunion } from 'app/feature/Reunion/models/Reunion';
-import { Producto } from 'app/feature/Producto/models/Producto';
 import { Fecha } from 'app/feature/Pedido/models/Fecha';
 
 const COLOMBIA = 'CO';
@@ -118,48 +114,6 @@ export function modificarPedidoUsuarioAsync(pedidoListar: PedidoListar, pedido: 
             )
         );
     };
-}
-
-export function listarProductos(
-    productos: Array<Producto>,
-    cantidadTotalProductos: number,
-): TiposAccionesPedido {
-    return {
-        type: LISTAR_PRODUCTOS_PEDIDO,
-        payload: productos,
-        cantidadTotalProductos,
-    };
-}
-
-export function listarProductosAsync() {
-    return function (dispacth: any) {
-        PedidoRepositorio.consultarProductos()
-      .then((respuesta: any) =>
-        dispacth(
-          listarProductos(respuesta.data, Array.from(respuesta.data).length)
-        )
-      );
-    };
-  }
-
-export function listarReuniones(
-    reuniones: Array<Reunion>,
-): TiposAccionesPedido {
-    return {
-        type: LISTAR_REUNIONES_PEDIDO,
-        payload: reuniones,
-    };
-}
-
-export function listarReunionesAsync() {
-  return function (dispacth: any) {
-    PedidoRepositorio.consultarReuniones()
-    .then((respuesta: any) =>
-      dispacth(
-        listarReuniones(respuesta.data),
-      )
-    );
-  };
 }
 
 export function listarPedidos(

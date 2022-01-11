@@ -27,7 +27,7 @@ describe('FormCrearPedidoUsuario test', () => {
       validarDiaFestivo: stub(),
       productos: [{
                 nombre: 'Paella Española',
-                precio: 38000,
+                precio: 40000,
                 detalle: 'Verduras y sustituye'
             }
         ],
@@ -49,11 +49,11 @@ describe('FormCrearPedidoUsuario test', () => {
     componentWrapper = render(<FormCrearPedidoUsuario {...componentProps} />);
   });
 
-  it('should match snapshot', () => {
+  it('should match snapshot of crear pedidos', () => {
     expect(componentWrapper.container).toMatchSnapshot();
   });
 
-  it('should fail on submit all fields missing', async () => {
+  it('should fail on submit all fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const horasDeServicio = elem.querySelector('input[name="horasDeServicio"]');
     const submitButton = elem.querySelector('button[type="submit"]');
@@ -74,14 +74,14 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(spans[CUATRO].textContent).toBe('El valor del pedido no puede ser 0');
   });
 
-  it('should fail on submit five fields missing', async () => {
+  it('should fail on submit five fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const producto = elem.querySelector('select[name="producto"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
 
     await wait(() => {
@@ -94,7 +94,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(spans[DOS].textContent).toBe('Minimo 4 horas');
   });
 
-  it('should fail on submit two fields missing', async () => {
+  it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
     const producto = elem.querySelector('select[name="producto"]');
@@ -104,7 +104,7 @@ describe('FormCrearPedidoUsuario test', () => {
 
     await wait(() => {
         producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -122,7 +122,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(spans[1].textContent).toBe('Minimo 4 horas');
   });
 
-  it('should fail on submit one fields missing', async () => {
+  it('should fail on submit one fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
     const producto = elem.querySelector('select[name="producto"]');
@@ -133,7 +133,7 @@ describe('FormCrearPedidoUsuario test', () => {
 
     await wait(() => {
         producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -153,12 +153,12 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(spans[0].textContent).toBe('Minimo 4 horas');
   });
 
-  it('should submit', async () => {
+  it('should submit on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
     const fechaDeHoy: Date = new Date();
     const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILSEG));
-    const SESENTAY3MIL = 63000;
+    const SESENTAY5MIL = 65000;
 
     const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
@@ -173,7 +173,7 @@ describe('FormCrearPedidoUsuario test', () => {
 
     await wait(() => {
         producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -188,7 +188,7 @@ describe('FormCrearPedidoUsuario test', () => {
         horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', '4'));
     });
     await wait(() => {
-        valorTotalPedido && fireEvent.change(valorTotalPedido, setTextEvent('valorTotalPedido', '63000'));
+        valorTotalPedido && fireEvent.change(valorTotalPedido, setTextEvent('valorTotalPedido', '65000'));
     });
 
     await wait(() => {
@@ -200,7 +200,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(formSubmitted.usuario).toStrictEqual({nombre: 'Lorem', clave: '1234'});
     expect(formSubmitted.producto).toStrictEqual({
         nombre: 'Paella Española',
-        precio: 38000,
+        precio: 40000,
         detalle: 'Verduras y sustituye'
     });
     expect(formSubmitted.reunion).toStrictEqual({
@@ -210,7 +210,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
-    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SESENTAY3MIL);
+    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SESENTAY5MIL);
     expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(CUATRO);
   });
 });
