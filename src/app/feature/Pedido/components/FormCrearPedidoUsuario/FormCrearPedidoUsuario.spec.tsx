@@ -31,7 +31,7 @@ describe('FormCrearPedidoUsuario test', () => {
                 detalle: 'Verduras y sustituye'
             }
         ],
-      usuario: {nombre: 'Lorem', clave: '1234'},
+      usuarioPedido: {nombre: 'Lorem', clave: '1234'},
       reuniones:[{
                 tipo: 'TIPO_PEQUENA',
                 precio: 25000
@@ -158,7 +158,7 @@ describe('FormCrearPedidoUsuario test', () => {
 
     const fechaDeHoy: Date = new Date();
     const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILSEG));
-    const SEISMIL3 = 6300;
+    const SESENTAY3MIL = 63000;
 
     const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
@@ -210,7 +210,7 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
-    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SEISMIL3);
+    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SESENTAY3MIL);
     expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(CUATRO);
   });
 });
