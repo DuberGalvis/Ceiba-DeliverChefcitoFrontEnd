@@ -34,10 +34,10 @@ describe('FormCrearProducto test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(3);
+    expect(spans.length).toBe(TRES);
     expect(spans[0].textContent).toBe('El campo nombre es requerido.');
     expect(spans[1].textContent).toBe('El campo precio es requerido.');
-    expect(spans[2].textContent).toBe('El campo detalle es requerido.');
+    expect(spans[DOS].textContent).toBe('El campo detalle es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
