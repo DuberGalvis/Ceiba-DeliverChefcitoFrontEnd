@@ -28,7 +28,7 @@ exports[`FormActualizarContrasena test should match snapshot 1`] = `
       class="sc-AxjAm kgxTKy"
       type="submit"
     >
-      Registrar
+      Actualizar
     </button>
   </form>
 </div>
