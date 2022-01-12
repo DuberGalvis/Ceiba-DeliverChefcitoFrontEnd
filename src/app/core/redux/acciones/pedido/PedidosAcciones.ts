@@ -155,6 +155,7 @@ export function errorConsulta(
 export function validarDiaFestivo(
     fechaFestivo: Array<any>,
 ):TiposAccionesPedido {
+    console.log(fechaFestivo);
     let esFestivo: boolean = fechaFestivo.length > 0 ? true : false;
     return {
         type: FECHA_FESTIVO,
@@ -173,7 +174,7 @@ export function validarDiaFestivoAsync(fecha: Date) {
       PedidoRepositorio.consultarFestivo(
         fechaFestivo
         ).then((respuesta: any) => dispacth(         
-            validarDiaFestivo(respuesta.response.holidays),
+            validarDiaFestivo(respuesta.data.response.holidays),
         )
       ).catch((errorAPICalendar: any) => dispacth(
           errorConsulta(errorAPICalendar),

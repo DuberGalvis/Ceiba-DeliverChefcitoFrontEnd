@@ -96,7 +96,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: fechaInicio.toISOString(),
             direccion: values.direccion,
-            valorTotal: calcularValores(values.producto, values.reunion),
+            valorTotal: calcularValores(values.producto, values.reunion, esFestivo),
             horasDeServicio: values.horasDeServicio,
         });
         resetForm();
@@ -106,7 +106,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
         validationSchema,
         onSubmit:handleSubmit,
     });
-    let valor = calcularValores(formik.values.producto, formik.values.reunion);
+    let valor = calcularValores(formik.values.producto, formik.values.reunion, esFestivo);
     formik.values.valorTotal = valor;
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
     formik.values.fechaRealizacion = !fechaInicio

@@ -100,7 +100,8 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
         reuniones={reuniones.reuniones}
         mensajeModificar={pedidos.mensajeConfirmacion}
         pedidoListar={pedidos.pedidoListar}
-      />  }    
+        esFestivo={pedidos.esFestivo}
+      />}    
     </DivContainer>
   );
 };

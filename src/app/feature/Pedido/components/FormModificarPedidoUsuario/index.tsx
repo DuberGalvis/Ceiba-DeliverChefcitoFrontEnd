@@ -52,6 +52,7 @@ interface FormModificarPedidoUsuarioProp {
   irPedidos: () => void;
   pedidoListar: PedidoListar;
   mensajeModificar: string;
+  esFestivo: boolean;
   initialValues?: FormValues;
 }
 
@@ -78,6 +79,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
     reuniones,
     pedidoListar,
     mensajeModificar,
+    esFestivo,
     initialValues = {
         producto: '',
         reunion: '',
@@ -97,7 +99,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: new Date(fechaInicio).toISOString(),
             direccion: values.direccion,
-            valorTotal: calcularValores(values.producto, values.reunion),
+            valorTotal: calcularValores(values.producto, values.reunion, esFestivo),
             horasDeServicio: values.horasDeServicio,
         });
         resetForm();
@@ -107,7 +109,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
         validationSchema,
         onSubmit:handleSubmit,
     });
-    let valor = calcularValores(formik.values.producto, formik.values.reunion);
+    let valor = calcularValores(formik.values.producto, formik.values.reunion, esFestivo);
     formik.values.valorTotal = valor;
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
     const fechaRealizacion = (fecha: Date) => {
