@@ -96,6 +96,7 @@
       "text",
       "text-summary",
       "html"
-    ]
+    ],
+    "coverageDirectory": "../coverage"
   }
 }

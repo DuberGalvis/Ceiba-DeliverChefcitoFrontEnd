@@ -15,33 +15,23 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
 import { MostrarMensaje } from '../MostrarMensaje';
+import { constantes } from 'app/shared/utils/constantes';
+import { calcularValores } from 'app/shared/utils/calcularValores';
 
+const {
+    HORAS24,
+    HORA15,
+    HORA19,
+    MINUTOS60,
+    SEGUNDOS60,
+    MILISEGUNDOS,
+    CUATRO,
+    OCHO,
+} = constantes;
 const fechaDeHoy: Date = new Date();
-const HORAS = 24;
-const MINUTOS = 60;
-const SEGUNDOS = 60;
-const MILISEGUNDOS = 1000;
-const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS * MINUTOS * SEGUNDOS * MILISEGUNDOS));
-const CUATRO = 4;
-const OCHO = 8;
-const HORA15 = 15;
-const HORA19 = 19;
-const valorPedido = (producto: string, 
-    reunion: string) => {
-        if(!producto && !reunion){
-            return 0;
-        }
-        if(!producto){
-            return JSON.parse(reunion).precio;
-        }
-        if(!reunion){
-            return JSON.parse(producto).precio;
-        }
-
-        let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;
-                
-        return valorTotal;
-};
+const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
+const fechaYHoraInicialModif: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
+const fechaYHoraMaxModif: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
 
 interface FormValues {
     producto: string;
@@ -107,7 +97,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: new Date(fechaInicio).toISOString(),
             direccion: values.direccion,
-            valorTotal: valorPedido(values.producto, values.reunion),
+            valorTotal: calcularValores(values.producto, values.reunion),
             horasDeServicio: values.horasDeServicio,
         });
         resetForm();
@@ -117,11 +107,9 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
         validationSchema,
         onSubmit:handleSubmit,
     });
-    let valor = valorPedido(formik.values.producto, formik.values.reunion);
+    let valor = calcularValores(formik.values.producto, formik.values.reunion);
     formik.values.valorTotal = valor;
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
-    const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
-    const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
     const fechaRealizacion = (fecha: Date) => {
          formik.values.fechaRealizacion = !fecha
         ? new Date(fechaDiaSiguiente).toString()
@@ -136,7 +124,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                 mensaje={mensajeModificar}
             />
             <label>
-                Productos Disponibles:{' '}
+            Modifique el Producto{' '}
             </label>
             <Select
                 name="producto"
@@ -154,7 +142,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                 <SpanError>{formik.errors.producto}</SpanError>
             )}
             <label>
-                Tipos de Reuniones:{' '}
+                Cambie el Tipo de Reunión:{' '}
             </label>
             <Select 
                 name="reunion"  
@@ -172,17 +160,16 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                 <SpanError>{formik.errors.reunion}</SpanError>
             )}
             <label>
-                Fecha y hora de inicio del evento:
+                Modifique la fecha y hora del evento:
             </label>
             <DatePicker
                 name="fechaRealizacion" 
                 selected={fechaInicio}
-                onChange={(date) => 
-                    {!date ? new Date(): setfechaInicio(date);}}
+                onChange={(date) => {!date ? new Date(): setfechaInicio(date);}}
                 showTimeSelect
-                minTime={fechaYHoraInicial}
-                maxTime={fechaYHoraMax}
-                minDate={fechaYHoraInicial}
+                minTime={fechaYHoraInicialModif}
+                maxTime={fechaYHoraMaxModif}
+                minDate={fechaYHoraInicialModif}
                 dateFormat="MMMM d, yyyy h:mm aa"
             />
             {formik.touched.fechaRealizacion && formik.errors.fechaRealizacion && (
@@ -217,7 +204,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
             )}
             <label 
                 htmlFor="valorTotalPedido">
-                    Valor total de su pedido:{formik.values.valorTotal}
+                    Valor total de su pedido a modificar:{formik.values.valorTotal}
             </label>
             {formik.touched.valorTotal && formik.errors.valorTotal && (
                 <SpanError>{formik.errors.valorTotal}</SpanError>

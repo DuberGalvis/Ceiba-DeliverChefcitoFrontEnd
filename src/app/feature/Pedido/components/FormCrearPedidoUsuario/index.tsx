@@ -15,6 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useEffect } from 'react';
 import { MostrarMensaje } from '../MostrarMensaje/index';
 import { constantes } from 'app/shared/utils/constantes';
+import { calcularValores } from 'app/shared/utils/calcularValores';
 
 const {
     HORAS24,
@@ -30,20 +31,6 @@ const fechaDeHoy: Date = new Date();
 const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
 const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
 const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
-const valorPedido = (producto: string, 
-    reunion: string) => {
-        if(!producto && !reunion){
-            return 0;
-        }
-        if(!producto){
-            return JSON.parse(reunion).precio;
-        }
-        if(!reunion){
-            return JSON.parse(producto).precio;
-        }
-        let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;                
-        return valorTotal;
-};
 
 interface FormValues {
     producto: string;
@@ -109,7 +96,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             reunion: JSON.parse(values.reunion),
             fechaRealizacion: fechaInicio.toISOString(),
             direccion: values.direccion,
-            valorTotal: valorPedido(values.producto, values.reunion),
+            valorTotal: calcularValores(values.producto, values.reunion),
             horasDeServicio: values.horasDeServicio,
         });
         resetForm();
@@ -119,7 +106,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
         validationSchema,
         onSubmit:handleSubmit,
     });
-    let valor = valorPedido(formik.values.producto, formik.values.reunion);
+    let valor = calcularValores(formik.values.producto, formik.values.reunion);
     formik.values.valorTotal = valor;
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
     formik.values.fechaRealizacion = !fechaInicio

@@ -7,7 +7,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       Form test
     </h2>
     <label>
-      Productos Disponibles:
+      Modifique el Producto
        
     </label>
     <select
@@ -21,7 +21,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       </option>
     </select>
     <label>
-      Tipos de Reuniones:
+      Cambie el Tipo de Reunión:
        
     </label>
     <select
@@ -45,7 +45,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       </option>
     </select>
     <label>
-      Fecha y hora de inicio del evento:
+      Modifique la fecha y hora del evento:
     </label>
     <div
       class="react-datepicker-wrapper"
@@ -83,7 +83,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
     <label
       for="valorTotalPedido"
     >
-      Valor total de su pedido:
+      Valor total de su pedido a modificar:
       0
     </label>
     <button
