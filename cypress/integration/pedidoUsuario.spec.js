@@ -32,13 +32,13 @@ describe('Pruebas de Login', () => {
         cy.wait(1500);
     });
 
-    it('Debe crear un pedido al Usuario', () => {
+    it('Debe modificar un pedido del Usuario', () => {
         cy.contains('a', '| Ir a Pedidos').click();
         cy.wait(2000);
         cy.get('a > .sc-fzqBZW').click();
         cy.get('[name="producto"]').select('Nombre: Arroz Chino | Precio: 26000');
-        cy.get('[name="reunion"]').select('TIPO_MEDIANA | Precio: 50000');
-        cy.get('.react-datepicker__input-container > input').type('January 13, 2022 3:00 PM');
+        cy.get('[name="reunion"]').select('TIPO_GRANDE | Precio: 75000');
+        cy.get('.react-datepicker__input-container > input').click();
         cy.get('.react-datepicker__day--013').click();
         cy.get('.react-datepicker__time-list-item--selected').click();
         cy.get('[name="direccion"]').type('carrera 80 # 77-44');
@@ -56,13 +56,13 @@ describe('Pruebas de Login', () => {
         cy.contains('h2', 'Cancelación Exitosa').should('be.visible');
     });
 
-    it('Debe de generar error al solicitar pedido el ', () => {
+    it('Debe de generar error al solicitar pedido del usuario', () => {
         cy.contains('a', '| Ir a Pedidos').click();
         cy.wait(2000);
         cy.get('a > .sc-fzqBZW').click();
-        cy.get('[name="producto"]').select('Nombre: Arroz Chino | Precio: 26000');
-        cy.get('[name="reunion"]').select('TIPO_MEDIANA | Precio: 50000');
-        cy.get('.react-datepicker__input-container > input').type('January 13, 2022 3:00 PM');
+        cy.get('[name="producto"]').select('Nombre: Bandeja Paisa | Precio: 45000');
+        cy.get('[name="reunion"]').select('TIPO_PEQUENA | Precio: 25000');
+        cy.get('.react-datepicker__input-container > input').click();
         cy.get('.react-datepicker__day--013').click();
         cy.get('.react-datepicker__time-list-item--selected').click();
         cy.get('[name="direccion"]').type('carrera 80 # 77-44');

@@ -2,17 +2,20 @@ import * as React from 'react';
 import { RenderResult, fireEvent, render, wait } from '@testing-library/react';
 import { SinonStub, stub } from 'sinon';
 import { FormCrearPedidoUsuario } from '.';
+import { constantes } from 'app/shared/utils/constantes';
 import { setTextEvent } from 'app/shared/utils/test';
 
-const DOS = 2;
-const TRES = 3;
-const CUATRO = 4;
-const CINCO = 5;
-const HORAS24 = 24;
-const HORA15 = 15;
-const MINUTOS60 = 60;
-const SEGUNDOS60 = 60;
-const MILSEG = 1000;
+const {
+  HORAS24,
+  HORA15,
+  MINUTOS60,
+  SEGUNDOS60,
+  MILISEGUNDOS,
+  DOS,
+  TRES,
+  CUATRO,
+  CINCO,
+} = constantes;
 
 describe('FormCrearPedidoUsuario test', () => {
   let componentWrapper: RenderResult;
@@ -157,7 +160,7 @@ describe('FormCrearPedidoUsuario test', () => {
     const elem = componentWrapper.container;
 
     const fechaDeHoy: Date = new Date();
-    const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILSEG));
+    const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() +  (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
     const SESENTAY5MIL = 65000;
 
     const producto = elem.querySelector('select[name="producto"]');

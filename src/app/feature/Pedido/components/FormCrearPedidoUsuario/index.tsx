@@ -14,17 +14,22 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useEffect } from 'react';
 import { MostrarMensaje } from '../MostrarMensaje/index';
+import { constantes } from 'app/shared/utils/constantes';
 
+const {
+    HORAS24,
+    HORA15,
+    HORA19,
+    MINUTOS60,
+    SEGUNDOS60,
+    MILISEGUNDOS,
+    CUATRO,
+    OCHO,
+} = constantes;
 const fechaDeHoy: Date = new Date();
-const HORAS = 24;
-const MINUTOS = 60;
-const SEGUNDOS = 60;
-const MILISEGUNDOS = 1000;
-const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS * MINUTOS * SEGUNDOS * MILISEGUNDOS));
-const CUATRO = 4;
-const OCHO = 8;
-const HORA15 = 15;
-const HORA19 = 19;
+const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
+const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
+const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
 const valorPedido = (producto: string, 
     reunion: string) => {
         if(!producto && !reunion){
@@ -36,9 +41,7 @@ const valorPedido = (producto: string,
         if(!reunion){
             return JSON.parse(producto).precio;
         }
-
-        let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;
-                
+        let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;                
         return valorTotal;
 };
 
@@ -119,8 +122,6 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     let valor = valorPedido(formik.values.producto, formik.values.reunion);
     formik.values.valorTotal = valor;
     const [fechaInicio, setfechaInicio] = useState(new Date(fechaDiaSiguiente.setHours(HORA15,0,0)));
-    const fechaYHoraInicial: Date = new Date(fechaDiaSiguiente.setHours(HORA15,0,0));
-    const fechaYHoraMax: Date = new Date(fechaDiaSiguiente.setHours(HORA19,0,0));
     formik.values.fechaRealizacion = !fechaInicio
         ? ''
         : fechaInicio.toString();
@@ -175,8 +176,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             <DatePicker
                 name="fechaRealizacion" 
                 selected={fechaInicio}
-                onChange={(date) => 
-                    {!date ? new Date(): setfechaInicio(date);}}
+                onChange={(date) => {!date ? new Date(): setfechaInicio(date);}}
                 showTimeSelect
                 minTime={fechaYHoraInicial}
                 maxTime={fechaYHoraMax}
