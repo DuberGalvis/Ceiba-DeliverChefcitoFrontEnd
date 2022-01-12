@@ -57,7 +57,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
           class=""
           name="fechaRealizacion"
           type="text"
-          value="January 12, 2022 3:00 PM"
+          value="January 13, 2022 3:00 PM"
         />
       </div>
     </div>
@@ -65,7 +65,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       class="sc-AxirZ eAukyj"
       name="fechaRealizacionAux"
       type="hidden"
-      value="Wed Jan 12 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+      value="Thu Jan 13 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
     />
     <input
       class="sc-AxirZ eAukyj"
