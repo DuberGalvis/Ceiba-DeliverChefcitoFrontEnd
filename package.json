@@ -26,7 +26,6 @@
     "start:local": "env-cmd .env.development npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --updateSnapshot",
-    "test:dev": "npm run start && npm run cypress:open",
     "test:watch": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --watchAll=false --coverage",
     "lint": "eslint --fix src/**/*.{ts,tsx}"
@@ -96,7 +95,6 @@
       "text",
       "text-summary",
       "html"
-    ],
-    "coverageDirectory": "../coverage"
+    ]
   }
 }
