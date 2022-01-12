@@ -11,14 +11,14 @@ const {
     MINUTOS60,
     SEGUNDOS60,
     MILISEGUNDOS,
-    CUATRO,
+    SEIS,
 } = constantes;
 
 const fechaDeHoy: Date = new Date();
 const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
-const SEISMIL3 = 63000;
+const NOVENTAY5MIL = 95000;
 
-describe('FormModificarPedidoUsuario test', () => {
+describe('FormModificarPedidoUsuarioSubmit test', () => {
   let componentWrapper: RenderResult;
   let componentProps: React.ComponentProps<typeof FormModificarPedidoUsuario> & {
     onSubmit: SinonStub;
@@ -30,31 +30,32 @@ describe('FormModificarPedidoUsuario test', () => {
       onSubmit: stub(),
       irPedidos: stub(),
       productos: [{
-              nombre: 'Paella Española',
-              precio: 38000,
-              detalle: 'Verduras y sustituye'
+              nombre: 'Bandeja Paisa',
+              precio: 45000,
+              detalle: `Tiene Carne en polvo, chorizo, chicharron, huevo`
           }
         ],
       usuarios:[{nombre: 'Lorem', clave: '1234'}],
-      reuniones:[{
-              tipo: 'TIPO_PEQUENA',
-              precio: 25000
+      reuniones:[
+          {
+            tipo: 'TIPO_MEDIANA',
+            precio: 50000
+          },{
+            tipo: 'TIPO_PEQUENA',
+            precio: 25000
           }, {
-              tipo: 'TIPO_MEDIANA',
-              precio: 50000
-          }, {
-              tipo: 'TIPO_GRANDE',
-              precio: 75000
+            tipo: 'TIPO_GRANDE',
+            precio: 75000
           }
         ],
         pedidoListar: {id: 4,
           nombreUsuario: 'Lorem',
-          nombreProducto: 'Paella Española',
-          tipoReunion: 'TIPO_PEQUENA',
-          fechaRealizacion: 'January 4, 2022 3:00 PM',
-          direccion: 'calle 10 # 30-40',
-          horasDeServicio: 4,
-          valorTotal: 63000,},
+          nombreProducto: 'Bandeja Paisa',
+          tipoReunion: 'TIPO_MEDIANA',
+          fechaRealizacion: 'January 5, 2022 3:00 PM',
+          direccion: 'calle 12 # 31-40',
+          horasDeServicio: 6,
+          valorTotal: 95000,},
           mensajeModificar: '',
     };
     componentWrapper = render(<FormModificarPedidoUsuario {...componentProps} />);
@@ -75,23 +76,23 @@ describe('FormModificarPedidoUsuario test', () => {
     .toISOString();
 
     await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"38000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Bandeja Paisa\\",
+          \\"precio\\":\\"45000\\",\\"detalle\\":\\"Tiene Carne en polvo, chorizo, chicharron, huevo\\"}"`));
     });
     await wait(() => {
-        reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
+        reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_MEDIANA\\",\\"precio\\":50000}"`));
     });
     await wait(() => {
         fechaRealizacion && fireEvent.change(fechaRealizacion, setTextEvent('fechaRealizacion', fechaComparar));
     });
     await wait(() => {
-        direccion && fireEvent.change(direccion, setTextEvent('direccion', 'calle 10 # 30-40'));
+        direccion && fireEvent.change(direccion, setTextEvent('direccion', 'calle 12 # 31-40'));
     });
     await wait(() => {
-        horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', '4'));
+        horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', '6'));
     });
     await wait(() => {
-        valorTotalPedido && fireEvent.change(valorTotalPedido, setTextEvent('valorTotalPedido', '63000'));
+        valorTotalPedido && fireEvent.change(valorTotalPedido, setTextEvent('valorTotalPedido', '95000'));
     });
 
     await wait(() => {
@@ -102,18 +103,18 @@ describe('FormModificarPedidoUsuario test', () => {
 
     expect(formSubmitted.usuario).toStrictEqual({nombre: 'Lorem', clave: '1234'});
     expect(formSubmitted.producto).toStrictEqual({
-        nombre: 'Paella Española',
-        precio: 38000,
-        detalle: 'Verduras y sustituye'
+        nombre: 'Bandeja Paisa',
+        precio: 45000,
+        detalle: 'Tiene Carne en polvo, chorizo, chicharron, huevo'
     });
     expect(formSubmitted.reunion).toStrictEqual({
-        tipo: 'TIPO_PEQUENA',
-        precio: 25000
+        tipo: 'TIPO_MEDIANA',
+        precio: 50000
     });
     expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
-    expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
-    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SEISMIL3);
-    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(CUATRO);
+    expect(formSubmitted.direccion).toBe('calle 12 # 31-40');
+    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(NOVENTAY5MIL);
+    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(SEIS);
   });
 });
