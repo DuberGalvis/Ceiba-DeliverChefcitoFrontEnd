@@ -10,6 +10,7 @@ export function listarReuniones(
   reuniones: Array<Reunion>,
   cantidadTotalReuniones: number,
 ): TiposAccionesReunion {
+  reuniones.unshift({tipo: 'Ingrese el Tipo', precio: 0});
   return {
     type: LISTAR_REUNIONES,
     payload: reuniones,

@@ -8,8 +8,6 @@ import { setTextEvent } from 'app/shared/utils/test';
 const {
   DOS,
   TRES,
-  CUATRO,
-  CINCO,
 } = constantes;
 
 describe('FormCrearPedidoUsuario test', () => {
@@ -42,6 +40,7 @@ describe('FormCrearPedidoUsuario test', () => {
             }
         ],
         mensajePedido: '',
+        mensajeExcepcion: '',
         esFestivo: false,
     };
     componentWrapper = render(<FormCrearPedidoUsuario {...componentProps} />);
@@ -51,45 +50,55 @@ describe('FormCrearPedidoUsuario test', () => {
     expect(componentWrapper.container).toMatchSnapshot();
   });
 
-  it('should fail on submit all fields missing on crear pedidos', async () => {
+  it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const horasDeServicio = elem.querySelector('input[name="horasDeServicio"]');
+    const producto = elem.querySelector('input[name="producto"]');
+    const reunion = elem.querySelector('input[name="reunion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', ''));
+    });
+    await wait(() => {
+      producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
+        \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
+    });
+    await wait(() => {
+      reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });
 
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(CINCO);
-    expect(spans[0].textContent).toBe('El Producto es requerido.');
-    expect(spans[1].textContent).toBe('La Reunion es requerida.');
-    expect(spans[DOS].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[TRES].textContent).toBe('El campo Horas de Servicio es requerido.');
-    expect(spans[CUATRO].textContent).toBe('El valor del pedido no puede ser 0');
+
+    expect(spans.length).toBe(DOS);
+    expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
+    expect(spans[1].textContent).toBe('El campo Horas de Servicio es requerido.');
   });
 
-  it('should fail on submit five fields missing on crear pedidos', async () => {
+  it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const producto = elem.querySelector('select[name="producto"]');
+    const reunion = elem.querySelector('select[name="reunion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
           \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
+    await wait(() => {
+      reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
+    });
 
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(TRES);
-    expect(spans[0].textContent).toBe('La Reunion es requerida.');
-    expect(spans[1].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[DOS].textContent).toBe('Minimo 4 horas');
+    expect(spans.length).toBe(DOS);
+    expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
+    expect(spans[1].textContent).toBe('Minimo 4 horas');
   });
 
   it('should fail on submit two fields missing on crear pedidos', async () => {

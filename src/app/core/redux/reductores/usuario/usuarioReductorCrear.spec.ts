@@ -23,7 +23,7 @@ describe('Reductor usuario', () => {
     const nuevoMensajeConfirmacion: string = 'Created'; 
     const estadoEsperado: EstadoUsuario = {
       ...estadoInicial,
-      mensajeConfirmacion: '¡Su cuenta ha sido Created!',
+      mensajeConfirmacion: '¡Su cuenta ha sido creada!',
       mensajeError: '',
       mostrarPanel: false,
       mostrarAgregar: false,

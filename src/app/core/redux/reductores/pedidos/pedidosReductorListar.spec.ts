@@ -28,13 +28,10 @@ describe('Reductor pedidos', () => {
       },
       pedidosListar: [],
       pedidos: [],
-      productos: [],
-      reuniones: [],
       mensajeConfirmacion: '',
       mensajeExcepcion: '',
       mensajeExitoCancelar: '',
       cantidadTotalPedidos: 0,
-      cantidadTotalProductos: 0,
       esFestivo: false,
       mostrarModificar: false,
     };
@@ -70,7 +67,7 @@ describe('Reductor pedidos', () => {
     // Act
     const nuevoEstado = reductorPedidos(
       estadoInicial,
-      listarPedidosUsuario(nuevoPedidosListar, 2, '')
+      listarPedidosUsuario(nuevoPedidosListar, 2)
     );
 
     // Assert

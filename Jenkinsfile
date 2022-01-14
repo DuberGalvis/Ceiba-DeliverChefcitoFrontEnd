@@ -32,8 +32,7 @@ pipeline{
             }
             stage('test '){
                 steps {
-					sh 'npm test'
-					sh 'npm test:coverage --silent'				
+					sh 'npm test'				
 				}
             }
 

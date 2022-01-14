@@ -5,7 +5,7 @@ import { Button } from 'app/shared/components/Button';
 import { FormikHelpers } from 'formik/dist/types';
 import { Input } from 'app/shared/components/Input';
 import { Pedido } from '../../../Pedido/models/Pedido';
-import { SpanError, Select } from './styles';
+import { SpanError, Select, H2EsFestivo } from './styles';
 import { useFormik } from 'formik';
 import { Producto } from 'app/feature/Producto/models/Producto';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
@@ -14,6 +14,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useEffect } from 'react';
 import { MostrarMensaje } from '../MostrarMensaje/index';
+import { MostrarMensajeError } from '../MostrarMensajeError';
 import { constantes } from 'app/shared/utils/constantes';
 import { calcularValores } from 'app/shared/utils/calcularValores';
 
@@ -50,6 +51,7 @@ interface FormCrearPedidoUsuarioProp {
   usuarioPedido: Usuario;
   reuniones: Reunion[];
   mensajePedido: string;
+  mensajeExcepcion: string;
   esFestivo: boolean;
   initialValues?: FormValues;
 }
@@ -76,10 +78,11 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     productos,
     reuniones,
     mensajePedido,
+    mensajeExcepcion,
     esFestivo,
     initialValues = {
-        producto: '',
-        reunion: '',
+        producto: JSON.stringify(productos[0]),
+        reunion: JSON.stringify(reuniones[0]),
         fechaRealizacion: '',
         direccion: '',
         valorTotal: 0,
@@ -121,10 +124,18 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             <MostrarMensaje 
                 mensaje={mensajePedido}
             />
+            <MostrarMensajeError
+                mensajeError={mensajeExcepcion} 
+            />
+            {esFestivo && 
+                <H2EsFestivo>
+                    El día seleccionado es festivo, se cobra el doble
+                </H2EsFestivo>}
             <label>
                 Productos Disponibles:{' '}
             </label>
             <Select
+                value={formik.values.producto}
                 name="producto"
                 onChange={formik.handleChange}>
                 {productos.map((producto) => (
@@ -142,7 +153,8 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             <label>
                 Tipos de Reuniones:{' '}
             </label>
-            <Select 
+            <Select
+                 value={formik.values.reunion}
                 name="reunion"  
                 onChange={formik.handleChange}>
                 {reuniones.map((reunion) => (

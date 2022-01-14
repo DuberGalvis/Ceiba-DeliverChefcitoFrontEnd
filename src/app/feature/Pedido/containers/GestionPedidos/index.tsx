@@ -86,7 +86,8 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
           usuarioPedido={usuario.usuarios[0]}
           reuniones={reuniones.reuniones}
           formTitle="Crea tu Pedido"
-          mensajePedido={pedidos.mensajeConfirmacion} 
+          mensajePedido={pedidos.mensajeConfirmacion}
+          mensajeExcepcion={pedidos.mensajeExcepcion} 
           esFestivo={pedidos.esFestivo}
         />}
       </DivRow>
@@ -99,6 +100,7 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
         usuarios={usuario.usuarios}
         reuniones={reuniones.reuniones}
         mensajeModificar={pedidos.mensajeConfirmacion}
+        mensajeExcepcion={pedidos.mensajeExcepcion}
         pedidoListar={pedidos.pedidoListar}
         esFestivo={pedidos.esFestivo}
       />}    

@@ -27,20 +27,18 @@ describe('Reductor pedidos', () => {
       },
       pedidosListar: [],
       pedidos: [],
-      productos: [],
-      reuniones: [],
+
       mensajeConfirmacion: '',
       mensajeExcepcion: '',
       mensajeExitoCancelar: '',
       cantidadTotalPedidos: 0,
-      cantidadTotalProductos: 0,
       esFestivo: false,
       mostrarModificar: false,
     };
     const nuevoMensajeModificacion: string = 'OK';
     const estadoEsperado: EstadoPedido = {
       ...estadoInicial,
-      mensajeConfirmacion: 'Su Pedido ha sido modificado OK',
+      mensajeConfirmacion: 'Su Pedido ha sido modificado con exito',
       mensajeExitoCancelar: '',
       mensajeExcepcion: '',
     };

@@ -18,7 +18,7 @@ export const Select = styled.select`
   }
 `;
 
-export const H2ExitoPedido = styled.h2`
+export const H2EsFestivo = styled.h2`
   color: #32cd32;
   font-weight: bold;
   text-align: center;

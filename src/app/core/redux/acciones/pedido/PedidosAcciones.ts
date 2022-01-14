@@ -54,7 +54,7 @@ export function agregarPedidoUsuario(
     return {
         type: AGREGAR_PEDIDO_USUARIO,
         payload: pedido,
-        mensajeConfirmacion: `Su pedido fue ${mensajeConfirmacion}`,
+        mensajeConfirmacion: `Su pedido fue creado`,
     };
 }
   
@@ -101,7 +101,7 @@ export function modificarPedidoUsuario(
 ): TiposAccionesPedido {
     return {
         type: MODIFICAR_PEDIDO,
-        mensajeConfirmacion: `Su Pedido ha sido modificado ${mensajeConfirmacion}`,
+        mensajeConfirmacion: `Su Pedido ha sido modificado con exito`,
     };
 }
   

@@ -28,13 +28,10 @@ describe('Reductor pedidos', () => {
       },
       pedidosListar: [],
       pedidos: [],
-      productos: [],
-      reuniones: [],
       mensajeConfirmacion: '',
       mensajeExcepcion: '',
       mensajeExitoCancelar: '',
       cantidadTotalPedidos: 0,
-      cantidadTotalProductos: 0,
       esFestivo: false,
       mostrarModificar: false,
     };
@@ -57,7 +54,7 @@ describe('Reductor pedidos', () => {
     const estadoEsperado: EstadoPedido = {
       ...estadoInicial,
       pedidos: [nuevoPedido],
-      mensajeConfirmacion: 'Su pedido fue Created',
+      mensajeConfirmacion: 'Su pedido fue creado',
     };
 
     // Act

@@ -84,7 +84,7 @@ export function agregarUsuario(
 ): TiposAccionesUsuario {
   return {
     type: USUARIO_CREADO,
-    payload: `¡Su cuenta ha sido ${confirmacion}!`,
+    payload: `¡Su cuenta ha sido creada!`,
   };
 }
 

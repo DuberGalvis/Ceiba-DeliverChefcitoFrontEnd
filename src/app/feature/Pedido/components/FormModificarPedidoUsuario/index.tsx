@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { MostrarMensaje } from '../MostrarMensaje';
 import { constantes } from 'app/shared/utils/constantes';
 import { calcularValores } from 'app/shared/utils/calcularValores';
+import { MostrarMensajeError } from '../MostrarMensajeError';
 
 const {
     HORAS24,
@@ -52,6 +53,7 @@ interface FormModificarPedidoUsuarioProp {
   irPedidos: () => void;
   pedidoListar: PedidoListar;
   mensajeModificar: string;
+  mensajeExcepcion: string;
   esFestivo: boolean;
   initialValues?: FormValues;
 }
@@ -79,6 +81,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
     reuniones,
     pedidoListar,
     mensajeModificar,
+    mensajeExcepcion,
     esFestivo,
     initialValues = {
         producto: '',
@@ -124,6 +127,9 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
             <h2>{formTitle}</h2>
             <MostrarMensaje 
                 mensaje={mensajeModificar}
+            />
+            <MostrarMensajeError
+                mensajeError={mensajeExcepcion} 
             />
             <label>
             Modifique el Producto{' '}

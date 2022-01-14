@@ -10,6 +10,7 @@ export function listarProductos(
   productos: Array<Producto>,
   cantidadTotalProducto: number,
 ): TiposAccionesProducto {
+  productos.unshift({nombre: 'Ingrese el Producto', detalle: '', precio: 0});
   return {
     type: LISTAR_PRODUCTOS,
     payload: productos,
