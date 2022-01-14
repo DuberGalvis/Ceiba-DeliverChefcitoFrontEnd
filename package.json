@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "start:local": "env-cmd .env.development npm run start",
     "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test --silent --env=jsdom --coverage --testResultsProcessor jest-sonar-reporter --updateSnapshot",
+    "test": "cross-env CI=true react-scripts test --silent --env=jsdom --testResultsProcessor jest-sonar-reporter --updateSnapshot",
     "test:watch": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --watchAll=false --updateSnapshot --coverage",
     "lint": "eslint --fix src/**/*.{ts,tsx}"
