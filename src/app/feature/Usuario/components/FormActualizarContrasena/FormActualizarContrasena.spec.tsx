@@ -5,7 +5,7 @@ import { FormActualizarContrasena } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 
 const DOS = 2;
-const TRES = 3;
+const NUMERO_TRES = 3;
 
 describe('FormActualizarContrasena test', () => {
   let componentWrapper: RenderResult;
@@ -36,7 +36,7 @@ describe('FormActualizarContrasena test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(TRES);
+    expect(spans.length).toBe(NUMERO_TRES);
     expect(spans[0].textContent).toBe('El campo clave actual es requerido.');
     expect(spans[1].textContent).toBe('El campo de nueva clave es requerido.');
     expect(spans[DOS].textContent).toBe('El campo de confirmar nueva clave es requerido.');
@@ -50,7 +50,6 @@ describe('FormActualizarContrasena test', () => {
     await wait(() => {
         claveActual && fireEvent.change(claveActual, setTextEvent('claveActual', '1234'));
     });
-
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
@@ -73,7 +72,6 @@ describe('FormActualizarContrasena test', () => {
     await wait(() => {
         claveNueva && fireEvent.change(claveNueva, setTextEvent('claveNueva', '4321'));
     });
-
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
@@ -99,7 +97,6 @@ describe('FormActualizarContrasena test', () => {
     await wait(() => {
       confirmarclaveNueva && fireEvent.change(confirmarclaveNueva, setTextEvent('confirmarclaveNueva', '4322'));
     });
-
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
@@ -125,13 +122,10 @@ describe('FormActualizarContrasena test', () => {
     await wait(() => {
         confirmarclaveNueva && fireEvent.change(confirmarclaveNueva, setTextEvent('confirmarclaveNueva', '4321'));
     });
-
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
     });
-
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
-
     expect(formSubmitted.nombre).toBe('Lorem');
     expect(formSubmitted.claveActual).toBe('1234');
     expect(formSubmitted.claveNueva).toBe('4321');

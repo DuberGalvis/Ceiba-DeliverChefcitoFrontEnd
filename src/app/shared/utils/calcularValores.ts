@@ -11,7 +11,7 @@ export const calcularValores = (producto: string,
         }
         let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;
         if(esFestivo){
-            valorTotal = valorTotal * 2;
+            valorTotal *= 2;
         }                
         return valorTotal;
 };
