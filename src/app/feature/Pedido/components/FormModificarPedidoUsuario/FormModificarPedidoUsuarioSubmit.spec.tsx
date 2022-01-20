@@ -4,6 +4,7 @@ import { SinonStub, stub } from 'sinon';
 import { FormModificarPedidoUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 import { constantes } from 'app/shared/utils/constantes';
+import { BrowserRouter as Router } from "react-router-dom"
 
 const {
     HORAS24,
@@ -11,12 +12,11 @@ const {
     MINUTOS60,
     SEGUNDOS60,
     MILISEGUNDOS,
-    SEIS,
+    HORAMAXIMA,
 } = constantes;
 
 const fechaDeHoy: Date = new Date();
 const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
-const NOVENTAY5MIL = 95000;
 
 describe('FormModificarPedidoUsuarioSubmit test', () => {
   let componentWrapper: RenderResult;
@@ -28,7 +28,6 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
     componentProps = {
       formTitle: 'Form test',
       onSubmit: stub(),
-      irPedidos: stub(),
       productos: [{
               nombre: 'Bandeja Paisa',
               precio: 45000,
@@ -57,11 +56,14 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
           horasDeServicio: 6,
           valorTotal: 95000,},
           mensajeModificar: '',
+          mensajeExcepcion: '',
+          esFestivo: false,
     };
-    componentWrapper = render(<FormModificarPedidoUsuario {...componentProps} />);
+    componentWrapper = render(<Router><FormModificarPedidoUsuario {...componentProps} /></Router>);
   });
 
   it('should submit', async () => {
+    const VALOR_PRECIO = 95000;
     const elem = componentWrapper.container;
 
     const producto = elem.querySelector('select[name="producto"]');
@@ -89,7 +91,7 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
         direccion && fireEvent.change(direccion, setTextEvent('direccion', 'calle 12 # 31-40'));
     });
     await wait(() => {
-        horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', '6'));
+        horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', '8'));
     });
     await wait(() => {
         valorTotalPedido && fireEvent.change(valorTotalPedido, setTextEvent('valorTotalPedido', '95000'));
@@ -114,7 +116,7 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
     expect(formSubmitted.fechaRealizacion).toBe(new Date(fechaComparar)
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 12 # 31-40');
-    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(NOVENTAY5MIL);
-    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(SEIS);
+    expect(parseInt(formSubmitted.valorTotal, 10)).toBe(VALOR_PRECIO);
+    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(HORAMAXIMA);
   });
 });

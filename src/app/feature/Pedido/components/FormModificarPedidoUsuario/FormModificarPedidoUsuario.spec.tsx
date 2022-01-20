@@ -4,12 +4,15 @@ import { SinonStub, stub } from 'sinon';
 import { FormModificarPedidoUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 import { constantes } from 'app/shared/utils/constantes';
+import { BrowserRouter as Router } from "react-router-dom"
 
 const {
-  DOS,
-  TRES,
-  CUATRO,
-  CINCO,
+  POSICION_DOS,
+  POSICION_TRES,
+  POSICION_CUATRO,
+  NUMERO_DOS,
+  NUMERO_TRES,
+  NUMERO_CINCO,
 } = constantes;
 
 describe('FormModificarPedidoUsuario test', () => {
@@ -22,7 +25,6 @@ describe('FormModificarPedidoUsuario test', () => {
     componentProps = {
       formTitle: 'Form test',
       onSubmit: stub(),
-      irPedidos: stub(),
       productos: [{
               nombre: 'Paella Española',
               precio: 38000,
@@ -50,8 +52,10 @@ describe('FormModificarPedidoUsuario test', () => {
           horasDeServicio: 4,
           valorTotal: 63000,},
           mensajeModificar: '',
+          mensajeExcepcion: '',
+          esFestivo: false,
     };
-    componentWrapper = render(<FormModificarPedidoUsuario {...componentProps} />);
+    componentWrapper = render(<Router><FormModificarPedidoUsuario {...componentProps} /></Router>);
   });
 
   it('should match snapshot', () => {
@@ -71,12 +75,12 @@ describe('FormModificarPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(CINCO);
+    expect(spans.length).toBe(NUMERO_CINCO);
     expect(spans[0].textContent).toBe('El Producto es requerido.');
     expect(spans[1].textContent).toBe('La Reunion es requerida.');
-    expect(spans[DOS].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[TRES].textContent).toBe('El campo Horas de Servicio es requerido.');
-    expect(spans[CUATRO].textContent).toBe('El valor del pedido no puede ser 0');
+    expect(spans[POSICION_DOS].textContent).toBe('El campo Direccion es requerido.');
+    expect(spans[POSICION_TRES].textContent).toBe('El campo Horas de Servicio es requerido.');
+    expect(spans[POSICION_CUATRO].textContent).toBe('El valor del pedido no puede ser 0');
   });
 
   it('should fail on submit five fields missing', async () => {
@@ -93,10 +97,10 @@ describe('FormModificarPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(TRES);
+    expect(spans.length).toBe(NUMERO_TRES);
     expect(spans[0].textContent).toBe('La Reunion es requerida.');
     expect(spans[1].textContent).toBe('El campo Direccion es requerido.');
-    expect(spans[DOS].textContent).toBe('Minimo 4 horas');
+    expect(spans[POSICION_DOS].textContent).toBe('Minimo 4 horas');
   });
 
   it('should fail on submit two fields missing', async () => {
@@ -122,7 +126,7 @@ describe('FormModificarPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
     expect(spans[1].textContent).toBe('Minimo 4 horas');
   });

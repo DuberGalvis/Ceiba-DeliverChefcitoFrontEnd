@@ -2,13 +2,10 @@ import * as React from 'react';
 import { RenderResult, fireEvent, render, wait } from '@testing-library/react';
 import { SinonStub, stub } from 'sinon';
 import { FormCrearPedidoUsuario } from '.';
-import { constantes } from 'app/shared/utils/constantes';
 import { setTextEvent } from 'app/shared/utils/test';
 
-const {
-  DOS,
-  TRES,
-} = constantes;
+const NUMERO_DOS = 2;
+
 
 describe('FormCrearPedidoUsuario test', () => {
   let componentWrapper: RenderResult;
@@ -73,7 +70,7 @@ describe('FormCrearPedidoUsuario test', () => {
     });
     const spans = elem.querySelectorAll('span');
 
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
     expect(spans[1].textContent).toBe('El campo Horas de Servicio es requerido.');
   });
@@ -96,7 +93,7 @@ describe('FormCrearPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
     expect(spans[1].textContent).toBe('Minimo 4 horas');
   });
@@ -124,7 +121,7 @@ describe('FormCrearPedidoUsuario test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo Direccion es requerido.');
     expect(spans[1].textContent).toBe('Minimo 4 horas');
   });

@@ -9,7 +9,7 @@ import { SpanError } from './styles';
 import { useFormik } from 'formik';
 import { MostrarMensajeUsuario } from '../MostrarMensajeUsuario';
 
-const CUATRO = 4;
+const MINIMOCARACTERES = 4;
 interface FormValues {
     nombre: string;
     clave: string;
@@ -28,10 +28,10 @@ interface FormCrearUsuarioProp {
 const validationSchema = Yup.object().shape<FormValues>({
     nombre: Yup.string().required('El campo nombre es requerido.'),
     clave: Yup.string().required('El campo clave es requerido.')
-    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    .min(MINIMOCARACTERES, 'Numero minimo de caracteres es 4'),
     confirmarClave: Yup.string().oneOf([Yup.ref('clave'), undefined], 'Error, La clave no coincide')
     .required('El campo de confirmar clave es requerido.')
-    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    .min(MINIMOCARACTERES, 'Numero minimo de caracteres es 4'),
 });
 
 export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({

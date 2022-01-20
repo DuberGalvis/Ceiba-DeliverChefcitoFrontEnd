@@ -6,7 +6,6 @@ export const CANCELAR_PEDIDO = 'CANCELAR_PEDIDO';
 export const MODIFICAR_PEDIDO = 'MODIFICAR_PEDIDO';
 export const LISTAR_PEDIDOS = 'LISTAR_PEDIDOS';
 export const MOSTRAR_MODIFICAR = 'MOSTRAR_MODIFICAR';
-export const MOSTRAR_PEDIDOS = 'MOSTRAR_PEDIDOS';
 export const FECHA_FESTIVO = 'FECHA_FESTIVO';
 export const ERROR_CONSULTA = 'ERROR_CONSULTA';
 
@@ -42,12 +41,6 @@ interface AccionListarPedidos {
 interface AccionMostrarModificar {
     type: typeof MOSTRAR_MODIFICAR;
     payload: PedidoListar;
-    mostrarModificar: boolean;
-}
-
-interface AccionMostrarPedidos {
-    type: typeof MOSTRAR_PEDIDOS;
-    mostrarModificar: boolean;
 }
 
 interface AccionEsFestivo {
@@ -67,6 +60,5 @@ export type TiposAccionesPedido =
   | AccionModificarPedido
   | AccionListarPedidos
   | AccionMostrarModificar
-  | AccionMostrarPedidos
   | AccionEsFestivo
   | AccionErrorConsulta;

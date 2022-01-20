@@ -25,8 +25,8 @@ const {
     MINUTOS60,
     SEGUNDOS60,
     MILISEGUNDOS,
-    CUATRO,
-    OCHO,
+    HORAMINIMA,
+    HORAMAXIMA,
 } = constantes;
 const fechaDeHoy: Date = new Date();
 const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
@@ -65,8 +65,8 @@ const validationSchema = Yup.object().shape<FormValues>({
     .positive('El valor del pedido no puede ser 0'),
     horasDeServicio: Yup.number().required('El campo Horas de Servicio es requerido.')
     .positive().integer()
-    .min(CUATRO, 'Minimo 4 horas')
-    .max(OCHO, 'Maximo 8 horas'),
+    .min(HORAMINIMA, 'Minimo 4 horas')
+    .max(HORAMAXIMA, 'Maximo 8 horas'),
 });
 
 export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
@@ -115,9 +115,9 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     formik.values.fechaRealizacion = !fechaInicio
         ? ''
         : fechaInicio.toString();
-    useEffect(() => {
-        validarDiaFestivo(fechaInicio);
-      },[validarDiaFestivo, fechaInicio]);
+    // useEffect(() => {
+    //     validarDiaFestivo(fechaInicio);
+    //   },[validarDiaFestivo, fechaInicio]);
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
@@ -143,7 +143,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
                         key={producto.nombre} 
                         value={JSON.stringify(producto)}
                         >
-                            Nombre: {producto.nombre} | Precio: {producto.precio}
+                            {producto.nombre}
                     </option>
                 ))}
             </Select>
@@ -162,7 +162,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
                         key={reunion.tipo} 
                         value={JSON.stringify(reunion)}
                         >
-                        {reunion.tipo} | Precio: {reunion.precio}
+                            {reunion.tipo}
                     </option>
                 ))}
             </Select>

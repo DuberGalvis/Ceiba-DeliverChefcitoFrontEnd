@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorModificar.spec.ts">
-        <testCase name="Reductor pedidos debería Modificar pedidos" duration="6"/>
-    </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\usuario\usuarioReductorCrear.spec.ts">
-        <testCase name="Reductor usuario debería mostrar mensaje de usuario creado" duration="4"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Usuario\components\FormActualizarContrasena\FormActualizarContrasena.spec.tsx">
-        <testCase name="FormActualizarContrasena test should match snapshot" duration="107"/>
-        <testCase name="FormActualizarContrasena test should fail on submit all fields missing" duration="64"/>
-        <testCase name="FormActualizarContrasena test should fail on submit two fields missing" duration="63"/>
-        <testCase name="FormActualizarContrasena test should fail on submit one fields missing" duration="61"/>
-        <testCase name="FormActualizarContrasena test should fail on submit compare two fields claveNueva and confirmarclaveNueva" duration="60"/>
-        <testCase name="FormActualizarContrasena test should submit" duration="64"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormModificarPedidoUsuario\FormModificarPedidoUsuarioSubmit.spec.tsx">
-        <testCase name="FormModificarPedidoUsuarioSubmit test should submit" duration="245"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormCrearPedidoUsuario\FormCrearPedidoUsuarioSubmit.spec.tsx">
-        <testCase name="FormCrearPedidoUsuarioSubmit test should submit on crear pedidos" duration="222"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormModificarPedidoUsuario\FormModificarPedidoUsuario.spec.tsx">
-        <testCase name="FormModificarPedidoUsuario test should match snapshot" duration="92"/>
-        <testCase name="FormModificarPedidoUsuario test should fail on submit all fields missing" duration="84"/>
-        <testCase name="FormModificarPedidoUsuario test should fail on submit five fields missing" duration="59"/>
-        <testCase name="FormModificarPedidoUsuario test should fail on submit two fields missing" duration="96"/>
-        <testCase name="FormModificarPedidoUsuario test should fail on submit one fields missing" duration="108"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormCrearPedidoUsuario\FormCrearPedidoUsuario.spec.tsx">
-        <testCase name="FormCrearPedidoUsuario test should match snapshot of crear pedidos" duration="84"/>
-        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="99"/>
-        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="77"/>
-        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="105"/>
-        <testCase name="FormCrearPedidoUsuario test should fail on submit one fields missing on crear pedidos" duration="135"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Usuario\components\PaginaIniciarSesion\PaginaIniciarSesion.spec.tsx">
-        <testCase name="FormCrearUsuario test should match snapshot" duration="69"/>
-        <testCase name="FormCrearUsuario test should fail on submit all fields missing" duration="39"/>
-        <testCase name="FormCrearUsuario test should fail on submit one fields missing" duration="27"/>
-        <testCase name="FormCrearUsuario test should submit" duration="49"/>
+        <testCase name="Reductor usuario debería mostrar mensaje de usuario creado" duration="5"/>
     </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Usuario\components\FormCrearUsuario\FormCrearUsuario.spec.tsx">
-        <testCase name="FormCrearUsuario test should match snapshot" duration="59"/>
-        <testCase name="FormCrearUsuario test should fail on submit all fields missing" duration="52"/>
-        <testCase name="FormCrearUsuario test should fail on submit two fields missing" duration="27"/>
-        <testCase name="FormCrearUsuario test should fail on submit two fields missing" duration="67"/>
-        <testCase name="FormCrearUsuario test should submit" duration="74"/>
+        <testCase name="FormCrearUsuario test should match snapshot" duration="64"/>
+        <testCase name="FormCrearUsuario test should fail on submit all fields missing" duration="46"/>
+        <testCase name="FormCrearUsuario test should fail on submit two fields missing" duration="44"/>
+        <testCase name="FormCrearUsuario test should fail on submit two fields missing" duration="58"/>
+        <testCase name="FormCrearUsuario test should submit" duration="62"/>
     </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\productos\ProductosReductor.spec.ts">
-        <testCase name="Reductor productos debería agregar productos" duration="2"/>
-        <testCase name="Reductor productos debería listar los productos" duration="0"/>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Usuario\components\FormActualizarContrasena\FormActualizarContrasena.spec.tsx">
+        <testCase name="FormActualizarContrasena test should match snapshot" duration="67"/>
+        <testCase name="FormActualizarContrasena test should fail on submit all fields missing" duration="37"/>
+        <testCase name="FormActualizarContrasena test should fail on submit two fields missing" duration="41"/>
+        <testCase name="FormActualizarContrasena test should fail on submit one fields missing" duration="62"/>
+        <testCase name="FormActualizarContrasena test should fail on submit compare two fields claveNueva and confirmarclaveNueva" duration="61"/>
+        <testCase name="FormActualizarContrasena test should submit" duration="62"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormCrearPedidoUsuario\FormCrearPedidoUsuarioSubmit.spec.tsx">
+        <testCase name="FormCrearPedidoUsuarioSubmit test should submit on crear pedidos" duration="261"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormModificarPedidoUsuario\FormModificarPedidoUsuarioSubmit.spec.tsx">
+        <testCase name="FormModificarPedidoUsuarioSubmit test should submit" duration="254"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormCrearPedidoUsuario\FormCrearPedidoUsuario.spec.tsx">
+        <testCase name="FormCrearPedidoUsuario test should match snapshot of crear pedidos" duration="116"/>
+        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="122"/>
+        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="73"/>
+        <testCase name="FormCrearPedidoUsuario test should fail on submit two fields missing on crear pedidos" duration="76"/>
+        <testCase name="FormCrearPedidoUsuario test should fail on submit one fields missing on crear pedidos" duration="102"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Usuario\components\PaginaIniciarSesion\PaginaIniciarSesion.spec.tsx">
+        <testCase name="FormCrearUsuario test should match snapshot" duration="62"/>
+        <testCase name="FormCrearUsuario test should fail on submit all fields missing" duration="43"/>
+        <testCase name="FormCrearUsuario test should fail on submit one fields missing" duration="42"/>
+        <testCase name="FormCrearUsuario test should submit" duration="48"/>
     </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Producto\components\FormCrearProducto\FormCrearProducto.spec.tsx">
-        <testCase name="FormCrearProducto test should match snapshot" duration="23"/>
-        <testCase name="FormCrearProducto test should fail on submit all fields missing" duration="45"/>
-        <testCase name="FormCrearProducto test should fail on submit two fields missing" duration="48"/>
-        <testCase name="FormCrearProducto test should fail on submit one fields missing" duration="47"/>
-        <testCase name="FormCrearProducto test should submit" duration="85"/>
+        <testCase name="FormCrearProducto test should match snapshot" duration="18"/>
+        <testCase name="FormCrearProducto test should fail on submit all fields missing" duration="34"/>
+        <testCase name="FormCrearProducto test should fail on submit two fields missing" duration="33"/>
+        <testCase name="FormCrearProducto test should fail on submit one fields missing" duration="77"/>
+        <testCase name="FormCrearProducto test should submit" duration="78"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Reunion\components\FormCrearReunion\FormCrearReunion.spec.tsx">
+        <testCase name="FormCrearReunion test should match snapshot" duration="18"/>
+        <testCase name="FormCrearReunion test should fail on submit all fields missing" duration="35"/>
+        <testCase name="FormCrearReunion test should fail on submit one field missing" duration="41"/>
+        <testCase name="FormCrearReunion test should submit" duration="46"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorCrear.spec.ts">
+        <testCase name="Reductor pedidos debería agregar pedidos" duration="1"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Reunion\components\PaginadorReunion\PaginadorReunion.spec.tsx">
+        <testCase name="PaginadorReunion Test should match snapshot" duration="12"/>
+        <testCase name="PaginadorReunion Test Renderizar con menos de 10 reuniones no debe pintar botones" duration="1"/>
+        <testCase name="PaginadorReunion Test Renderizar con  20 reuniones debe pintar 2 botones" duration="8"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\productos\ProductosReductor.spec.ts">
+        <testCase name="Reductor productos debería agregar productos" duration="1"/>
+        <testCase name="Reductor productos debería listar los productos" duration="1"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Producto\components\PaginadorProductos\PaginadorProductos.spec.tsx">
+        <testCase name="PaginadorProductos Test should match snapshot" duration="9"/>
+        <testCase name="PaginadorProductos Test Renderizar con menos de 10 productos no debe pintar botones" duration="2"/>
+        <testCase name="PaginadorProductos Test Renderizar con  20 productos debe pintar 2 botones" duration="8"/>
     </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\PaginadorPedidos\PaginadorPedidos.spec.tsx">
-        <testCase name="PaginadorPedidos Test should match snapshot" duration="8"/>
-        <testCase name="PaginadorPedidos Test Renderizar con menos de 10 pedidos no debe pintar botones" duration="1"/>
-        <testCase name="PaginadorPedidos Test Renderizar con  20 pedidos debe pintar 2 botones" duration="6"/>
+        <testCase name="PaginadorPedidos Test should match snapshot" duration="11"/>
+        <testCase name="PaginadorPedidos Test Renderizar con menos de 10 pedidos no debe pintar botones" duration="2"/>
+        <testCase name="PaginadorPedidos Test Renderizar con  20 pedidos debe pintar 2 botones" duration="8"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorModificar.spec.ts">
+        <testCase name="Reductor pedidos debería Modificar pedidos" duration="7"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\reuniones\reunionesReductor.spec.ts">
+        <testCase name="Reductor Reunion debería agregar una Reunion" duration="5"/>
+        <testCase name="Reductor Reunion debería listar Reuniones" duration="1"/>
     </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\usuario\usuarioReductorBaja.spec.ts">
         <testCase name="Reductor usuario debería actualizar clave de usuario" duration="1"/>
     </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Reunion\components\PaginadorReunion\PaginadorReunion.spec.tsx">
-        <testCase name="PaginadorReunion Test should match snapshot" duration="8"/>
-        <testCase name="PaginadorReunion Test Renderizar con menos de 10 reuniones no debe pintar botones" duration="1"/>
-        <testCase name="PaginadorReunion Test Renderizar con  20 reuniones debe pintar 2 botones" duration="6"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\reuniones\reunionesReductor.spec.ts">
-        <testCase name="Reductor Reunion debería agregar una Reunion" duration="1"/>
-        <testCase name="Reductor Reunion debería listar Reuniones" duration="0"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Reunion\components\FormCrearReunion\FormCrearReunion.spec.tsx">
-        <testCase name="FormCrearReunion test should match snapshot" duration="25"/>
-        <testCase name="FormCrearReunion test should fail on submit all fields missing" duration="48"/>
-        <testCase name="FormCrearReunion test should fail on submit one field missing" duration="45"/>
-        <testCase name="FormCrearReunion test should submit" duration="52"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Producto\components\PaginadorProductos\PaginadorProductos.spec.tsx">
-        <testCase name="PaginadorProductos Test should match snapshot" duration="14"/>
-        <testCase name="PaginadorProductos Test Renderizar con menos de 10 productos no debe pintar botones" duration="1"/>
-        <testCase name="PaginadorProductos Test Renderizar con  20 productos debe pintar 2 botones" duration="7"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorCancelar.spec.ts">
-        <testCase name="Reductor pedidos debería cancelar pedido" duration="3"/>
-    </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorListar.spec.ts">
-        <testCase name="Reductor pedidos debería Listar pedidos" duration="3"/>
-    </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\usuario\usuarioReductorSesion.spec.ts">
         <testCase name="Reductor usuario debería agregar sesion de usuario creado" duration="1"/>
     </file>
-    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorCrear.spec.ts">
-        <testCase name="Reductor pedidos debería agregar pedidos" duration="0"/>
-    </file>
     <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\usuario\usuarioReductorActualizar.spec.ts">
-        <testCase name="Reductor usuario debería actualizar clave de usuario" duration="2"/>
+        <testCase name="Reductor usuario debería actualizar clave de usuario" duration="1"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\feature\Pedido\components\FormModificarPedidoUsuario\FormModificarPedidoUsuario.spec.tsx">
+        <testCase name="FormModificarPedidoUsuario test should match snapshot" duration="112"/>
+        <testCase name="FormModificarPedidoUsuario test should fail on submit all fields missing" duration="122"/>
+        <testCase name="FormModificarPedidoUsuario test should fail on submit five fields missing" duration="82"/>
+        <testCase name="FormModificarPedidoUsuario test should fail on submit two fields missing" duration="93"/>
+        <testCase name="FormModificarPedidoUsuario test should fail on submit one fields missing" duration="105"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorListar.spec.ts">
+        <testCase name="Reductor pedidos debería Listar pedidos" duration="0"/>
+    </file>
+    <file path="C:\Users\duber.galvis\Documents\Front-End\react-redux\src\app\core\redux\reductores\pedidos\pedidosReductorCancelar.spec.ts">
+        <testCase name="Reductor pedidos debería cancelar pedido" duration="2"/>
     </file>
 </testExecutions>

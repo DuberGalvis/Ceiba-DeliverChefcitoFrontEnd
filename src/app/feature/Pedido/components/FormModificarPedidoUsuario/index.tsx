@@ -18,6 +18,7 @@ import { MostrarMensaje } from '../MostrarMensaje';
 import { constantes } from 'app/shared/utils/constantes';
 import { calcularValores } from 'app/shared/utils/calcularValores';
 import { MostrarMensajeError } from '../MostrarMensajeError';
+import { Link } from 'react-router-dom';
 
 const {
     HORAS24,
@@ -26,8 +27,8 @@ const {
     MINUTOS60,
     SEGUNDOS60,
     MILISEGUNDOS,
-    CUATRO,
-    OCHO,
+    HORAMINIMA,
+    HORAMAXIMA,
 } = constantes;
 const fechaDeHoy: Date = new Date();
 const fechaDiaSiguiente: Date = new Date(fechaDeHoy.getTime() + (HORAS24 * MINUTOS60 * SEGUNDOS60 * MILISEGUNDOS));
@@ -50,7 +51,6 @@ interface FormModificarPedidoUsuarioProp {
   productos: Producto[];
   usuarios: Usuario[];
   reuniones: Reunion[];
-  irPedidos: () => void;
   pedidoListar: PedidoListar;
   mensajeModificar: string;
   mensajeExcepcion: string;
@@ -67,13 +67,12 @@ const validationSchema = Yup.object().shape<FormValues>({
     .positive('El valor del pedido no puede ser 0'),
     horasDeServicio: Yup.number().required('El campo Horas de Servicio es requerido.')
     .positive().integer()
-    .min(CUATRO, 'Minimo 4 horas')
-    .max(OCHO, 'Maximo 8 horas'),
+    .min(HORAMINIMA, 'Minimo 4 horas')
+    .max(HORAMAXIMA, 'Maximo 8 horas'),
 });
 
 export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp> = ({
     onSubmit,
-    irPedidos,
     disabled,
     formTitle,
     usuarios,
@@ -121,7 +120,6 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
         : fecha.toString();
         return formik.values.fechaRealizacion;
     };
-    const handleRegresar = () => irPedidos();
     return(
         <form onSubmit= {formik.handleSubmit}>
             <h2>{formTitle}</h2>
@@ -142,7 +140,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                         key={producto.nombre} 
                         value={JSON.stringify(producto)}
                         >
-                            Nombre: {producto.nombre} | Precio: {producto.precio}
+                            {producto.nombre}
                     </option>
                 ))}
             </Select>
@@ -160,7 +158,7 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                         key={reunion.tipo} 
                         value={JSON.stringify(reunion)}
                         >
-                            {reunion.tipo} | Precio: {reunion.precio}
+                            {reunion.tipo}
                     </option>
                 ))}
             </Select>
@@ -218,7 +216,11 @@ export const FormModificarPedidoUsuario: React.FC<FormModificarPedidoUsuarioProp
                 <SpanError>{formik.errors.valorTotal}</SpanError>
             )}
             <Button type="submit">Modificar Pedido</Button>
-            <Button type="button" onClick={handleRegresar}>Regresar</Button>
+            <Link to='/pedidos' replace={true}>
+                <Button>
+                    Regresar
+                </Button>
+            </Link>
         </form>
     );
 };

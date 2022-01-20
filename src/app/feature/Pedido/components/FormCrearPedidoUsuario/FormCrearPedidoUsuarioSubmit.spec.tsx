@@ -11,7 +11,7 @@ const {
   MINUTOS60,
   SEGUNDOS60,
   MILISEGUNDOS,
-  CUATRO,
+  HORAMINIMA,
 } = constantes;
 
 const fechaDeHoy: Date = new Date();
@@ -107,6 +107,6 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
     .toISOString());
     expect(formSubmitted.direccion).toBe('calle 10 # 30-40');
     expect(parseInt(formSubmitted.valorTotal, 10)).toBe(SESENTAY5MIL);
-    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(CUATRO);
+    expect(parseInt(formSubmitted.horasDeServicio, 10)).toBe(HORAMINIMA);
   });
 });

@@ -4,10 +4,6 @@ import { SinonStub, stub } from 'sinon';
 import { FormCrearProducto } from './';
 import { setTextEvent } from 'app/shared/utils/test';
 
-const DOS = 2;
-const TRES = 3;
-const VEINTI5MIL = 25000;
-
 describe('FormCrearProducto test', () => {
   let componentWrapper: RenderResult;
   let componentProps: React.ComponentProps<typeof FormCrearProducto> & {
@@ -27,6 +23,8 @@ describe('FormCrearProducto test', () => {
   });
 
   it('should fail on submit all fields missing', async () => {
+    const POSICION_DOS = 2;
+    const NUMERO_TRES = 3;
     const elem = componentWrapper.container;
     const submitButton = elem.querySelector('button[type="submit"]');
 
@@ -34,13 +32,14 @@ describe('FormCrearProducto test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(TRES);
+    expect(spans.length).toBe(NUMERO_TRES);
     expect(spans[0].textContent).toBe('El campo nombre es requerido.');
     expect(spans[1].textContent).toBe('El campo precio es requerido.');
-    expect(spans[DOS].textContent).toBe('El campo detalle es requerido.');
+    expect(spans[POSICION_DOS].textContent).toBe('El campo detalle es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
+    const NUMERO_DOS = 2;
     const elem = componentWrapper.container;
     const nombre = elem.querySelector('input[name="nombre"]');
     const submitButton = elem.querySelector('button[type="submit"]');
@@ -53,7 +52,7 @@ describe('FormCrearProducto test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo precio es requerido.');
     expect(spans[1].textContent).toBe('El campo detalle es requerido.');
   });
@@ -81,6 +80,7 @@ describe('FormCrearProducto test', () => {
   });
 
   it('should submit', async () => {
+    const VALOR_PRECIO = 25000;
     const elem = componentWrapper.container;
 
     const nombre = elem.querySelector('input[name="nombre"]');
@@ -105,7 +105,7 @@ describe('FormCrearProducto test', () => {
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
 
     expect(formSubmitted.nombre).toBe('Lorem');
-    expect(formSubmitted.precio).toBe(VEINTI5MIL);
+    expect(formSubmitted.precio).toBe(VALOR_PRECIO);
     expect(formSubmitted.detalle).toBe('Dolor');
   });
 });

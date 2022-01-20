@@ -5,7 +5,6 @@ import {
     MODIFICAR_PEDIDO,
     LISTAR_PEDIDOS,
     MOSTRAR_MODIFICAR,
-    MOSTRAR_PEDIDOS,
     FECHA_FESTIVO,
     ERROR_CONSULTA,
     TiposAccionesPedido,
@@ -131,15 +130,6 @@ export function irModificarPedidoUsuario(
     return {
         type: MOSTRAR_MODIFICAR,
         payload: pedidoModificar,
-        mostrarModificar: true,
-    };
-}
-
-export function irPedidosUsuario(
-):TiposAccionesPedido {
-    return {
-        type: MOSTRAR_PEDIDOS,
-        mostrarModificar: false,
     };
 }
 

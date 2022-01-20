@@ -15,7 +15,7 @@ export const BtnModificarPedidoUsuario: React.FC<BtnModificarPedidoUsuarioProps>
 }) => {
     const handleModificar = () => onModificar(pedidoListar);
     return(
-        <Link to='/pedidos' replace={true}>
+        <Link to='/modificar-pedido' replace={true}>
             <Button onClick={handleModificar}>
                 <span role='img' aria-labelledby='modificar'>
                     Modificar💡

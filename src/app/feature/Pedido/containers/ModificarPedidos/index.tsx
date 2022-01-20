@@ -1,40 +1,43 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { DivContainer, DivRow } from './styles';
-import { ListarPedidosUsuario } from '../../components/ListarPedidosUsuario';
-import { PaginadorPedidos } from '../../components/PaginadorPedidos';
 import { Pedido } from '../../models/Pedido';
-import { Usuario } from 'app/feature/Usuario/models/Usuario';
+import { useEffect } from 'react';
 import { PedidoListar } from '../../models/PedidoListar';
 import { MenuLogueado } from 'app/shared/components/MenuLogueado';
 import { EstadoUsuario } from 'app/core/redux/modelo/EstadoUsuario';
 import { EstadoPedido } from 'app/core/redux/modelo/EstadoPedido';
+import { FormModificarPedidoUsuario } from '../../components/FormModificarPedidoUsuario';
 import { EstadoProducto } from 'app/core/redux/modelo/EstadoProducto';
 import { EstadoReunion } from 'app/core/redux/modelo/EstadoReunion';
-import { Link } from 'react-router-dom';
 
-interface GestionPedidosProps {
+interface ModificarPedidosProps {
   usuario: EstadoUsuario;
   pedidos: EstadoPedido;
   productos: EstadoProducto;
   reuniones: EstadoReunion;
-  listarPedidosUsuario: (usuario: Usuario) => void;
-  cancelarPedidoUsuario: (pedidoListar: PedidoListar) => void;
   modificarPedidoUsuario: (pedidoListar: PedidoListar, pedido: Pedido) => void;
-  listarPedidos: (numeroPagina: number) => void;
   validarDiaFestivo: (fechaFestivo: Date) => void;
-  irModificarPedidoUsuario: (pedidoListar: PedidoListar) => void;
+  listarProductos: (numeroPaginas: number) => void;
+  listarReuniones: (numeroPagina: number) => void;
 }
 
-export const GestionPedidos: React.FC<GestionPedidosProps> = ({
+export const ModificarPedidos: React.FC<ModificarPedidosProps> = ({
   usuario,
   pedidos,
-  listarPedidosUsuario,
-  cancelarPedidoUsuario,
-  listarPedidos,
+  productos,
+  reuniones,
+  modificarPedidoUsuario,
+  listarProductos,
+  listarReuniones,
   validarDiaFestivo,
-  irModificarPedidoUsuario,
 }) => {
+  useEffect(() => {
+    listarProductos(0);
+  },[listarProductos]);
+  useEffect(() => {
+    listarReuniones(0);
+  },[listarReuniones]);
   return (
     <DivContainer>
       {usuario && 
@@ -42,32 +45,23 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
         usuario={usuario.usuarios[0]}
       />}
       <DivRow>
-      {usuario && !pedidos.mostrarModificar && 
-      <ListarPedidosUsuario
-          usuario={usuario.usuarios[0]}
-          tablaListarTitulo={'Lista de Pedidos Pendientes'}
-          listarPedidosUsuario={listarPedidosUsuario}
-          onClickCancelarPedido={cancelarPedidoUsuario}
-          onClickModificarPedido={irModificarPedidoUsuario}
-          pedidosListar={pedidos.pedidosListar}
-          mensajeCancelar={pedidos.mensajeExitoCancelar}
-        />}
-        {usuario && !pedidos.mostrarModificar && 
-        <PaginadorPedidos
-          cantidadTotalPedidos={pedidos.cantidadTotalPedidos}
-          onClickCambiarPagina={listarPedidos}
-        />}
-        <Link to='/crear-pedido' replace={true}>
-                <span role='img' aria-labelledby='modificar'>
-                    Ir a Crear Pedido⏩
-                </span>
-        </Link>
-      </DivRow>
+        <FormModificarPedidoUsuario
+          onSubmit={modificarPedidoUsuario}
+          formTitle={'Modifique su Pedido'}
+          productos={productos.productos}
+          usuarios={usuario.usuarios}
+          reuniones={reuniones.reuniones}
+          mensajeModificar={pedidos.mensajeConfirmacion}
+          mensajeExcepcion={pedidos.mensajeExcepcion}
+          pedidoListar={pedidos.pedidoListar}
+          esFestivo={pedidos.esFestivo}
+        />
+      </DivRow> 
     </DivContainer>
   );
 };
 
-GestionPedidos.propTypes = {
+ModificarPedidos.propTypes = {
   usuario: PropTypes.shape({
       usuarios: PropTypes.array.isRequired,
       usuario: PropTypes.shape({
@@ -128,7 +122,6 @@ GestionPedidos.propTypes = {
     cantidadTotalProductos: PropTypes.number.isRequired,
     mostrarModificar: PropTypes.bool.isRequired,
   }).isRequired,
-  listarPedidosUsuario: PropTypes.func.isRequired,
-  cancelarPedidoUsuario: PropTypes.func.isRequired,
-  listarPedidos: PropTypes.func.isRequired,
+  listarProductos: PropTypes.func.isRequired,
+  listarReuniones: PropTypes.func.isRequired,
 };

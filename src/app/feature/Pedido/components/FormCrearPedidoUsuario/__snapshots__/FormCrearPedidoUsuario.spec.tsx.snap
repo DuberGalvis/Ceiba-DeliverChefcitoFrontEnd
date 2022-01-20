@@ -17,7 +17,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
       <option
         value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":40000,\\"detalle\\":\\"Verduras y sustituye\\"}"
       >
-        Nombre: Paella Española | Precio: 40000
+        Paella Española
       </option>
     </select>
     <label>
@@ -31,17 +31,17 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
       <option
         value="{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"
       >
-        TIPO_PEQUENA | Precio: 25000
+        TIPO_PEQUENA
       </option>
       <option
         value="{\\"tipo\\":\\"TIPO_MEDIANA\\",\\"precio\\":50000}"
       >
-        TIPO_MEDIANA | Precio: 50000
+        TIPO_MEDIANA
       </option>
       <option
         value="{\\"tipo\\":\\"TIPO_GRANDE\\",\\"precio\\":75000}"
       >
-        TIPO_GRANDE | Precio: 75000
+        TIPO_GRANDE
       </option>
     </select>
     <label>
@@ -57,7 +57,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
           class=""
           name="fechaRealizacion"
           type="text"
-          value="January 15, 2022 3:00 PM"
+          value="January 21, 2022 3:00 PM"
         />
       </div>
     </div>
@@ -65,7 +65,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
       class="sc-AxirZ eAukyj"
       name="fechaRealizacionAux"
       type="hidden"
-      value="Sat Jan 15 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+      value="Fri Jan 21 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
     />
     <input
       class="sc-AxirZ eAukyj"

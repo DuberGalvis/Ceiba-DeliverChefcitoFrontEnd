@@ -4,13 +4,13 @@ import { ProveedorAjustesUsuario } from '../hoc/ProveedorAjustesUsuario';
 import { RouteComponentProps } from 'react-router-dom';
 
 const AjustesPage: React.FC<RouteComponentProps> = () => {
-    return (
-      <Layout title="Ajustes" description="Ajustes de Usuario">
-        <ProveedorAjustesUsuario/>
-      </Layout>
-    );
-  };
+  return (
+    <Layout title="Ajustes" description="Ajustes de Usuario">
+      <ProveedorAjustesUsuario />
+    </Layout>
+  );
+};
   
-  AjustesPage.displayName = 'AjustesPage';
+AjustesPage.displayName = 'AjustesPage';
   
-  export default AjustesPage;
+export default AjustesPage;

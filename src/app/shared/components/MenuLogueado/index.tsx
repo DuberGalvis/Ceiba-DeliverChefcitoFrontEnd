@@ -14,7 +14,7 @@ export const MenuLogueado: React.FC<MenuLogueadoProps> = ({
     { label: '| Ver Reuniones', url: '/reuniones' },
     { label: '| Ver Productos', url: '/productos' },
     { label: '| Ir a Pedidos', url: '/pedidos' },
-    { label: '| Ajustes de Cuenta', url: '/ajustes' },
+    { label: '| Ajustes de Cuenta', url: '/ajustes-usuario' },
   ];
   return (
     <MenuNav>

@@ -8,6 +8,8 @@ import { ReunionRouter } from './feature/Reunion/ReunionRouter';
 import { UsuarioRouter } from './feature/Usuario/UsuarioRouter';
 import { UsuarioAjustesRouter } from './feature/Usuario/UsuarioAjustesRouter';
 import { PedidoRouter } from './feature/Pedido/PedidoRouter';
+import { PedidoCrearRouter } from './feature/Pedido/PedidoCrearRouter'
+import { PedidoModificarRouter } from './feature/Pedido/PedidoModificarRouter'
 
 export const AppRouter = () => {
   return (
@@ -20,7 +22,9 @@ export const AppRouter = () => {
         <Route path="/reuniones" component={ReunionRouter} />
         <Route path="/pedidos" component={PedidoRouter} />
         <Route path="/usuario" component={UsuarioRouter} />
-        <Route path="/ajustes" component={UsuarioAjustesRouter} />
+        <Route path="/ajustes-usuario" component={UsuarioAjustesRouter} />
+        <Route path="/crear-pedido" component={PedidoCrearRouter} />
+        <Route path="/modificar-pedido" component={PedidoModificarRouter} />
       </Switch>
     </BrowserRouter>
   );

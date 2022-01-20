@@ -5,7 +5,6 @@ import {
     MODIFICAR_PEDIDO,
     LISTAR_PEDIDOS,
     MOSTRAR_MODIFICAR,
-    MOSTRAR_PEDIDOS,
     FECHA_FESTIVO,
     ERROR_CONSULTA,
     TiposAccionesPedido,
@@ -99,16 +98,6 @@ export default function (
             return {
                 ...state,
                 pedidoListar,
-                mostrarModificar: action.mostrarModificar,
-                mensajeConfirmacion: '',
-                mensajeExcepcion: '',
-                mensajeExitoCancelar: '',
-            };
-        }
-        case MOSTRAR_PEDIDOS: {
-            return {
-                ...state,
-                mostrarModificar: action.mostrarModificar,
                 mensajeConfirmacion: '',
                 mensajeExcepcion: '',
                 mensajeExitoCancelar: '',

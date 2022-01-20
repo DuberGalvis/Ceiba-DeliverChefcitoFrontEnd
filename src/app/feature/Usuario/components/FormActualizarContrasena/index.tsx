@@ -10,7 +10,7 @@ import { useFormik } from 'formik';
 import { Usuario } from '../../models/Usuario';
 import { Link } from 'react-router-dom';
 
-const CUATRO = 4;
+const MINIMOCARACTERES = 4;
 interface FormValues {
     claveActual: string;
     claveNueva: string;
@@ -30,10 +30,10 @@ interface FormActualizarContrasenaProp {
 const validationSchema = Yup.object().shape<FormValues>({
     claveActual: Yup.string().required('El campo clave actual es requerido.'),
     claveNueva: Yup.string().required('El campo de nueva clave es requerido.')
-    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    .min(MINIMOCARACTERES, 'Numero minimo de caracteres es 4'),
     confirmarclaveNueva: Yup.string().oneOf([Yup.ref('claveNueva'), undefined], 'Error, La nueva clave no coincide')
     .required('El campo de confirmar nueva clave es requerido.')
-    .min(CUATRO, 'Numero minimo de caracteres es 4'),
+    .min(MINIMOCARACTERES, 'Numero minimo de caracteres es 4'),
 });
 
 export const FormActualizarContrasena: React.FC<FormActualizarContrasenaProp> = ({
