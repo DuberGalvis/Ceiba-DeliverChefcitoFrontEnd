@@ -4,7 +4,8 @@ import { SinonStub, stub } from 'sinon';
 import { FormActualizarContrasena } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 
-const DOS = 2;
+const POSICION_DOS = 2;
+const NUMERO_DOS = 2;
 const NUMERO_TRES = 3;
 
 describe('FormActualizarContrasena test', () => {
@@ -39,7 +40,7 @@ describe('FormActualizarContrasena test', () => {
     expect(spans.length).toBe(NUMERO_TRES);
     expect(spans[0].textContent).toBe('El campo clave actual es requerido.');
     expect(spans[1].textContent).toBe('El campo de nueva clave es requerido.');
-    expect(spans[DOS].textContent).toBe('El campo de confirmar nueva clave es requerido.');
+    expect(spans[POSICION_DOS].textContent).toBe('El campo de confirmar nueva clave es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
@@ -54,7 +55,7 @@ describe('FormActualizarContrasena test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(DOS);
+    expect(spans.length).toBe(NUMERO_DOS);
     expect(spans[0].textContent).toBe('El campo de nueva clave es requerido.');
     expect(spans[1].textContent).toBe('El campo de confirmar nueva clave es requerido.');
   });
