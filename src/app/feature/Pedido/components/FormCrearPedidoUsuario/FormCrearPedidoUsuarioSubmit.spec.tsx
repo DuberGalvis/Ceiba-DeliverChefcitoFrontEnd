@@ -38,22 +38,27 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
       productoSeleccionado: {
         nombre: 'Paella Española',
         precio: 40000,
-        detalle: 'Verduras y sustituye'
+        detalle: 'Verduras y sustituye',
+        nombreImagen: 'imagen.png'
       },
       usuarioPedido: {nombre: 'Lorem', clave: '1234'},
       reuniones:[{
-                tipo: 'TIPO_PEQUENA',
-                precio: 25000
-            }, {
-                tipo: 'TIPO_MEDIANA',
-                precio: 50000
-            }, {
-                tipo: 'TIPO_GRANDE',
-                precio: 75000
-            }
-        ],
-        mensajePedido: '',
-        esFestivo: false,
+            tipo: 'TIPO_PEQUENA',
+            precio: 25000
+        }, {
+            tipo: 'TIPO_MEDIANA',
+            precio: 50000
+        }, {
+            tipo: 'TIPO_GRANDE',
+            precio: 75000
+        }
+      ],
+      reunionSeleccionada: {
+        tipo: 'TIPO_PEQUENA',
+        precio: 25000
+      },
+      mensajePedido: '',
+      esFestivo: false,
     };
     componentWrapper = render(<FormCrearPedidoUsuario {...componentProps} />);
   });
@@ -61,7 +66,6 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
   it('should submit on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const direccion = elem.querySelector('input[name="direccion"]');
     const horasDeServicio = elem.querySelector('input[name="horasDeServicio"]');
@@ -71,10 +75,6 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
     const fechaComparar = new Date(fechaDiaSiguiente.setHours(HORA15,0,0))
     .toISOString();
 
-
-    await wait(() => {
-        reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
-    });
     await wait(() => {
         fechaRealizacion && fireEvent.change(fechaRealizacion, setTextEvent('fechaRealizacion', fechaComparar));
     });

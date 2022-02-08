@@ -1,6 +1,7 @@
 import {
     AGREGAR_REUNION,
     LISTAR_REUNIONES,
+    SELECCIONAR_REUNION,
     TiposAccionesReunion,
   } from '../../acciones/reunion/ReunionTiposAcciones';
   import { EstadoReunion } from '../../modelo/EstadoReunion';
@@ -8,6 +9,10 @@ import {
   
 const initialState: EstadoReunion = {
   reuniones: Array<Reunion>(),
+  reunion: {
+    tipo: '',
+    precio: 0,
+  },
   cantidadTotalReunion: 0,
 };
   
@@ -29,6 +34,13 @@ export default function (
       return {
         ...state,
         reuniones: [...state.reuniones, reunion],
+      };
+    }
+    case SELECCIONAR_REUNION: {
+      const reunion = action.payload;
+      return {
+        ...state,
+        reunion,
       };
     }
 

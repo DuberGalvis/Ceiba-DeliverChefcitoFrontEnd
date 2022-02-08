@@ -108,7 +108,8 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
     expect(formSubmitted.producto).toStrictEqual({
         nombre: 'Bandeja Paisa',
         precio: 45000,
-        detalle: 'Tiene Carne en polvo, chorizo, chicharron, huevo'
+        detalle: 'Tiene Carne en polvo, chorizo, chicharron, huevo',
+        nombreImagen: 'imagen.png',
     });
     expect(formSubmitted.reunion).toStrictEqual({
         tipo: 'TIPO_MEDIANA',

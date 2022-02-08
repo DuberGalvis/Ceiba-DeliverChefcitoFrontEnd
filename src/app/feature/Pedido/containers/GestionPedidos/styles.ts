@@ -4,6 +4,7 @@ export const DivContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const DivRow = styled.div`

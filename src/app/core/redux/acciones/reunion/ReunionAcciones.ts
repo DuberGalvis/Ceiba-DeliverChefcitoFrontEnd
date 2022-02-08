@@ -1,6 +1,7 @@
 import {
     AGREGAR_REUNION,
     LISTAR_REUNIONES,
+    SELECCIONAR_REUNION,
     TiposAccionesReunion,
   } from './ReunionTiposAcciones';
 import { Reunion } from 'app/feature/Reunion/models/Reunion';
@@ -10,7 +11,6 @@ export function listarReuniones(
   reuniones: Array<Reunion>,
   cantidadTotalReuniones: number,
 ): TiposAccionesReunion {
-  reuniones.unshift({tipo: 'Ingrese el Tipo de Reunión', precio: 0});
   return {
     type: LISTAR_REUNIONES,
     payload: reuniones,
@@ -49,4 +49,12 @@ export function listarReunionesAsync(numeroPagina: number) {
     );
   };
 }
- 
+
+export function seleccionarReunion(
+  reunion: Reunion
+): TiposAccionesReunion {
+  return {
+    type: SELECCIONAR_REUNION,
+    payload: reunion,
+  };
+} 

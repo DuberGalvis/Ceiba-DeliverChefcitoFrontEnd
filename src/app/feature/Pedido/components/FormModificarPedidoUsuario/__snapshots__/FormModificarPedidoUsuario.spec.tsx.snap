@@ -15,7 +15,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       name="producto"
     >
       <option
-        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye\\"}"
+        value="{\\"nombre\\":\\"Paella Española\\",\\"precio\\":38000,\\"detalle\\":\\"Verduras y sustituye\\",\\"nombreImagen\\":\\"imagen.png\\"}"
       >
         Paella Española
       </option>
@@ -57,7 +57,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
           class=""
           name="fechaRealizacion"
           type="text"
-          value="February 8, 2022 3:00 PM"
+          value="February 9, 2022 3:00 PM"
         />
       </div>
     </div>
@@ -65,7 +65,7 @@ exports[`FormModificarPedidoUsuario test should match snapshot 1`] = `
       class="sc-AxirZ eAukyj"
       name="fechaRealizacionAux"
       type="hidden"
-      value="Tue Feb 08 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+      value="Wed Feb 09 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
     />
     <input
       class="sc-AxirZ eAukyj"

@@ -2,12 +2,12 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Producto } from '../../models/Producto';
+import { Button } from 'app/shared/components/Button';
 import { DivProducto, 
   DivProductoInfo, 
   ImgProducto, 
   H2ProductoInfo,
-  PProductoInfo,
-  ButtonProducto } from './styles';
+  PProductoInfo, } from './styles';
 
 export interface ArticuloProductoProps {
   producto: Producto;
@@ -30,8 +30,8 @@ export const ArticuloProducto: React.FC<ArticuloProductoProps> = ({
         </H2ProductoInfo>
         <PProductoInfo>{producto.detalle}</PProductoInfo>
       </DivProductoInfo>
-      <Link to='/crear-pedido' replace={true}>
-        <ButtonProducto onClick={handleClickProducto} >Ordenar Pedido</ButtonProducto>
+      <Link to='/reuniones' replace={true}>
+        <Button type="button" onClick={handleClickProducto}>Ordenar Pedido</Button>
       </Link>
     </DivProducto>
   );

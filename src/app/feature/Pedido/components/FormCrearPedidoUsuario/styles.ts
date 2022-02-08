@@ -23,3 +23,7 @@ export const H2EsFestivo = styled.h2`
   font-weight: bold;
   text-align: center;
 `;
+
+export const H2Titulo = styled.h2`
+  text-align: center;
+`;

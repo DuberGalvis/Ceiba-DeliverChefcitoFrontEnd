@@ -5,7 +5,7 @@ import { Button } from 'app/shared/components/Button';
 import { FormikHelpers } from 'formik/dist/types';
 import { Input } from 'app/shared/components/Input';
 import { Pedido } from '../../../Pedido/models/Pedido';
-import { SpanError, Select, H2EsFestivo } from './styles';
+import { SpanError, H2EsFestivo, H2Titulo } from './styles';
 import { useFormik } from 'formik';
 import { Producto } from 'app/feature/Producto/models/Producto';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
@@ -44,12 +44,12 @@ interface FormValues {
 
 interface FormCrearPedidoUsuarioProp {
   onSubmit: (payload: Pedido) => any;
-//   validarDiaFestivo: (fechaFestivo: Date) => void;
+  validarDiaFestivo: (fechaFestivo: Date) => void;
   disabled?: boolean;
   formTitle: string;
   productoSeleccionado: Producto;
+  reunionSeleccionada: Reunion;
   usuarioPedido: Usuario;
-  reuniones: Reunion[];
   mensajePedido: string;
   mensajeExcepcion: string;
   esFestivo: boolean;
@@ -71,18 +71,18 @@ const validationSchema = Yup.object().shape<FormValues>({
 
 export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     onSubmit,
-    // validarDiaFestivo,
+    validarDiaFestivo,
     disabled,
     formTitle,
     usuarioPedido,
     productoSeleccionado,
-    reuniones,
+    reunionSeleccionada,
     mensajePedido,
     mensajeExcepcion,
     esFestivo,
     initialValues = {
         producto: JSON.stringify(productoSeleccionado),
-        reunion: JSON.stringify(reuniones[0]),
+        reunion: JSON.stringify(reunionSeleccionada),
         fechaRealizacion: '',
         direccion: '',
         valorTotal: 0,
@@ -115,13 +115,12 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
     formik.values.fechaRealizacion = !fechaInicio
         ? ''
         : fechaInicio.toString();
-    // useEffect(() => {
-    //     validarDiaFestivo(fechaInicio);
-    //   },[validarDiaFestivo, fechaInicio]);
-    console.log(productoSeleccionado);
+    useEffect(() => {
+        validarDiaFestivo(fechaInicio);
+      },[validarDiaFestivo, fechaInicio]);
     return(
         <form onSubmit= {formik.handleSubmit}>
-            <h2>{formTitle}</h2>
+            <H2Titulo>{formTitle}</H2Titulo>
             <MostrarMensaje 
                 mensaje={mensajePedido}
             />
@@ -133,28 +132,14 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
                     El día seleccionado es festivo, se cobra el doble
                 </H2EsFestivo>}
             <label>
-                Producto Seleccionado:{' '}
+                Producto Seleccionado:
             </label>
-            <h3>{productoSeleccionado.nombre}</h3>             
+            <h3>{productoSeleccionado.nombre}. ${productoSeleccionado.precio}</h3>             
             <label>
-                Tipos de Reuniones:{' '}
+                Reunion Seleccionada:
             </label>
-            <Select
-                 value={formik.values.reunion}
-                name="reunion"  
-                onChange={formik.handleChange}>
-                {reuniones.map((reunion) => (
-                    <option 
-                        key={reunion.tipo} 
-                        value={JSON.stringify(reunion)}
-                        >
-                            {reunion.tipo}
-                    </option>
-                ))}
-            </Select>
-            {formik.touched.reunion && formik.errors.reunion && (
-                <SpanError>{formik.errors.reunion}</SpanError>
-            )}
+            <h3>{reunionSeleccionada.tipo}. ${reunionSeleccionada.precio}</h3>
+            <br />
             <label>
                 Fecha y hora de inicio del evento:
             </label>
@@ -170,7 +155,7 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             />
             {formik.touched.fechaRealizacion && formik.errors.fechaRealizacion && (
                 <SpanError>{formik.errors.fechaRealizacion}</SpanError>
-            )}                
+            )}               
             <Input 
                 type="hidden"
                 name="fechaRealizacionAux"
@@ -205,14 +190,14 @@ export const FormCrearPedidoUsuario: React.FC<FormCrearPedidoUsuarioProp> = ({
             {formik.touched.valorTotal && formik.errors.valorTotal && (
                 <SpanError>{formik.errors.valorTotal}</SpanError>
             )}            
-            <Button type="submit">Hacer Pedido</Button>
+            <Button type="submit">Generar Pedido</Button>
         </form>
     );
 };
 
 FormCrearPedidoUsuario.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    // validarDiaFestivo: PropTypes.func.isRequired,
+    validarDiaFestivo: PropTypes.func.isRequired,
     formTitle: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     initialValues: PropTypes.shape({

@@ -30,16 +30,3 @@ export const PProductoInfo = styled.p`
     font-size: 14px;
     font-weight: 100;
 `;
-
-export const ButtonProducto = styled.button`
-    background:  linear-gradient(to bottom, #2d6133 100%, #2d6133 5%);
-    width: 100%;
-    padding: 10px;
-    border-radius: 0px 0px 5px 5px;
-    color: #fff;
-    border: 0px;
-    outline: 0;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 300;
-`;

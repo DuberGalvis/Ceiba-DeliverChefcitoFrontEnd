@@ -55,9 +55,10 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
           cantidadTotalPedidos={pedidos.cantidadTotalPedidos}
           onClickCambiarPagina={listarPedidos}
         />}
-        <Link to='/crear-pedido' replace={true}>
+        <br />
+        <Link to='/productos' replace={true}>
                 <span role='img' aria-labelledby='modificar'>
-                    Ir a Crear Pedido⏩
+                    Realizar Pedido⏩
                 </span>
         </Link>
       </DivRow>

@@ -15,11 +15,13 @@ interface GestionReunionesProps {
   usuario: EstadoUsuario;
   listarReuniones: (numeroPagina: number) => void;
   agregarNuevaReunion: (reunion: Reunion) => void;
+  seleccionarReunion: (reunion: Reunion) => void;
 }
 
 export const GestionReuniones: React.FC<GestionReunionesProps> = ({
   listarReuniones,
   agregarNuevaReunion,
+  seleccionarReunion,
   reuniones,
   usuario,
 }) => {
@@ -38,6 +40,7 @@ export const GestionReuniones: React.FC<GestionReunionesProps> = ({
         />}
         <ListaReuniones
           reuniones={reuniones.reuniones}
+          seleccionarReunion={seleccionarReunion}
         />
         <PaginadorReunion
           cantidadTotalReuniones={reuniones.cantidadTotalReunion} 
@@ -51,6 +54,10 @@ export const GestionReuniones: React.FC<GestionReunionesProps> = ({
 GestionReuniones.propTypes = {
   reuniones: PropTypes.shape({
     reuniones: PropTypes.array.isRequired,
+    reunion: PropTypes.shape({
+      tipo: PropTypes.string.isRequired,
+      precio: PropTypes.number.isRequired,
+    }).isRequired,
     cantidadTotalReunion: PropTypes.number.isRequired,
   }).isRequired,
   usuario: PropTypes.shape({

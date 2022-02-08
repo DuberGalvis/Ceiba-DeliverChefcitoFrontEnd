@@ -43,6 +43,10 @@ describe('FormCrearPedidoUsuario test', () => {
             precio: 75000
         }
       ],
+      reunionSeleccionada: {
+        tipo: 'TIPO_PEQUENA',
+        precio: 25000
+      },
       mensajePedido: '',
       mensajeExcepcion: '',
       esFestivo: false,
@@ -57,14 +61,10 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const horasDeServicio = elem.querySelector('input[name="horasDeServicio"]');
-    const reunion = elem.querySelector('input[name="reunion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', ''));
-    });
-    await wait(() => {
-      reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });
 
     await wait(() => {
@@ -79,12 +79,8 @@ describe('FormCrearPedidoUsuario test', () => {
 
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
-    const reunion = elem.querySelector('select[name="reunion"]');
-    const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-      reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
-    });
+    const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
@@ -98,13 +94,9 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-        reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
-    });
     await wait(() => {
         fechaRealizacion && fireEvent.change(fechaRealizacion, setTextEvent('fechaRealizacion', 'January 4, 2022 3:00 PM'));
     });
@@ -121,14 +113,10 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit one fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const direccion = elem.querySelector('input[name="direccion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-        reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
-    });
     await wait(() => {
         fechaRealizacion && fireEvent.change(fechaRealizacion, setTextEvent('fechaRealizacion', 'January 4, 2022 3:00 PM'));
     });

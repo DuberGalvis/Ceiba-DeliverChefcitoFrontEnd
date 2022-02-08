@@ -2,7 +2,6 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { DivContainer, DivRow } from './styles';
 import { Pedido } from '../../models/Pedido';
-import { useEffect } from 'react';
 import { FormCrearPedidoUsuario } from '../../components/FormCrearPedidoUsuario';
 import { MenuLogueado } from 'app/shared/components/MenuLogueado';
 import { EstadoUsuario } from 'app/core/redux/modelo/EstadoUsuario';
@@ -17,8 +16,6 @@ interface CrearPedidosProps {
   reuniones: EstadoReunion;
   agregarPedidoUsuario: (pedido: Pedido) => void;
   validarDiaFestivo: (fechaFestivo: Date) => void;
-  listarProductos: (numeroPaginas: number) => void;
-  listarReuniones: (numeroPagina: number) => void;
 }
 
 export const CrearPedidos: React.FC<CrearPedidosProps> = ({
@@ -27,12 +24,8 @@ export const CrearPedidos: React.FC<CrearPedidosProps> = ({
   productos,
   reuniones,
   agregarPedidoUsuario,
-  listarReuniones,
-  // validarDiaFestivo,
+  validarDiaFestivo,
 }) => {
-  useEffect(() => {
-    listarReuniones(0);
-  },[listarReuniones]);
   return (
     <DivContainer>
       {usuario && 
@@ -42,10 +35,10 @@ export const CrearPedidos: React.FC<CrearPedidosProps> = ({
         <FormCrearPedidoUsuario 
           onSubmit={agregarPedidoUsuario}
           productoSeleccionado={productos.producto}
-          // validarDiaFestivo={validarDiaFestivo}
+          reunionSeleccionada={reuniones.reunion}
+          validarDiaFestivo={validarDiaFestivo}
           usuarioPedido={usuario.usuarios[0]}
-          reuniones={reuniones.reuniones}
-          formTitle="Crea tu Pedido"
+          formTitle="Ingresa los datos adicionales al pedido"
           mensajePedido={pedidos.mensajeConfirmacion}
           mensajeExcepcion={pedidos.mensajeExcepcion} 
           esFestivo={pedidos.esFestivo}
@@ -118,5 +111,4 @@ CrearPedidos.propTypes = {
     mostrarModificar: PropTypes.bool.isRequired,
   }).isRequired,
   agregarPedidoUsuario: PropTypes.func.isRequired,
-  listarReuniones: PropTypes.func.isRequired,
 };

@@ -3,40 +3,28 @@
 exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] = `
 <div>
   <form>
-    <h2>
+    <h2
+      class="sc-AxgMl ftqCsy"
+    >
       Form test
     </h2>
     <label>
       Producto Seleccionado:
-       
     </label>
     <h3>
       Paella Española
+      . $
+      40000
     </h3>
     <label>
-      Tipos de Reuniones:
-       
+      Reunion Seleccionada:
     </label>
-    <select
-      class="sc-AxhCb kUujfn"
-      name="reunion"
-    >
-      <option
-        value="{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"
-      >
-        TIPO_PEQUENA
-      </option>
-      <option
-        value="{\\"tipo\\":\\"TIPO_MEDIANA\\",\\"precio\\":50000}"
-      >
-        TIPO_MEDIANA
-      </option>
-      <option
-        value="{\\"tipo\\":\\"TIPO_GRANDE\\",\\"precio\\":75000}"
-      >
-        TIPO_GRANDE
-      </option>
-    </select>
+    <h3>
+      TIPO_PEQUENA
+      . $
+      25000
+    </h3>
+    <br />
     <label>
       Fecha y hora de inicio del evento:
     </label>
@@ -50,7 +38,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
           class=""
           name="fechaRealizacion"
           type="text"
-          value="February 8, 2022 3:00 PM"
+          value="February 9, 2022 3:00 PM"
         />
       </div>
     </div>
@@ -58,7 +46,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
       class="sc-AxirZ eAukyj"
       name="fechaRealizacionAux"
       type="hidden"
-      value="Tue Feb 08 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
+      value="Wed Feb 09 2022 15:00:00 GMT-0500 (Colombia Standard Time)"
     />
     <input
       class="sc-AxirZ eAukyj"
@@ -83,7 +71,7 @@ exports[`FormCrearPedidoUsuario test should match snapshot of crear pedidos 1`] 
       class="sc-AxjAm cCwJAQ"
       type="submit"
     >
-      Hacer Pedido
+      Generar Pedido
     </button>
   </form>
 </div>

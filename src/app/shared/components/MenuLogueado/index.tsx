@@ -7,7 +7,6 @@ import store from 'app/core/redux/store';
 const MenuLogueadoComponent: React.FC = () => {
   const usuario: Usuario = store.getState().usuario.usuarios[0];
   const routes = [
-    { label: '| Ver Reuniones', url: '/reuniones' },
     { label: '| Ver Productos', url: '/productos' },
     { label: '| Ir a Pedidos', url: '/pedidos' },
     { label: '| Ajustes de Cuenta', url: '/ajustes-usuario' },

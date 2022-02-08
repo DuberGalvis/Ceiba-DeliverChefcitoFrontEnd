@@ -7,3 +7,7 @@ export const DivArticulosProducto = styled.div`
   grid-row-gap: 1.5rem;
   display: grid;
 `;
+
+export const H2Titulo = styled.h2`
+  text-align: center;
+`;
