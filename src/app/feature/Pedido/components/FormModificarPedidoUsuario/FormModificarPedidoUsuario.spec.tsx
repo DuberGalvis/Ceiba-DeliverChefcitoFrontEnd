@@ -4,7 +4,7 @@ import { SinonStub, stub } from 'sinon';
 import { FormModificarPedidoUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 import { constantes } from 'app/shared/utils/constantes';
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const {
   POSICION_DOS,
@@ -26,34 +26,35 @@ describe('FormModificarPedidoUsuario test', () => {
       formTitle: 'Form test',
       onSubmit: stub(),
       productos: [{
-              nombre: 'Paella Española',
-              precio: 38000,
-              detalle: 'Verduras y sustituye'
-          }
-        ],
+          nombre: 'Paella Española',
+          precio: 38000,
+          detalle: 'Verduras y sustituye',
+          nombreImagen: 'imagen.png',
+        }
+      ],
       usuarios:[{nombre: 'Lorem', clave: '1234'}],
       reuniones:[{
-              tipo: 'TIPO_PEQUENA',
-              precio: 25000
-          }, {
-              tipo: 'TIPO_MEDIANA',
-              precio: 50000
-          }, {
-              tipo: 'TIPO_GRANDE',
-              precio: 75000
-          }
-        ],
-        pedidoListar: {id: 4,
-          nombreUsuario: 'Lorem',
-          nombreProducto: 'Paella Española',
-          tipoReunion: 'TIPO_PEQUENA',
-          fechaRealizacion: 'January 4, 2022 3:00 PM',
-          direccion: 'calle 10 # 30-40',
-          horasDeServicio: 4,
-          valorTotal: 63000,},
-          mensajeModificar: '',
-          mensajeExcepcion: '',
-          esFestivo: false,
+          tipo: 'TIPO_PEQUENA',
+          precio: 25000
+        }, {
+          tipo: 'TIPO_MEDIANA',
+          precio: 50000
+        }, {
+          tipo: 'TIPO_GRANDE',
+          precio: 75000
+        }
+      ],
+      pedidoListar: {id: 4,
+        nombreUsuario: 'Lorem',
+        nombreProducto: 'Paella Española',
+        tipoReunion: 'TIPO_PEQUENA',
+        fechaRealizacion: 'January 4, 2022 3:00 PM',
+        direccion: 'calle 10 # 30-40',
+        horasDeServicio: 4,
+        valorTotal: 63000,},
+      mensajeModificar: '',
+      mensajeExcepcion: '',
+      esFestivo: false,
     };
     componentWrapper = render(<Router><FormModificarPedidoUsuario {...componentProps} /></Router>);
   });

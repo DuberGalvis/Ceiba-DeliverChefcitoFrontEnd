@@ -4,7 +4,7 @@ import { SinonStub, stub } from 'sinon';
 import { FormModificarPedidoUsuario } from '.';
 import { setTextEvent } from 'app/shared/utils/test';
 import { constantes } from 'app/shared/utils/constantes';
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const {
     HORAS24,
@@ -29,35 +29,36 @@ describe('FormModificarPedidoUsuarioSubmit test', () => {
       formTitle: 'Form test',
       onSubmit: stub(),
       productos: [{
-              nombre: 'Bandeja Paisa',
-              precio: 45000,
-              detalle: `Tiene Carne en polvo, chorizo, chicharron, huevo`
-          }
-        ],
+          nombre: 'Bandeja Paisa',
+          precio: 45000,
+          detalle: `Tiene Carne en polvo, chorizo, chicharron, huevo`,
+          nombreImagen: 'imagen.png',
+        }
+      ],
       usuarios:[{nombre: 'Lorem', clave: '1234'}],
       reuniones:[
-          {
-            tipo: 'TIPO_MEDIANA',
-            precio: 50000
-          },{
-            tipo: 'TIPO_PEQUENA',
-            precio: 25000
-          }, {
-            tipo: 'TIPO_GRANDE',
-            precio: 75000
-          }
-        ],
-        pedidoListar: {id: 4,
-          nombreUsuario: 'Lorem',
-          nombreProducto: 'Bandeja Paisa',
-          tipoReunion: 'TIPO_MEDIANA',
-          fechaRealizacion: 'January 5, 2022 3:00 PM',
-          direccion: 'calle 12 # 31-40',
-          horasDeServicio: 6,
-          valorTotal: 95000,},
-          mensajeModificar: '',
-          mensajeExcepcion: '',
-          esFestivo: false,
+        {
+          tipo: 'TIPO_MEDIANA',
+          precio: 50000
+        },{
+          tipo: 'TIPO_PEQUENA',
+          precio: 25000
+        }, {
+          tipo: 'TIPO_GRANDE',
+          precio: 75000
+        }
+      ],
+      pedidoListar: {id: 4,
+        nombreUsuario: 'Lorem',
+        nombreProducto: 'Bandeja Paisa',
+        tipoReunion: 'TIPO_MEDIANA',
+        fechaRealizacion: 'January 5, 2022 3:00 PM',
+        direccion: 'calle 12 # 31-40',
+        horasDeServicio: 6,
+        valorTotal: 95000,},
+      mensajeModificar: '',
+      mensajeExcepcion: '',
+      esFestivo: false,
     };
     componentWrapper = render(<Router><FormModificarPedidoUsuario {...componentProps} /></Router>);
   });
