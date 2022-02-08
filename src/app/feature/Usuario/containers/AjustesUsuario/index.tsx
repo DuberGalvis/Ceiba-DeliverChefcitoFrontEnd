@@ -38,9 +38,7 @@ export const AjustesUsuario: React.FC<AjustesUsuarioProps> = ({
   return (
     <DivContainer>
       {usuarios.length > 0 && 
-      <MenuLogueado
-        usuario={usuarios[0]}    
-      />}
+      <MenuLogueado />}
       <DivRow>
         <DivImg>
           {usuarios.length > 0 && 

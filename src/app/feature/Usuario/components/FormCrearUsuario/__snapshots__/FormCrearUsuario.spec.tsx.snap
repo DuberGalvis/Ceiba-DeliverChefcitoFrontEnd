@@ -16,16 +16,18 @@ exports[`FormCrearUsuario test should match snapshot 1`] = `
       class="sc-AxirZ eAukyj"
       name="clave"
       placeholder="Clave"
+      type="password"
       value=""
     />
     <input
       class="sc-AxirZ eAukyj"
       name="confirmarClave"
       placeholder="Confirme la Clave"
+      type="password"
       value=""
     />
     <button
-      class="sc-AxjAm kgxTKy"
+      class="sc-AxjAm cCwJAQ"
       type="submit"
     >
       Registrar

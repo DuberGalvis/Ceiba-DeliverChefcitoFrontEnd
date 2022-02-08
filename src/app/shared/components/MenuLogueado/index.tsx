@@ -2,14 +2,10 @@ import * as React from 'react';
 import { MenuNav, SpanUsuario } from './styles';
 import { NavList } from '../NavigationHeader/NavList';
 import { Usuario } from 'app/feature/Usuario/models/Usuario';
+import store from 'app/core/redux/store';
 
-interface MenuLogueadoProps {
-    usuario: Usuario;
-}
-
-export const MenuLogueado: React.FC<MenuLogueadoProps> = ({
-    usuario,
-}) => {
+const MenuLogueadoComponent: React.FC = () => {
+  const usuario: Usuario = store.getState().usuario.usuarios[0];
   const routes = [
     { label: '| Ver Reuniones', url: '/reuniones' },
     { label: '| Ver Productos', url: '/productos' },
@@ -25,3 +21,5 @@ export const MenuLogueado: React.FC<MenuLogueadoProps> = ({
     </MenuNav>
   );
 };
+
+export const MenuLogueado = React.memo(MenuLogueadoComponent);

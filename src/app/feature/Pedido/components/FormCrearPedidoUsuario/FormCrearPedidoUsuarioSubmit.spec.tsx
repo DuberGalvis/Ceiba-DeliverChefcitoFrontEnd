@@ -30,11 +30,16 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
       onSubmit: stub(),
       validarDiaFestivo: stub(),
       productos: [{
-                nombre: 'Paella Española',
-                precio: 40000,
-                detalle: 'Verduras y sustituye'
-            }
-        ],
+          nombre: 'Paella Española',
+          precio: 40000,
+          detalle: 'Verduras y sustituye'
+        }
+      ],
+      productoSeleccionado: {
+        nombre: 'Paella Española',
+        precio: 40000,
+        detalle: 'Verduras y sustituye'
+      },
       usuarioPedido: {nombre: 'Lorem', clave: '1234'},
       reuniones:[{
                 tipo: 'TIPO_PEQUENA',
@@ -56,7 +61,6 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
   it('should submit on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const direccion = elem.querySelector('input[name="direccion"]');
@@ -67,10 +71,7 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
     const fechaComparar = new Date(fechaDiaSiguiente.setHours(HORA15,0,0))
     .toISOString();
 
-    await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
-    });
+
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });
@@ -93,12 +94,7 @@ describe('FormCrearPedidoUsuarioSubmit test', () => {
 
     const formSubmitted = componentProps.onSubmit.firstCall.args[0];
 
-    expect(formSubmitted.usuario).toStrictEqual({nombre: 'Lorem', clave: '1234'});
-    expect(formSubmitted.producto).toStrictEqual({
-        nombre: 'Paella Española',
-        precio: 40000,
-        detalle: 'Verduras y sustituye'
-    });
+    expect(formSubmitted.usuario).toStrictEqual({nombre: 'Lorem', clave: '1234'});    
     expect(formSubmitted.reunion).toStrictEqual({
         tipo: 'TIPO_PEQUENA',
         precio: 25000

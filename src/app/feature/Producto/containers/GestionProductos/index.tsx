@@ -15,6 +15,7 @@ interface GestionProductosProps {
   usuario: EstadoUsuario;
   listarProductos: (numeroPagina: number) => void;
   agregarNuevoProducto: (producto: Producto) => void;
+  seleccionarProducto: (producto: Producto) => void;
 }
 
 export const GestionProductos: React.FC<GestionProductosProps> = ({
@@ -22,6 +23,7 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
   usuario,
   agregarNuevoProducto,
   listarProductos,
+  seleccionarProducto,
 }) => {
   useEffect(() => {
     listarProductos(0);
@@ -30,9 +32,7 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
   return (
     <DivContainer>
       {estaLogueado && 
-      <MenuLogueado
-        usuario={usuario.usuarios[0]}    
-      />}
+      <MenuLogueado />}
       <DivRow>
       {!estaLogueado && <FormCrearProducto
           onSubmit={agregarNuevoProducto}
@@ -40,6 +40,7 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
         />}
         <ListaProductos
           productos={productos.productos}
+          seleccionarProducto={seleccionarProducto}
         />
         <PaginadorProductos
           cantidadTotalProductos={productos.cantidadTotalProducto}
@@ -52,6 +53,12 @@ export const GestionProductos: React.FC<GestionProductosProps> = ({
 
 GestionProductos.propTypes = {
   productos: PropTypes.shape({
+    producto: PropTypes.shape({
+      nombre: PropTypes.string.isRequired,
+      detalle: PropTypes.string.isRequired,
+      precio: PropTypes.number.isRequired,
+      nombreImagen: PropTypes.string.isRequired,
+    }).isRequired,
     productos: PropTypes.array.isRequired,
     cantidadTotalProducto: PropTypes.number.isRequired,
   }).isRequired,

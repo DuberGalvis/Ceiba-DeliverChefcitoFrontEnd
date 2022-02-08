@@ -9,7 +9,7 @@ import { UsuarioRouter } from './feature/Usuario/UsuarioRouter';
 import { UsuarioAjustesRouter } from './feature/Usuario/UsuarioAjustesRouter';
 import { PedidoRouter } from './feature/Pedido/PedidoRouter';
 import { PedidoCrearRouter } from './feature/Pedido/PedidoCrearRouter'
-import { PedidoModificarRouter } from './feature/Pedido/PedidoModificarRouter'
+import { PedidoModificarRouter } from './feature/Pedido/PedidoModificarRouter';
 
 export const AppRouter = () => {
   return (

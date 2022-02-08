@@ -27,6 +27,7 @@ BtnEliminarProducto.propTypes = {
     nombre: PropTypes.string.isRequired,
     precio: PropTypes.number.isRequired,
     detalle: PropTypes.string.isRequired,
+    nombreImagen: PropTypes.string.isRequired,
   }).isRequired,
   onEliminar: PropTypes.func.isRequired,
 };

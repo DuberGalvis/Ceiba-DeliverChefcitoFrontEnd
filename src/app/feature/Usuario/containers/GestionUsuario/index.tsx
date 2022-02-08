@@ -34,9 +34,7 @@ export const GestionUsuario: React.FC<GestionUsuarioProps> = ({
   return (
     <DivContainer>
       {usuarios.length > 0 && 
-      <MenuLogueado
-        usuario={usuarios[0]}    
-      />}
+      <MenuLogueado />}
       <DivRow>
         {mensajeConfirmacion.length > 0 && 
         <H2Exitoso>
@@ -44,8 +42,8 @@ export const GestionUsuario: React.FC<GestionUsuarioProps> = ({
         </H2Exitoso>}
         <DivImg>
             {mostrarInicio && <BotonesUsuarioImg
-            src={ImgRegistrate} 
-            onClick={irAgregarUsuario}
+              src={ImgRegistrate} 
+              onClick={irAgregarUsuario}
             />}
             {mostrarAgregar && <BotonesUsuarioImg
               src={ImgIniciaSesion} 

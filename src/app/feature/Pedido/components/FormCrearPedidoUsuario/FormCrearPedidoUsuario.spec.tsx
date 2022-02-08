@@ -19,26 +19,33 @@ describe('FormCrearPedidoUsuario test', () => {
       onSubmit: stub(),
       validarDiaFestivo: stub(),
       productos: [{
-                nombre: 'Paella Española',
-                precio: 40000,
-                detalle: 'Verduras y sustituye'
-            }
-        ],
+          nombre: 'Paella Española',
+          precio: 40000,
+          detalle: 'Verduras y sustituye',
+          nombreImagen: 'imagen.png',
+        }
+      ],
+      productoSeleccionado: {
+        nombre: 'Paella Española',
+        precio: 40000,
+        detalle: 'Verduras y sustituye',
+        nombreImagen: 'imagen.png',
+      },
       usuarioPedido: {nombre: 'Lorem', clave: '1234'},
       reuniones:[{
-                tipo: 'TIPO_PEQUENA',
-                precio: 25000
-            }, {
-                tipo: 'TIPO_MEDIANA',
-                precio: 50000
-            }, {
-                tipo: 'TIPO_GRANDE',
-                precio: 75000
-            }
-        ],
-        mensajePedido: '',
-        mensajeExcepcion: '',
-        esFestivo: false,
+            tipo: 'TIPO_PEQUENA',
+            precio: 25000
+        }, {
+            tipo: 'TIPO_MEDIANA',
+            precio: 50000
+        }, {
+            tipo: 'TIPO_GRANDE',
+            precio: 75000
+        }
+      ],
+      mensajePedido: '',
+      mensajeExcepcion: '',
+      esFestivo: false,
     };
     componentWrapper = render(<FormCrearPedidoUsuario {...componentProps} />);
   });
@@ -50,16 +57,11 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
     const horasDeServicio = elem.querySelector('input[name="horasDeServicio"]');
-    const producto = elem.querySelector('input[name="producto"]');
     const reunion = elem.querySelector('input[name="reunion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
         horasDeServicio && fireEvent.change(horasDeServicio, setTextEvent('horasDeServicio', ''));
-    });
-    await wait(() => {
-      producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-        \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
     });
     await wait(() => {
       reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
@@ -77,14 +79,9 @@ describe('FormCrearPedidoUsuario test', () => {
 
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
-    const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
-    });
     await wait(() => {
       reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });
@@ -101,15 +98,10 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit two fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
-    });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });
@@ -129,16 +121,11 @@ describe('FormCrearPedidoUsuario test', () => {
   it('should fail on submit one fields missing on crear pedidos', async () => {
     const elem = componentWrapper.container;
 
-    const producto = elem.querySelector('select[name="producto"]');
     const reunion = elem.querySelector('select[name="reunion"]');
     const fechaRealizacion = elem.querySelector('input[name="fechaRealizacion"]');
     const direccion = elem.querySelector('input[name="direccion"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
-    await wait(() => {
-        producto && fireEvent.change(producto, setTextEvent('producto', `"{\\"nombre\\":\\"Paella Española\\",
-          \\"precio\\":\\"40000\\",\\"detalle\\":\\"Verduras y sustituye\\"}"`));
-    });
     await wait(() => {
         reunion && fireEvent.change(reunion, setTextEvent('reunion', `"{\\"tipo\\":\\"TIPO_PEQUENA\\",\\"precio\\":25000}"`));
     });

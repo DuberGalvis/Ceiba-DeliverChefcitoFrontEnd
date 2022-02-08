@@ -16,7 +16,7 @@ import { PedidoListar } from 'app/feature/Pedido/models/PedidoListar';
 const initialState: EstadoPedido = {
     pedido: {
         usuario: {nombre: '', clave: ''},
-        producto: {nombre: '', detalle: '', precio: 0},
+        producto: {nombre: '', detalle: '', precio: 0, nombreImagen: ''},
         reunion: {tipo: '', precio: 0},
         fechaRealizacion: '',
         direccion: '',

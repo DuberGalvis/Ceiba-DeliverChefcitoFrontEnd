@@ -78,6 +78,7 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
                 <SpanError>{formik.errors.nombre}</SpanError>
             )}
             <Input
+                type="password"
                 disabled={disabled}
                 name="clave"
                 placeholder="Clave"
@@ -88,6 +89,7 @@ export const FormCrearUsuario: React.FC<FormCrearUsuarioProp> = ({
                 <SpanError>{formik.errors.clave}</SpanError>
             )}
             <Input
+                type="password"
                 disabled={disabled}
                 name="confirmarClave"
                 placeholder="Confirme la Clave"

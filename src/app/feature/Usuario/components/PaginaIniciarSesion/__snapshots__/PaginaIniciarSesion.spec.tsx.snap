@@ -20,7 +20,7 @@ exports[`FormCrearUsuario test should match snapshot 1`] = `
       value=""
     />
     <button
-      class="sc-AxjAm kgxTKy"
+      class="sc-AxjAm cCwJAQ"
       type="submit"
     >
       Siguiente

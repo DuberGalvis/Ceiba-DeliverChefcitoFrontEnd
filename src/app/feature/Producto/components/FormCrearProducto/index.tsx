@@ -12,6 +12,7 @@ interface FormValues {
   nombre: string;
   precio: string;
   detalle: string;
+  nombreImagen: string;
 }
 
 interface FormCrearProductoProp {
@@ -25,6 +26,7 @@ const validationSchema = Yup.object().shape<FormValues>({
   nombre: Yup.string().required('El campo nombre es requerido.'),
   precio: Yup.string().required('El campo precio es requerido.'),
   detalle: Yup.string().required('El campo detalle es requerido.'),
+  nombreImagen: Yup.string().required('El campo nombre de la imagen es requerido.'),
 });
 
 export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
@@ -35,6 +37,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
     nombre: '',
     precio: '',
     detalle: '',
+    nombreImagen: '',
   },
 }) => {
   const handleSubmit = (
@@ -45,6 +48,7 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
       nombre: values.nombre,
       precio: parseInt(values.precio, 10),
       detalle: values.detalle,
+      nombreImagen: values.nombreImagen,
     });
     resetForm();
   };
@@ -86,6 +90,16 @@ export const FormCrearProducto: React.FC<FormCrearProductoProp> = ({
       {formik.touched.detalle && formik.errors.detalle && (
         <SpanError>{formik.errors.detalle}</SpanError>
       )}
+      <Input
+        disabled={disabled}
+        name="nombreImagen"
+        placeholder="Nombre de la Imagen"
+        value={formik.values.nombreImagen}
+        onChange={formik.handleChange}
+      />
+      {formik.touched.nombreImagen && formik.errors.nombreImagen && (
+        <SpanError>{formik.errors.nombreImagen}</SpanError>
+      )}
       <Button type="submit">Registrar Producto</Button>
     </form>
   );
@@ -99,5 +113,6 @@ FormCrearProducto.propTypes = {
     nombre: PropTypes.string.isRequired,
     precio: PropTypes.string.isRequired,
     detalle: PropTypes.string.isRequired,
+    nombreImagen: PropTypes.string.isRequired,
   }),
 };

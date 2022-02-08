@@ -30,9 +30,7 @@ export const GestionReuniones: React.FC<GestionReunionesProps> = ({
   return (
     <DivContainer>
       {estaLogueado && 
-      <MenuLogueado
-        usuario={usuario.usuarios[0]}    
-      />}
+      <MenuLogueado />}
       <DivRow>
       {!estaLogueado &&<FormCrearReunion
           onSubmit={agregarNuevaReunion}

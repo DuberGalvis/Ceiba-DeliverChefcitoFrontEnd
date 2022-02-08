@@ -1,6 +1,7 @@
 import {
   AGREGAR_PRODUCTO,
   LISTAR_PRODUCTOS,
+  SELECCIONAR_PRODUCTO,
   TiposAccionesProducto,
 } from './ProductosTiposAcciones';
 import { Producto } from 'app/feature/Producto/models/Producto';
@@ -10,7 +11,6 @@ export function listarProductos(
   productos: Array<Producto>,
   cantidadTotalProducto: number,
 ): TiposAccionesProducto {
-  productos.unshift({nombre: 'Ingrese el Producto', detalle: '', precio: 0});
   return {
     type: LISTAR_PRODUCTOS,
     payload: productos,
@@ -47,5 +47,14 @@ export function listarProductosAsync(numeroPagina: number) {
         listarProductos(respuesta.data, Array.from(respuesta.data).length)
       )
     );
+  };
+}
+
+export function seleccionarProducto(
+  producto: Producto
+): TiposAccionesProducto {
+  return {
+    type: SELECCIONAR_PRODUCTO,
+    payload: producto,
   };
 }

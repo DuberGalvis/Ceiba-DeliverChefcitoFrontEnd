@@ -24,7 +24,8 @@ describe('FormCrearProducto test', () => {
 
   it('should fail on submit all fields missing', async () => {
     const POSICION_DOS = 2;
-    const NUMERO_TRES = 3;
+    const POSICION_TRES = 3;
+    const NUMERO_CUATRO = 4;
     const elem = componentWrapper.container;
     const submitButton = elem.querySelector('button[type="submit"]');
 
@@ -32,20 +33,25 @@ describe('FormCrearProducto test', () => {
       submitButton && fireEvent.click(submitButton);
     });
     const spans = elem.querySelectorAll('span');
-    expect(spans.length).toBe(NUMERO_TRES);
+    expect(spans.length).toBe(NUMERO_CUATRO);
     expect(spans[0].textContent).toBe('El campo nombre es requerido.');
     expect(spans[1].textContent).toBe('El campo precio es requerido.');
     expect(spans[POSICION_DOS].textContent).toBe('El campo detalle es requerido.');
+    expect(spans[POSICION_TRES].textContent).toBe('El campo nombre de la imagen es requerido.');
   });
 
   it('should fail on submit two fields missing', async () => {
     const NUMERO_DOS = 2;
     const elem = componentWrapper.container;
     const nombre = elem.querySelector('input[name="nombre"]');
+    const nombreImagen = elem.querySelector('input[name="nombreImagen"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
       nombre && fireEvent.change(nombre, setTextEvent('nombre', 'Lorem'));
+    });
+    await wait(() => {
+      nombreImagen && fireEvent.change(nombreImagen, setTextEvent('nombreImagen', 'imagen.png'));
     });
 
     await wait(() => {
@@ -62,6 +68,7 @@ describe('FormCrearProducto test', () => {
 
     const nombre = elem.querySelector('input[name="nombre"]');
     const precio = elem.querySelector('input[name="precio"]');
+    const nombreImagen = elem.querySelector('input[name="nombreImagen"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
@@ -69,6 +76,9 @@ describe('FormCrearProducto test', () => {
     });
     await wait(() => {
       precio && fireEvent.change(precio, setTextEvent('precio', '45000'));
+    });
+    await wait(() => {
+      nombreImagen && fireEvent.change(nombreImagen, setTextEvent('nombreImagen', 'imagen.png'));
     });
 
     await wait(() => {
@@ -86,6 +96,7 @@ describe('FormCrearProducto test', () => {
     const nombre = elem.querySelector('input[name="nombre"]');
     const precio = elem.querySelector('input[name="precio"]');
     const detalle = elem.querySelector('input[name="detalle"]');
+    const nombreImagen = elem.querySelector('input[name="nombreImagen"]');
     const submitButton = elem.querySelector('button[type="submit"]');
 
     await wait(() => {
@@ -97,6 +108,9 @@ describe('FormCrearProducto test', () => {
     await wait(() => {
       detalle && fireEvent.change(detalle, setTextEvent('detalle', 'Dolor'));
     });
+    await wait(() => {
+      nombreImagen && fireEvent.change(nombreImagen, setTextEvent('nombreImagen', 'imagen.png'));
+    });
 
     await wait(() => {
       submitButton && fireEvent.click(submitButton);
@@ -107,5 +121,6 @@ describe('FormCrearProducto test', () => {
     expect(formSubmitted.nombre).toBe('Lorem');
     expect(formSubmitted.precio).toBe(VALOR_PRECIO);
     expect(formSubmitted.detalle).toBe('Dolor');
+    expect(formSubmitted.nombreImagen).toBe('imagen.png');
   });
 });

@@ -41,9 +41,7 @@ export const ModificarPedidos: React.FC<ModificarPedidosProps> = ({
   return (
     <DivContainer>
       {usuario && 
-      <MenuLogueado 
-        usuario={usuario.usuarios[0]}
-      />}
+      <MenuLogueado />}
       <DivRow>
         <FormModificarPedidoUsuario
           onSubmit={modificarPedidoUsuario}
@@ -90,6 +88,7 @@ ModificarPedidos.propTypes = {
         nombre: PropTypes.string.isRequired, 
         detalle: PropTypes.string.isRequired, 
         precio: PropTypes.number.isRequired,
+        nombreImagen: PropTypes.string.isRequired,
       }).isRequired,
       reunion: PropTypes.shape({
         tipo: PropTypes.string.isRequired, 

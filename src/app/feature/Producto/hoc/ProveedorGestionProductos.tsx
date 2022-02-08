@@ -1,6 +1,7 @@
 import {
   agregarNuevoProducto,
   listarProductosAsync,
+  seleccionarProducto,
 } from 'app/core/redux/acciones/productos/ProductosAcciones';
 import { EstadoGeneral } from 'app/core/redux/modelo/EstadoGeneral';
 import { GestionProductos } from '../containers/GestionProductos';
@@ -13,4 +14,5 @@ const mapStateToProps = ({productos, usuario}: EstadoGeneral) => {
 export const ProveedorGestionProductos = connect(mapStateToProps, {
   listarProductos: listarProductosAsync,
   agregarNuevoProducto,
+  seleccionarProducto,
 })(GestionProductos);

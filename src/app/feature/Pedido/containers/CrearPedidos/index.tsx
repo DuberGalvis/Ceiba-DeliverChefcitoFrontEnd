@@ -27,28 +27,22 @@ export const CrearPedidos: React.FC<CrearPedidosProps> = ({
   productos,
   reuniones,
   agregarPedidoUsuario,
-  listarProductos,
   listarReuniones,
-  validarDiaFestivo,
+  // validarDiaFestivo,
 }) => {
-  useEffect(() => {
-    listarProductos(0);
-  },[listarProductos]);
   useEffect(() => {
     listarReuniones(0);
   },[listarReuniones]);
   return (
     <DivContainer>
       {usuario && 
-      <MenuLogueado 
-        usuario={usuario.usuarios[0]}
-      />}
+      <MenuLogueado />}
       <DivRow>
       {usuario && !pedidos.mostrarModificar  && 
         <FormCrearPedidoUsuario 
           onSubmit={agregarPedidoUsuario}
-          validarDiaFestivo={validarDiaFestivo}
-          productos={productos.productos}
+          productoSeleccionado={productos.producto}
+          // validarDiaFestivo={validarDiaFestivo}
           usuarioPedido={usuario.usuarios[0]}
           reuniones={reuniones.reuniones}
           formTitle="Crea tu Pedido"
@@ -90,6 +84,7 @@ CrearPedidos.propTypes = {
         nombre: PropTypes.string.isRequired, 
         detalle: PropTypes.string.isRequired, 
         precio: PropTypes.number.isRequired,
+        nombreImagen: PropTypes.string.isRequired,
       }).isRequired,
       reunion: PropTypes.shape({
         tipo: PropTypes.string.isRequired, 
@@ -123,6 +118,5 @@ CrearPedidos.propTypes = {
     mostrarModificar: PropTypes.bool.isRequired,
   }).isRequired,
   agregarPedidoUsuario: PropTypes.func.isRequired,
-  listarProductos: PropTypes.func.isRequired,
   listarReuniones: PropTypes.func.isRequired,
 };

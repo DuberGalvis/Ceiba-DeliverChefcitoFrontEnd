@@ -13,6 +13,7 @@ export const DivRow = styled.div`
   position: relative;
   width: 100%;
   min-height: 1px;
+  padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
   @media (min-width: 768px) {

@@ -38,9 +38,7 @@ export const GestionPedidos: React.FC<GestionPedidosProps> = ({
   return (
     <DivContainer>
       {usuario && 
-      <MenuLogueado 
-        usuario={usuario.usuarios[0]}
-      />}
+      <MenuLogueado />}
       <DivRow>
       {usuario && !pedidos.mostrarModificar && 
       <ListarPedidosUsuario
@@ -96,6 +94,7 @@ GestionPedidos.propTypes = {
         nombre: PropTypes.string.isRequired, 
         detalle: PropTypes.string.isRequired, 
         precio: PropTypes.number.isRequired,
+        nombreImagen: PropTypes.string.isRequired,
       }).isRequired,
       reunion: PropTypes.shape({
         tipo: PropTypes.string.isRequired, 

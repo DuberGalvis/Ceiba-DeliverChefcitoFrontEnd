@@ -13,13 +13,15 @@ export const DivRow = styled.div`
   position: relative;
   width: 100%;
   min-height: 1px;
+  padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;
   border-radius: 5px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
+  border-top-style: ridge;
+  border-right-style: ridge;
+  border-bottom-style: ridge;
+  border-left-style: ridge;
   @media (min-width: 768px) {
     width: 50%;
     flex: 0 0 50%;

@@ -24,8 +24,14 @@ exports[`FormCrearProducto test should match snapshot 1`] = `
       placeholder="Detalle"
       value=""
     />
+    <input
+      class="sc-AxirZ eAukyj"
+      name="nombreImagen"
+      placeholder="Nombre de la Imagen"
+      value=""
+    />
     <button
-      class="sc-AxjAm kgxTKy"
+      class="sc-AxjAm cCwJAQ"
       type="submit"
     >
       Registrar Producto
