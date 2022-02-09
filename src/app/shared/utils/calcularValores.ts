@@ -1,5 +1,6 @@
 export const calcularValores = (producto: string, 
     reunion: string, esFestivo: boolean) => {
+        const doble = 2;
         if(!producto && !reunion){
             return 0;
         }
@@ -11,7 +12,7 @@ export const calcularValores = (producto: string,
         }
         let valorTotal: number = JSON.parse(producto).precio + JSON.parse(reunion).precio;
         if(esFestivo){
-            valorTotal *= 2;
+            valorTotal *= doble;
         }                
         return valorTotal;
 };
